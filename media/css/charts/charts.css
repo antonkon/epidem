@@ -1,0 +1,9 @@
+div.chartBox
+{
+	position: absolute;
+	width: 100%;
+}
+
+.inline_radio{
+	display: inline;
+}

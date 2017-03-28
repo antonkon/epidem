@@ -1,0 +1,29 @@
+<% layout('baza') %>
+<%-partial('header')%>
+
+<div style="padding: 10px;">
+<h1 class="text-center">Вход в систему</h1>
+<hr>
+    <div class="regfield">
+        <?php echo Form::open(array('route'=>'login', 'onsubmit' => 'return checkButtonLogin();', 'name'=>'signin' )); ?>
+        <div class="form-group">
+            <label class="control-label" for="email">*E-mail: </label>
+            <input required="true" class="form-control" type="text" onblur="validateEmail('has-error')" onfocus="focusEmail()" name="email" id="email" placeholder="Введите Ваш e-mail" >
+        </div>
+            
+        <div class="form-group">
+            <label class="control-label" for="password">*Пароль: </label>
+            <input required="true" class="form-control" type="password" onblur="validateName('password','has-error')" onfocus="focusName('password')" name="password" id="password" placeholder="Придумайте пароль" >
+        </div>
+       
+        <div class="form-group">
+            <input class="btn btn-primary btn-lg" style="outline: none;" value="Войти" onmouseover="setSubmitEnabledLogin();" type="submit" name="submit" id="submit" >
+        </div>
+        <?php echo Form::close(); ?>
+        <a href="<?php echo $host_url;?>signup" style="font-size: 18px;" >
+            Регистрация
+        </a>
+    </div>
+</div>
+
+<%-partial('footer')%>
