@@ -1,6 +1,6 @@
 exports.main = function(req, res) {
 	// главная
-	res.render('main', { title: 'Главная' });
+	res.render('main', { title: 'Главная', user: false });
 };
 
 exports.getQuestions = function(req, res) {
@@ -9,7 +9,7 @@ exports.getQuestions = function(req, res) {
 
 exports.getSignin = function(req, res) {
 	// страница войти
-	res.render('signin', { title: 'Вход' });
+	res.render('signin', { title: 'Вход', user: false });
 };
 
 exports.getSignup = function(req, res) {
@@ -18,8 +18,14 @@ exports.getSignup = function(req, res) {
 
 exports.postSignin = function(req, res) {
 	// обработка данных для входа
+	console.log('111');
+	res.render('signin', { title: 'Вход', user: true });
 };
 
 exports.postSignup = function(req, res) {
 	// обработка данных для регистрации
+};
+
+exports.logout = function(req, res) {
+	// разлогинить
 };

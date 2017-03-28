@@ -2,11 +2,17 @@
 <html>
   <head>
     <title><%= title %></title>
-	<%-partial('res')%>
+<%- partial('res') %>
   </head>
-  <body>
-  	
-  	<%- body %>
-
+  <body class="appbody">
+<%- partial('header') %>
+    <div class="main_container">
+<%- body %>
+    </div>
+    <footer>
+    	<% if (title != 'Главная') { %>
+<%- partial('footer') %>
+        <% } %>        
+	</footer>
   </body>
 </html>
