@@ -14,6 +14,7 @@ exports.getSignin = function(req, res) {
 
 exports.getSignup = function(req, res) {
 	// страница регистрация
+	res.render('signup', { title: 'Регистрация', user: false, err: false});
 };
 
 exports.postSignin = function(req, res) {
@@ -24,6 +25,8 @@ exports.postSignin = function(req, res) {
 
 exports.postSignup = function(req, res) {
 	// обработка данных для регистрации
+	console.log('222');
+	res.render('signup', { title: 'Регистрация', user: false, err: true });
 };
 
 exports.logout = function(req, res) {
