@@ -114,3 +114,32 @@ html
     margin-top: 60px;
     padding: 10px;
 }
+
+.confim_block
+{
+	color: white;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: #448fff;
+    opacity: 0.55;
+    margin-bottom: 20px;
+    margin-top: 3%;
+    padding: 25px;
+	border-radius:10px;
+	text-align:center;
+	font-size:15pt;
+	line-height: 0.8;
+}
+
+.confim
+{
+	text-align:center;
+	margin-top:3%;
+	opacity: 0.55;
+	
+}
+
+.big_text
+{
+	font-size:20pt;
+}
