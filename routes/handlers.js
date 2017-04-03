@@ -26,9 +26,10 @@ exports.postSignin = function(req, res) {
 exports.postSignup = function(req, res) {
 	// обработка данных для регистрации
 	console.log('222');
-	res.render('signup', { title: 'Регистрация', user: false, err: true });
+	res.render('confim', { title: 'Подтвердите E-mail', user: false});
 };
 
 exports.logout = function(req, res) {
 	// разлогинить
 };
+
