@@ -9,15 +9,15 @@
         </div>
     <%}%>
     
-        <form action="signup" method="post" accept-charset="utf-8" name="signun" class="regfield">
+        <form action="signup" method="post" accept-charset="utf-8" name="signup" class="regfield">
             <div class="form-group">
                 <label class="control-label" for="name">Логин: </label>
-                <input class="form-control" onblur="validateName('name','has-warning')" onfocus="focusName('name')" type="text" name="name" id="name" placeholder="Введите Ваше имя" >
+                <input class="form-control" onblur="validateName('name','has-warning')" onfocus="focusName('name')" type="text" name="name" id="name" placeholder="Введите Ваш логин" >
             </div>
                 
             <div class="form-group">
                 <label class="control-label" for="email">E-mail: </label>
-                <input required="true" class="form-control" type="text" onblur="validateEmail('has-error')" onfocus="focusEmail()" name="email" id="email" placeholder="Введите Ваш e-mail" >
+                <input required="true" class="form-control" type="text" onblur="validateEmail('has-error')" onfocus="focusEmail()" name="email" id="email" placeholder="Введите Ваш e-mail">
             </div>
                 
             <div class="form-group">

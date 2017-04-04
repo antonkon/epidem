@@ -25,7 +25,7 @@ exports.postSignin = function(req, res) {
 
 exports.postSignup = function(req, res) {
 	// обработка данных для регистрации
-	console.log('222');
+	console.log(req.body.email);		
 	res.render('confim', { title: 'Подтвердите E-mail', user: false});
 };
 
