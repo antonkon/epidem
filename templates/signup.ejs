@@ -9,10 +9,10 @@
         </div>
     <%}%>
     
-        <form action="signup" method="post" accept-charset="utf-8" name="signun" class="regfield">
+        <form action="signup" method="post" accept-charset="utf-8" class="regfield">
             <div class="form-group">
                 <label class="control-label" for="name">Логин: </label>
-                <input class="form-control" onblur="validateName('name','has-warning')" onfocus="focusName('name')" type="text" name="name" id="name" placeholder="Введите Ваше имя" >
+                <input required="true" class="form-control" onblur="validateName('name','has-warning')" onfocus="focusName('name')" type="text" name="login" id="name" placeholder="Введите Ваше имя" >
             </div>
                 
             <div class="form-group">
@@ -22,16 +22,16 @@
                 
             <div class="form-group">
                 <label class="control-label" for="password">Пароль: </label>
-                <input required="true"  class="form-control" type="password" onblur="validateName('password','has-error')" onfocus="focusName('password')" name="password" id="password" placeholder="Придумайте пароль" >
+                <input required="true"  class="form-control" type="password" onblur="validateName('password','has-error')" onfocus="focusName('password')" name="pwd" id="password" placeholder="Придумайте пароль" >
             </div>
                 
             <div class="form-group">
                 <label class="control-label" for="pw_c">Подтверждение пароля: </label>
-                <input required="true"  class="form-control" type="password" onblur="validatePassword('has-error')" onfocus="focusName('pw_c')" name="pw_c" id="pw_c" placeholder="Повторите пароль" >
+                <input required="true"  class="form-control" type="password" onblur="validatePassword('has-error')" onfocus="focusName('pw_c')" id="pw_c" placeholder="Повторите пароль" >
             </div>
 
             <div class="form-group">
-                <input class="btn btn-primary btn-lg" style="outline: none;" value="Зарегистрироваться" type="submit" name="submit" id="submit" >
+                <input class="btn btn-primary btn-lg" style="outline: none;" value="Зарегистрироваться" type="submit" id="submit">
             </div>
         </form>
         

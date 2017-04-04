@@ -1,3 +1,5 @@
+var model = require('./models/model').Register;
+
 exports.main = function(req, res) {
 	// главная
 	res.render('main', { title: 'Главная', user: false });
@@ -19,14 +21,37 @@ exports.getSignup = function(req, res) {
 
 exports.postSignin = function(req, res) {
 	// обработка данных для входа
-	console.log('111');
+	console.log(req.body);
+
 	res.render('signin', { title: 'Вход', user: true });
 };
 
 exports.postSignup = function(req, res) {
 	// обработка данных для регистрации
-	console.log('222');
-	res.render('confim', { title: 'Подтвердите E-mail', user: false});
+	console.log(req.body);
+	var user = new model({
+		login: req.body.login,
+		pwd: req.body.pwd,
+		email: req.body.email
+	});
+
+	user.save(function(err, user, next) {
+		if (err){
+			if (err.name === 'MongoError' && err.code === 11000) {
+				// ошибка регистрации: user с такими данными уже есть
+				res.render('signup', {
+					title: 'Ошибка регистрации',
+					user: false,
+					err: 'Пользователь с такими данными уже зарегистрирован !'});
+			} else {
+				// другая ошибка
+    			next(err);
+    		}
+  		} else {
+  			// регистрация успешна
+  			res.render('confim', { title: 'Подтвердите E-mail', user: false});
+  		}
+	});	
 };
 
 exports.logout = function(req, res) {
