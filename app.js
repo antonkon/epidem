@@ -1,12 +1,12 @@
 var express = require('express'),
-	router = require('./routes/router'),
-	bodyParser = require('body-parser'),
-	methodOverride = require('method-override'),
-	errorHandler = require('errorhandler'),
-	cookieParser = require('cookie-parser'),
-	session = require('express-session'),
-	mongostore = require('connect-mongo/es5')(session),
-	app = express();
+    router = require('./routes/router'),
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
+    errorHandler = require('errorhandler'),
+    cookieParser = require('cookie-parser'),
+    session = require('express-session'),
+    mongostore = require('connect-mongo/es5')(session),
+    app = express();
 
 
 // Configuration
@@ -18,32 +18,34 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-  secret: 'epidem gpo',
-  key: 'sid',
-  cookie: { 
-  	secure: true,
-  	httpOnly: true,
-  	path: '/',
-  	maxAge: null },
-  store: new mongostore({ 
-    url: 'mongodb://localhost/epidem',
-  })
+    secret: 'epidem gpo',
+    key: 'sid',
+    cookie: {
+        secure: true,
+        httpOnly: true,
+        maxAge: null,
+        resave: false,
+        saveUninitialized: false
+    },
+    store: new mongostore({
+        url: 'mongodb://localhost/epidem',
+    })
 }));
-app.use(methodOverride());
+
+//app.use(require('./routes/loadUser'));
 
 app.use(function(err, req, res, next) {
-	console.log('1');
-	if ('development' == app.get('env')) {
-  		var error = errorHandler();
-  		error(err, req, res, next);
-	} else {
-		res.send(500);
-	}
+    if ('development' == app.get('env')) {
+        var error = errorHandler();
+        error(err, req, res, next);
+    } else {
+        res.send(500);
+    }
 
 });
 
 app.use('/', router);
 
-app.listen(3000, function(){
-	console.log("Сервер запущен:");
+app.listen(3000, function() {
+    console.log("Сервер запущен:");
 });

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://192.168.88.253/epidem');
+mongoose.connect('mongodb://localhost/epidem');
 
 var schema = new mongoose.Schema({
 	login: {
@@ -25,5 +25,14 @@ var schema = new mongoose.Schema({
 		default: false
 	}
 });
+
+schema.methods.checkPwd = function(pwd) {
+	// return this.encrtptPassword(pwd) === this.heshedPassword;
+	return this.pwd == pwd;
+};
+
+schema.methods.isCheckUser = function(req) {
+	user = this.model.findOne({email:requser.email})
+};
 
 exports.Register = mongoose.model('register', schema);
