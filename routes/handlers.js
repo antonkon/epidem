@@ -1,6 +1,6 @@
 var model = require('./models/model').Register;
 
-exports.main = function(req, res) {
+exports.main = function(req, res, next) {
 	// главная
 	res.render('main', { title: 'Главная', user: false });
 };
@@ -11,7 +11,7 @@ exports.getQuestions = function(req, res) {
 
 exports.getSignin = function(req, res) {
 	// страница войти
-	res.render('signin', { title: 'Вход', user: false });
+	res.render('signin', { title: 'Вход', user: false, err: false });
 };
 
 exports.getSignup = function(req, res) {
@@ -22,8 +22,17 @@ exports.getSignup = function(req, res) {
 exports.postSignin = function(req, res) {
 	// обработка данных для входа
 	console.log(req.body);
+	model.findOne({email: req.body.email}, function(err, user){
+		if (err) return next(err);
+		if (!user) {
+			// ошибка: такого пользователя нет
+			res.render('signin', { title: 'Ошибка входа', user: false, err: 'Неверное имя пользователя или пароль.' });
+		} else {
+			res.json(user);
+		}
+	});
 
-	res.render('signin', { title: 'Вход', user: true });
+	// res.render('signin', { title: 'Вход', user: true });
 };
 
 exports.postSignup = function(req, res) {
@@ -56,5 +65,6 @@ exports.postSignup = function(req, res) {
 
 exports.logout = function(req, res) {
 	// разлогинить
+
 };
 

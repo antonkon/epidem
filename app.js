@@ -3,6 +3,8 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	methodOverride = require('method-override'),
 	errorHandler = require('errorhandler'),
+	cookieParser = require('cookie-parser'),
+	session = require('express-session'),
 	app = express();
 
 
@@ -13,11 +15,28 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/media'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(session({
+  secret: 'keyboard cat',
+  key: 'sid',
+  cookie: { 
+  	secure: true,
+  	path: '/',
+  	httpOnly: true,
+  	maxAge: null }
+}));
 app.use(methodOverride());
 
-if ('development' == app.get('env')) {
-  app.use(errorHandler());
-}
+app.use(function(err, req, res, next) {
+	console.log('1');
+	if ('development' == app.get('env')) {
+  		var error = errorHandler();
+  		error(err, req, res, next);
+	} else {
+		res.send(500);
+	}
+
+});
 
 app.use('/', router);
 
