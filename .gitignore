@@ -6,3 +6,4 @@ logs/*
 *.sqlite3
 migrations/
 node_modules/
+cmd.bat
