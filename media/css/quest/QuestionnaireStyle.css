@@ -1,0 +1,149 @@
+.wrapper {
+    width: 700px;
+    overflow: auto;
+    height: 500px;
+    margin-top: 1%;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    border-radius: 10px;
+    background-color: #B664CA;
+    position: relative;
+    padding-right: 50px;
+    padding-top: 20px;
+}
+.questions{
+	color: white;
+	padding-top:70px;
+	margin-left:auto ;
+	margin-right:auto;
+	text-align: center;
+}
+.buttons{
+	height: 40px;
+	width: 80px;
+	border-radius: 10px;
+	color: white;
+	background-color: #B664CA;
+	border-color: white;
+	margin-left: 150px;
+	position: relative;
+	top: 260px;
+	right: -180px;
+	float: left;
+}
+button:hover
+{
+    background:#9a45b7;
+    border-color:white;
+}
+
+button:active,  button:focus,  button:hover
+{
+    outline:none ;
+}
+.appbody {
+    background-color: #FBFBFB;
+    color: black;
+    height: 100%;
+    width: 100%;
+    padding-top: 60px;
+    min-height: 100vh;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    float: top;
+    height: 60px;
+    width: 100%;
+    min-width: 1200px;
+    color: white;
+    font-weight: bold;
+    z-index: 110;
+}
+.logo {
+    position: absolute;
+    display: inline-block;
+    height: 40px;
+    width: 100px;
+    top: 13px;
+    left: 10px;
+    transition: all 200ms;
+}
+.ca-menu li a {
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    color: white;
+    position: relative;
+    text-decoration: none;
+    transition: all 200ms linear;
+}
+.ca-menu {
+    font-size: 0;
+    padding: 0;
+    margin: 0;
+    margin-left: 70px;
+    display: inline;
+    color: white;
+}
+.ca-menu li{
+    color: white;
+    width: 140px;
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    transition: all 300ms linear;
+}
+.ca-icon{
+    font-size: 20px;
+    text-shadow: 0px 0px 1px #333;
+    line-height: 60px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60px;
+    text-align: center;
+    transition: all 200ms linear;
+}
+
+.ca-content{
+    width: 150px;
+    height: 60px;
+}
+
+.ca-main{
+    font-size: 20px;
+    transition: all 300ms linear;
+    margin-left: 55px;
+}
+
+.ca-menu li:hover .ca-icon{
+    font-size: 35px;
+    color: rgb(210,210,210);
+    opacity: 0.8;
+    text-shadow: 0px 0px 2px #fff;
+}
+.ca-menu li:hover .ca-main{
+    opacity: 1;
+    color: rgb(210,210,210);
+    -webkit-animation: moveFromTop 300ms ease-in-out;
+    -moz-animation: moveFromTop 300ms ease-in-out;
+    -ms-animation: moveFromTop 300ms ease-in-out;
+    -o-animation: moveFromTop 300ms ease-in-out;
+}
+.icon-pencil2:before {
+    content: "\e900";
+}
+.icon-planet:before {
+    content: "\e906";
+}
+.icon-pie-chart:before {
+    content: "\e903";
+}

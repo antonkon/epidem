@@ -9,5 +9,6 @@ router.get('/interview', handlers.getInterview);
 router.post('/signin', handlers.postSignin);
 router.post('/signup', handlers.postSignup);
 router.post('/logout', handlers.logout);
+router.post('/interview', handlers.postInterview);
 
 module.exports = router;

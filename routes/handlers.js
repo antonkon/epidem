@@ -2,9 +2,8 @@ var model = require('./models/model').Register;
 var async = require('async');
 
 exports.main = function(req, res, next) {
-    // главная
-
-    res.render('main', { title: 'Главная', user: false });
+	// главная
+	res.render('main', { title: 'Главная', user: false });
 };
 
 exports.getQuestions = function(req, res) {
@@ -71,6 +70,7 @@ exports.postSignup = function(req, res) {
                 // ошибка регистрации: user с такими данными уже есть
                 res.render('signup', {
                     title: 'Ошибка регистрации',
+					user: false,
                     err: 'Пользователь с такими данными уже зарегистрирован !'
                 });
             } else {
@@ -90,7 +90,7 @@ exports.logout = function(req, res) {
 };
 
 exports.getInterview = function(req, res) {
-    // страница опросника
-    res.render('interview', { title: 'Опрос', err: false });
+	// страница опросника
+	res.render('interview', { title: 'Опрос', err: false, user:false});
 
 }

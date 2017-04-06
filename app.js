@@ -32,6 +32,8 @@ app.use(session({
     })
 }));
 
+app.use(methodOverride());
+
 //app.use(require('./routes/loadUser'));
 
 app.use(function(err, req, res, next) {
