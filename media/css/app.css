@@ -113,7 +113,9 @@ html
     margin-bottom: 20px;
     margin-top: 60px;
     padding: 10px;
-    border-radius:10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 13pt;
 }
 
 .confim_block

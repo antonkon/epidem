@@ -73,3 +73,8 @@ exports.getInterview = function(req, res) {
 	res.render('interview', { title: 'Опрос', err: false, user:false});
 
 }
+
+exports.postInterview = function(req, res){
+	// обработка данных пользователя анкеты и начало опроса
+	res.render('quest', { title: 'Опрос', err: false, user:false});
+}
