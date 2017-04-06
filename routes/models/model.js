@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/epidem');
+mongoose.connect('mongodb://192.168.88.253/epidem');
 
 var schema = new mongoose.Schema({
 	login: {

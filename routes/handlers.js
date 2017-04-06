@@ -68,3 +68,8 @@ exports.logout = function(req, res) {
 
 };
 
+exports.getInterview = function(req, res) {
+	// страница опросника
+	res.render('interview', { title: 'Опрос', err: false, user:false});
+
+}
