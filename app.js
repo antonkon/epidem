@@ -5,7 +5,7 @@ var express = require('express'),
 	errorHandler = require('errorhandler'),
 	cookieParser = require('cookie-parser'),
 	session = require('express-session'),
-	mongostore = require('connect-mongo')(session);
+	mongostore = require('connect-mongo/es5')(session),
 	app = express();
 
 
