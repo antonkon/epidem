@@ -28,7 +28,8 @@ exports.postSignin = function(req, res) {
 			// ошибка: такого пользователя нет
 			res.render('signin', { title: 'Ошибка входа', user: false, err: 'Неверное имя пользователя или пароль.' });
 		} else {
-			res.json(user);
+			// res.json(user);
+			res.render('signin', { title: 'Вход', user: true, err: false });
 		}
 	});
 
