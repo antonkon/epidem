@@ -26,7 +26,7 @@ app.use(session({
   	path: '/',
   	maxAge: null },
   store: new mongostore({ 
-    url: 'mongodb://localhost/epidem',
+    url: 'mongodb://192.168.1.2/epidem',
   })
 }));
 app.use(methodOverride());

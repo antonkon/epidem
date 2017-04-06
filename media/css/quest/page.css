@@ -116,7 +116,7 @@
 #label1{
     float: left;
     padding-right: 10px;
-    font: 14px Roboto, Medium, sans-serif;
+    font: 16px Roboto, Medium, sans-serif;
 }
 .pd{
     font-size: 14px;
@@ -156,4 +156,8 @@
     font-family: Roboto, Medium, sans-serif;
     color: white;
     font-size: 30px; 
+}
+
+.naz{
+    font-size: 15pt;
 }
