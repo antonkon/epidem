@@ -5,6 +5,7 @@ var express = require('express'),
 	errorHandler = require('errorhandler'),
 	cookieParser = require('cookie-parser'),
 	session = require('express-session'),
+	mongostore = require('connect-mongo')(session);
 	app = express();
 
 
@@ -17,13 +18,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'epidem gpo',
   key: 'sid',
   cookie: { 
   	secure: true,
-  	path: '/',
   	httpOnly: true,
-  	maxAge: null }
+  	path: '/',
+  	maxAge: null },
+  store: new mongostore({ 
+    url: 'mongodb://localhost/epidem',
+  })
 }));
 app.use(methodOverride());
 
