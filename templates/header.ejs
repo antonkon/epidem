@@ -49,6 +49,12 @@
         <% if (user) {%>
         <ul class="ca-menu" style="position: absolute; right: 0; top: 0;">
             <li>
+            <div class="username_bar" title="<%= user %>">
+                <span class="ca-icon icon-user" style="margin-left: 50px; width: 40px; height: 60px; font-size: 26px;"></span>
+                <p style="margin-left: 90px;"> <%= un %></p>
+            </div>
+            </li>
+            <li>
                 <a href="logout">
                     <span class="ca-icon icon-key"></span>
                     <div class="ca-content">
