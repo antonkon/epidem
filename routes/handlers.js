@@ -2,8 +2,19 @@ var model = require('./models/model').Register;
 var async = require('async');
 
 exports.main = function(req, res, next) {
-	// главная
-	res.render('main', { title: 'Главная', user: false });
+    // главная
+    console.log(req.session.num);
+    if (req.session.num) {
+        req.session.num++;
+        console.log("1");
+    } else {
+        req.session.num = 0;
+        console.log("2");
+    }
+    req.session.save(function(err) {
+        console.log("3");
+    });
+    res.render('main', { title: req.session.num, user: false });
 };
 
 exports.getQuestions = function(req, res) {
@@ -70,7 +81,7 @@ exports.postSignup = function(req, res) {
                 // ошибка регистрации: user с такими данными уже есть
                 res.render('signup', {
                     title: 'Ошибка регистрации',
-					user: false,
+                    user: false,
                     err: 'Пользователь с такими данными уже зарегистрирован !'
                 });
             } else {
@@ -86,11 +97,18 @@ exports.postSignup = function(req, res) {
 
 exports.logout = function(req, res) {
     // разлогинить
-
+    if (req.session.user) {
+        delete req.session.user;
+        res.redirect('/');
+    }
 };
 
 exports.getInterview = function(req, res) {
-	// страница опросника
-	res.render('interview', { title: 'Опрос', err: false, user:false});
+    // страница опросника
+    res.render('interview', { title: 'Опрос', err: false, user: false });
+}
+
+exports.postInterview = function(req, res) {
+    // страница опросника
 
 }
