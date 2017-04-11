@@ -47,15 +47,15 @@
         </li>
     </ul>
     <% if (user) {%>
-        <div class="username_bar" title="<%= user %>">
+        <div class="username_bar" title="<%= user.login %>">
             <span class="ca-icon icon-user" style="margin-left: 50px; width: 40px; height: 60px; font-size: 26px;"></span>
             <p style="margin-left: 90px;">
-                <%= user %>
+                <%= user.login %>
             </p>
         </div>
         <ul class="ca-menu" style="position: absolute; right: 0; top: 0;">
             <li>
-                <a href="" onclick="$('<form method=POST action=" /logout ">').submit(); return false">
+                <a href="logout">
                     <span class="ca-icon icon-key"></span>
                     <div class="ca-content">
                         <h2 class="ca-main">Выход</h2>

@@ -2,22 +2,18 @@ var model = require('./models/model').Register;
 var async = require('async');
 
 exports.main = function(req, res, next) {
-    // главная
-    res.render('main', { title: Главная, user: false });
-};
-
-exports.getQuestions = function(req, res) {
-    // отправить вопросы (в json формате)
+    // главная  , user: loadUser(req, res, next)
+    res.render('main', { title: 'Главная' });
 };
 
 exports.getSignin = function(req, res) {
     // страница войти
-    res.render('signin', { title: 'Вход', user: false, err: false });
+    res.render('signin', { title: 'Вход', err: false });
 };
 
 exports.getSignup = function(req, res) {
     // страница регистрация
-    res.render('signup', { title: 'Регистрация', user: false, err: false });
+    res.render('signup', { title: 'Регистрация', err: false });
 };
 
 exports.postSignin = function(req, res) {
@@ -36,12 +32,12 @@ exports.postSignin = function(req, res) {
                     callback(null, user);
                 } else {
                     // 403
-                    res.render('signin', { title: 'Ошибка входа', user: false, err: 'Неверное имя пользователя или пароль.' });
+                    res.render('signin', { title: 'Ошибка входа', err: 'Неверное имя пользователя или пароль.' });
                 }
             } else {
                 // res.json(user);
                 // ошибка: такого пользователя нет
-                res.render('signin', { title: 'Ошибка входа', user: false, err: 'Неверное имя пользователя или пароль.' });
+                res.render('signin', { title: 'Ошибка входа', err: 'Неверное имя пользователя или пароль.' });
             }
         },
     ], function(err, user) {
@@ -49,10 +45,10 @@ exports.postSignin = function(req, res) {
 
         req.session.user = user._id;
 
-        res.render('signin', { title: 'Вход', user: user.login, err: false });
+        res.redirect('/');
     });
 
-    // res.render('signin', { title: 'Вход', user: true });
+    // res.render('signin', { title: 'Вход' });
 };
 
 exports.postSignup = function(req, res) {
@@ -70,7 +66,6 @@ exports.postSignup = function(req, res) {
                 // ошибка регистрации: user с такими данными уже есть
                 res.render('signup', {
                     title: 'Ошибка регистрации',
-                    user: false,
                     err: 'Пользователь с такими данными уже зарегистрирован !'
                 });
             } else {
@@ -94,7 +89,7 @@ exports.logout = function(req, res) {
 
 exports.getInterview = function(req, res) {
     // страница опросника
-    res.render('interview', { title: 'Опрос', err: false, user: false });
+    res.render('interview', { title: 'Опрос', err: false });
 }
 
 exports.postInterview = function(req, res) {

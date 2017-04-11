@@ -31,10 +31,9 @@ app.use(session({
 
 app.use(express.static(__dirname + '/media'));
 
-//app.use(require('./routes/loadUser'));
+app.use(require('./routes/loadUser'));
 
 app.use(function(err, req, res, next) {
-    console.log('1');
     if ('development' == app.get('env')) {
         var error = errorHandler();
         error(err, req, res, next);
