@@ -3,7 +3,6 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     errorHandler = require('errorhandler'),
-    cookieParser = require('cookie-parser'),
     session = require('express-session'),
     mongostore = require('connect-mongo/es5')(session),
     app = express();
@@ -13,30 +12,29 @@ var express = require('express'),
 app.engine('ejs', require('ejs-locals'));
 app.set('views', __dirname + '/templates');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/media'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(methodOverride());
+
 app.use(session({
     secret: 'epidem gpo',
-    key: 'sid',
+    key: 'epi',
     cookie: {
-        secure: true,
+        path: "/",
         httpOnly: true,
-        maxAge: null,
-        resave: false,
-        saveUninitialized: false
+        maxAge: null
     },
     store: new mongostore({
         url: 'mongodb://localhost/epidem',
     })
 }));
 
-app.use(methodOverride());
+app.use(express.static(__dirname + '/media'));
 
 //app.use(require('./routes/loadUser'));
 
 app.use(function(err, req, res, next) {
+    console.log('1');
     if ('development' == app.get('env')) {
         var error = errorHandler();
         error(err, req, res, next);

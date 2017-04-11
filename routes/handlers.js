@@ -3,18 +3,7 @@ var async = require('async');
 
 exports.main = function(req, res, next) {
     // главная
-    console.log(req.session.num);
-    if (req.session.num) {
-        req.session.num++;
-        console.log("1");
-    } else {
-        req.session.num = 0;
-        console.log("2");
-    }
-    req.session.save(function(err) {
-        console.log("3");
-    });
-    res.render('main', { title: req.session.num, user: false });
+    res.render('main', { title: Главная, user: false });
 };
 
 exports.getQuestions = function(req, res) {
