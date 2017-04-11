@@ -45,17 +45,6 @@ function validatePassword(classname)
    }
 }
 /*
-function setSubmitEnabled(){
-   
-   var button = document.getElementById("submit");
-   if(checkButton()){
-       button.classList.remove("disabled");
-   }
-   else{
-       button.classList.add("disabled");
-   }
-}
-
 function setSubmitEnabledLogin(){
    var button = document.getElementById("submit");
    if(checkButtonLogin()){
