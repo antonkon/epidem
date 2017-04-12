@@ -1,34 +1,55 @@
 var mongoose = require('mongoose');
+var crypto = require('crypto');
+
 mongoose.connect('mongodb://localhost/epidem');
 
+
 var schema = new mongoose.Schema({
-	login: {
-		type: String,
-		unique: true,
-		required: true
-	},
-	pwd: {
-		type: String,
-		required: true
-	},
-	email: {
-		type: String,
-		unique: true,
-		required: true
-	},
-	date: { 
-		type: Date, 
-		default: Date.now 
-	},
-	isValid: { 
-		type: Boolean, 
-		default: false
-	}
+    login: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    hashedPwd: {
+        type: String,
+        required: true
+    },
+    salt: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    isValid: {
+        type: Boolean,
+        default: false
+    }
 });
 
+schema.methods.encryptPwd = function(pwd) {
+    return crypto.createHmac('sha1', pwd)
+        .update(this.salt)
+        .digest('hex');
+};
+
+schema.virtual('pwd')
+    .set(function(pwd) {
+        this._plainPassword = pwd;
+        this.salt = Math.random() + '';
+        this.hashedPwd = this.encryptPwd(pwd);
+    })
+    .get(function() { return this._plainPassword; });
+
 schema.methods.checkPwd = function(pwd) {
-	// return this.encrtptPassword(pwd) === this.heshedPassword;
-	return this.pwd == pwd;
+    return this.encryptPwd(pwd) === this.hashedPwd;
+    //return this.pwd == pwd;
 };
 
 exports.Register = mongoose.model('register', schema);

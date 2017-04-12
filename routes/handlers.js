@@ -47,11 +47,9 @@ exports.postSignin = function(req, res) {
 
         res.redirect('/');
     });
-
-    // res.render('signin', { title: 'Вход' });
 };
 
-exports.postSignup = function(req, res) {
+exports.postSignup = function(req, res, next) {
     // обработка данных для регистрации
     console.log(req.body);
     var user = new model({
@@ -70,7 +68,7 @@ exports.postSignup = function(req, res) {
                 });
             } else {
                 // другая ошибка
-                next(err);
+                if (err) throw err;
             }
         } else {
             // регистрация успешна
@@ -92,7 +90,7 @@ exports.getInterview = function(req, res) {
     res.render('interview', { title: 'Опрос', err: false });
 }
 
-exports.postInterview = function(req, res){
-	// обработка данных пользователя анкеты и начало опроса
-	res.render('quest', { title: 'Опрос', err: false});
+exports.postInterview = function(req, res) {
+    // обработка данных пользователя анкеты и начало опроса
+    res.render('quest', { title: 'Опрос', err: false });
 }
