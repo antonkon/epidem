@@ -4,12 +4,18 @@ var handlers = require('./handlers');
 
 
 router.get('/', handlers.main);
+
 router.get('/signin', handlers.getSignin);
-router.get('/signup', handlers.getSignup);
-router.get('/interview', handlers.getInterview);
 router.post('/signin', handlers.postSignin);
-router.post('/signup', handlers.postSignup);
+
 router.get('/logout', handlers.logout);
-router.post('/interview', handlers.postInterview);
+
+router.get('/signup', handlers.getSignup);
+router.post('/signup', handlers.postSignup);
+
+router.get('/interview', handlers.getInterviewFirst);
+router.post('/interview', handlers.postInterviewFirst);
+
+router.post('/questions', handlers.getQuestions);
 
 module.exports = router;

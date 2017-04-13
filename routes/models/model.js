@@ -48,8 +48,14 @@ schema.virtual('pwd')
     .get(function() { return this._plainPassword; });
 
 schema.methods.checkPwd = function(pwd) {
+    // var a = this.encryptPwd(pwd);
+    // var b = this.hashedPwd;
+    // console.log(a);
+    // console.log(b);
+
+    // return a === b;
+
     return this.encryptPwd(pwd) === this.hashedPwd;
-    //return this.pwd == pwd;
 };
 
 exports.Register = mongoose.model('register', schema);

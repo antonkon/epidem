@@ -1,163 +1,74 @@
 //APPEARANCE SWITCHERS
 
-function validateName(id,classname)
-{
+function validateName(id) {
     var name = document.getElementById(id);
-    if (!checkName(id))
-    {
-        name.parentNode.classList.add(classname);
-        name.tooltip();
-        setSubmitEnabled();
-    }
-    else{
-        name.parentNode.classList.remove(classname);
+    if (name.value != "") {
+        name.parentNode.classList.remove('has-warning');
         name.parentNode.classList.add("has-success");
-        setSubmitEnabled();
-    }
-}
-
-function validateEmail(classname)
-{
-   var email = document.getElementById('email');
-   if(!checkEmail()){
-       email.parentNode.classList.add(classname);
-       $("[data-toggle='tooltip']").tooltip();
-       setSubmitEnabled();
-   }
-   else{
-        email.parentNode.classList.remove(classname);
-        email.parentNode.classList.add("has-success");
-        setSubmitEnabled();
-   } 
-}
-
-function validatePassword(classname)
-{
-   var pw_c = document.getElementById('pw_c');
-   if(!checkPassword()){
-        pw_c.parentNode.classList.add(classname);
-        setSubmitEnabled();
-   }
-   else{
-        pw_c.parentNode.classList.remove(classname);
-        pw_c.parentNode.classList.add("has-success");
-        setSubmitEnabled();
-   }
-}
-/*
-function setSubmitEnabledLogin(){
-   var button = document.getElementById("submit");
-   if(checkButtonLogin()){
-       button.classList.remove("disabled");
-   }
-   else{
-       button.classList.add("disabled");
-   }
-}
-*/
-//CHECKERS
-function checkName(id)
-{
-    var name = document.getElementById(id);
-    var val = name.value;
-    if(val === ""){
+        return true;
+    } else {
+        name.parentNode.classList.add('has-warning');
         return false;
     }
-    else{
+}
+// v
+function validateEmail(id) {
+    var email = document.getElementById(id);
+    if (checkEmail(email.value)) {
+        email.parentNode.classList.remove('has-error');
+        email.parentNode.classList.add("has-success");
+        return true;
+    } else {
+        email.parentNode.classList.add('has-error');
+        // $("[data-toggle='tooltip']").tooltip();
+        return false;
+    }
+}
+// v
+function validatePassword(id) {
+    var pwd = document.getElementById(id);
+
+    if (pwd.value.toString().length <= 5) {
+        pwd.parentNode.classList.add('has-error');
+        return false;
+    } else {
+        pwd.parentNode.classList.remove('has-error');
+        pwd.parentNode.classList.add("has-success");
         return true;
     }
 }
 
-function checkEmail()
-{
-    var email = document.getElementById('email');
-    var val = email.value;
-    if (val == "")
-    {
+function validatePasswordC(id, id_c) {
+    var pwd = document.getElementById(id);
+    var pwd_c = document.getElementById(id_c);
+
+    if (pwd.value != pwd_c.value) {
+        pwd.parentNode.classList.add('has-error');
         return false;
-    }
-    else
-    {
-        var valid = /^([A-Za-z0-9_-]+\.)*[A-Za-z0-9_-]+@[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*\.[a-z]{2,6}$/.test(email.value);
-        if(!valid)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+    } else {
+        pwd.parentNode.classList.remove('has-error');
+        pwd.parentNode.classList.add("has-success");
+        return true;
     }
 }
 
-function checkPassword()
-{
-    var pw = document.getElementById('password');
-    var pw_c = document.getElementById('pw_c');
-    var val = pw.value;
-    var val_c = pw_c.value;
-    if (val == "")
-    {
+// v
+function checkEmail(email) {
+    if (email == "") {
         return false;
-    }
-    else
-    {
-        if(val == val_c)
-        {
+    } else {
+        var valid = /^([A-Za-z0-9_-]+\.)*[A-Za-z0-9_-]+@[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*\.[a-z]{2,6}$/.test(email);
+        if (valid) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 }
 
-function checkButton()
-{
-   var result = true;
-   
-   if(!checkName('password'))
-   {
-       result = false;
-   }
-   if(!checkEmail())
-   {
-       result = false;
-   }
-   if(!checkPassword())
-   {
-       result = false;
-   }
-   return result;
-}
-
-function checkButtonLogin()
-{
-   var result = true;
-   if(!checkEmail())
-   {
-       result = false;
-   }
-   if(!checkName('password'))
-   {
-       result = false;
-   }
-   return result;
-}
-
-
-//FOCUS
-function focusName(id)
-{
+function focusField(id) {
     var name = document.getElementById(id);
+    name.parentNode.classList.remove("has-warning");
     name.parentNode.classList.remove("has-error");
     name.parentNode.classList.remove("has-success");
-}
-
-function focusEmail()
-{
-    var email = document.getElementById('email');
-    email.parentNode.classList.remove("has-error");
-    email.parentNode.classList.remove("has-success");
 }

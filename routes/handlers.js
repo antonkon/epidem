@@ -85,12 +85,31 @@ exports.logout = function(req, res) {
     }
 };
 
-exports.getInterview = function(req, res) {
+exports.getInterviewFirst = function(req, res) {
     // страница опросника
-    res.render('interview', { title: 'Опрос', err: false });
+    res.render('queststart', { title: 'Опрос', err: false });
 }
 
-exports.postInterview = function(req, res) {
+exports.postInterviewFirst = function(req, res) {
     // обработка данных пользователя анкеты и начало опроса
+    // запоминать данные в сессии
+
+    req.session.PerDataQuest = {
+        okato: req.body.okato,
+        age_group_id: req.body.age_group_id,
+        gender: req.body.gender,
+        height_group_id: req.body.height_group_id,
+        weight_group_id: req.body.weight_group_id,
+        smoking: req.body.smoking,
+        id_social_status: req.body.id_social_status,
+    };
+
     res.render('quest', { title: 'Опрос', err: false });
+}
+
+
+exports.getQuestions = function(req, res) {
+    // Отправить вопросы
+    console.log(req.body);
+    res.send('123');
 }
