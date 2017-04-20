@@ -196,12 +196,14 @@
                     </center>
                 </form>
             </div>
-            <div class="wrapper" style="display: none;" id="quest">
-                <p class="ca-main questions" id="question">Вы болели хоть раз в жизни?</p>
-                <button class="buttons ca-main" type="submit" onclick="resQuest(1)"> Да </button>
-                <button class="buttons ca-main" type="submit" onclick="resQuest(0)"> Нет </button>
+            <div class="wrapperQuestion" style="display: none;" id="quest">
+                <p class="ca-mainQuestion questions" id="question">Вы болели хоть раз в жизни?</p>
+				<div class=centerButtons>
+					<button class="buttonsQuestion" class="buttonsQuestions" type="submit" onclick="resQuest(1)"> Да </button>
+					<button class="buttonsQuestion" class="buttonsQuestions" type="submit" onclick="resQuest(0)"> Нет </button>
+				</div>
             </div>
-            <div class="wrapper" style="display: none;" id="questFin">
+            <div class="wrapper1" style="display: none;" id="questFin">
                 <p class="finish">Спасибо, что приняли участие в опросе!</p>
                 <button class="buttons_f ca-main" type="submit" onclick="resFin()"> Завершить опрос</button>
             </div>
