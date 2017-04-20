@@ -246,9 +246,6 @@
 
     <script>
         function resQuest(res) {
-            console.log(res);
-            console.log(window.questions.any);
-
             window.questions.any[window.qnum] = res;
 
             var next = logic(res); // возвращает номер(название) следующего вопроса
@@ -291,15 +288,21 @@
 
         function resFin() {
             console.log("отправка");
-            console.log(JSON.stringify(window.questions.any));
-            var res = JSON.stringify(window.questions.any);
+
+            var res = {}
+            for (key in window.questions.any)
+                if (key.indexOf("q") != -1)
+                    res[key] = window.questions.any[key];
+
             $.ajax({
                 type: "POST",
                 url: "/questions",
-                data: res,
+                data: JSON.stringify(res),
                 dataType: "json",
-                contentType: "application/html",
-                success: function(data) {}
+                contentType: "application/json",
+                success: function(data) {
+                    window.location = "/";
+                }
             });
         }
     </script>
