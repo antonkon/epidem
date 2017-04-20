@@ -119,14 +119,14 @@ getQuestions = function(req, res) {
 
 exports.questions = function(req, res) {
     // Отправить вопросы
-    console.log(req.body.q1);
+
     // req.session.PerDataQuest
 
     var dataInterview = new question({
         name: "dataInterview",
         any: {
             PerDataQuest: req.session.PerDataQuest,
-            response: req.body.data
+            response: req.body
         },
     });
 
@@ -136,5 +136,5 @@ exports.questions = function(req, res) {
         // сохранение успешно
     });
 
-    res.redirect('/');
+    res.json("ok");
 }
