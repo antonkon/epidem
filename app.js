@@ -25,7 +25,7 @@ app.use(session({
         maxAge: null
     },
     store: new mongostore({
-        url: 'mongodb://localhost/epidem',
+        url: 'mongodb://192.168.88.242/epidem',
     })
 }));
 

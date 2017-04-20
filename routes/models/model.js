@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var crypto = require('crypto');
 
-mongoose.connect('mongodb://localhost/epidem');
+mongoose.connect('mongodb://192.168.88.242/epidem');
 
 
 var schema = new mongoose.Schema({
