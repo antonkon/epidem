@@ -58,4 +58,8 @@ schema.methods.checkPwd = function(pwd) {
     return this.encryptPwd(pwd) === this.hashedPwd;
 };
 
+var quest = new mongoose.Schema({ name: String, any: {} });
+
+
+exports.Question = mongoose.model('quest', quest);
 exports.Register = mongoose.model('register', schema);

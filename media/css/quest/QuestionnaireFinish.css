@@ -1,13 +1,13 @@
 .wrapper {
     width: 700px;
     overflow: auto;
-    height: 500px;
-    margin-top: 1%;
+    height: 250px;
+    margin-top: 0px;
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
     position: absolute;
-    top: 50px;
+    top: 30px;
     left: 0;
     border-radius: 10px;
     background-color: #B664CA;
@@ -15,15 +15,22 @@
     padding-right: 50px;
     padding-top: 20px;
 }
-.questions{
-	color: white;
-	padding-top:70px;
-	margin-left:auto ;
-	margin-right:auto;
-	text-align: center;
+
+#quest.p {
+    height: 30px;
 }
-.buttons_f{
-	position: relative;
+
+.questions {
+    color: white;
+    padding-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    overflow: visible;
+}
+
+.buttons_f {
+    position: relative;
     top: 220px;
     width: 550px;
     height: 40px;
@@ -36,41 +43,42 @@
     cursor: pointer;
     border-color: white;
     outline: none;
-	left:50px;
-}
-	
-}
-button:hover
-{
-    	background-color :white;
-    	color:#777;
-	outline:none;
-	border-color:white;
+    left: 50px;
 }
 
-button:active,  button:focus,  button:hover
-{
-	background-color :white;
-    outline:none ;
-	color:#777;
+button:hover {
+    background-color: white;
+    color: #777;
+    outline: none;
+    border-color: white;
 }
-.finish{
+
+button:active,
+button:focus,
+button:hover {
+    background-color: white;
+    outline: none;
+    color: #777;
+}
+
+.finish {
     position: relative;
     top: 100px;
     font-family: Roboto, Medium, sans-serif;
     color: white;
     font-size: 30px;
-    padding-left:90px;
-	
+    padding-left: 90px;
 }
+
 .appbody {
     background-color: #FBFBFB;
     color: black;
-    //height: 100%;
-    //width: 100%;
+    /*height: 100%;*/
+    /*width: 100%;*/
     padding-top: 60px;
-    //min-height: 100vh;
+    /*min-height: 100vh;*/
 }
+
 .header {
     position: fixed;
     top: 0;
@@ -83,6 +91,7 @@ button:active,  button:focus,  button:hover
     font-weight: bold;
     z-index: 110;
 }
+
 .logo {
     position: absolute;
     display: inline-block;
@@ -92,6 +101,7 @@ button:active,  button:focus,  button:hover
     left: 10px;
     transition: all 200ms;
 }
+
 .ca-menu li a {
     text-align: left;
     width: 100%;
@@ -102,6 +112,7 @@ button:active,  button:focus,  button:hover
     text-decoration: none;
     transition: all 200ms linear;
 }
+
 .ca-menu {
     font-size: 0;
     padding: 0;
@@ -110,7 +121,8 @@ button:active,  button:focus,  button:hover
     display: inline;
     color: white;
 }
-.ca-menu li{
+
+.ca-menu li {
     color: white;
     width: 140px;
     height: 60px;
@@ -119,7 +131,8 @@ button:active,  button:focus,  button:hover
     display: inline-block;
     transition: all 300ms linear;
 }
-.ca-icon{
+
+.ca-icon {
     font-size: 20px;
     text-shadow: 0px 0px 1px #333;
     line-height: 60px;
@@ -131,37 +144,41 @@ button:active,  button:focus,  button:hover
     transition: all 200ms linear;
 }
 
-.ca-content{
+.ca-content {
     width: 150px;
     height: 60px;
 }
 
-.ca-main{
+.ca-main {
     font-size: 20px;
     transition: all 300ms linear;
     margin-left: 55px;
 }
 
-.ca-menu li:hover .ca-icon{
+.ca-menu li:hover .ca-icon {
     font-size: 35px;
-    color: rgb(210,210,210);
+    color: rgb(210, 210, 210);
     opacity: 0.8;
     text-shadow: 0px 0px 2px #fff;
 }
-.ca-menu li:hover .ca-main{
+
+.ca-menu li:hover .ca-main {
     opacity: 1;
-    color: rgb(210,210,210);
+    color: rgb(210, 210, 210);
     -webkit-animation: moveFromTop 300ms ease-in-out;
     -moz-animation: moveFromTop 300ms ease-in-out;
     -ms-animation: moveFromTop 300ms ease-in-out;
     -o-animation: moveFromTop 300ms ease-in-out;
 }
+
 .icon-pencil2:before {
     content: "\e900";
 }
+
 .icon-planet:before {
     content: "\e906";
 }
+
 .icon-pie-chart:before {
     content: "\e903";
 }

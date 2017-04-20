@@ -13,9 +13,12 @@ router.get('/logout', handlers.logout);
 router.get('/signup', handlers.getSignup);
 router.post('/signup', handlers.postSignup);
 
+// отдает страницу с интервью
 router.get('/interview', handlers.getInterviewFirst);
+// Записывает пользовательские данные в сессию
 router.post('/interview', handlers.postInterviewFirst);
 
-router.post('/questions', handlers.getQuestions);
+// обработчик ответов опросника
+router.post('/questions', handlers.questions);
 
 module.exports = router;

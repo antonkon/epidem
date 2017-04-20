@@ -1,5 +1,3 @@
-//APPEARANCE SWITCHERS
-
 function validateName(id) {
     var name = document.getElementById(id);
     if (name.value != "") {
@@ -11,7 +9,7 @@ function validateName(id) {
         return false;
     }
 }
-// v
+
 function validateEmail(id) {
     var email = document.getElementById(id);
     if (checkEmail(email.value)) {
@@ -20,11 +18,10 @@ function validateEmail(id) {
         return true;
     } else {
         email.parentNode.classList.add('has-error');
-        // $("[data-toggle='tooltip']").tooltip();
         return false;
     }
 }
-// v
+
 function validatePassword(id) {
     var pwd = document.getElementById(id);
 
@@ -52,7 +49,6 @@ function validatePasswordC(id, id_c) {
     }
 }
 
-// v
 function checkEmail(email) {
     if (email == "") {
         return false;
