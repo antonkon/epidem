@@ -1,4 +1,5 @@
 var model = require('./models/model').Register;
+var question = require('./models/model').Question;
 var async = require('async');
 
 exports.main = function(req, res, next) {
@@ -104,12 +105,36 @@ exports.postInterviewFirst = function(req, res) {
         id_social_status: req.body.id_social_status,
     };
 
-    res.render('quest', { title: 'Опрос', err: false });
+    getQuestions(req, res);
 }
 
-
-exports.getQuestions = function(req, res) {
+getQuestions = function(req, res) {
     // Отправить вопросы
-    console.log(req.body);
-    res.send('123');
+    question.findOne({ name: "quest" }, function(err, quest) {
+        if (err) throw err;
+
+        res.json(quest);
+    });
+}
+
+exports.questions = function(req, res) {
+    // Отправить вопросы
+    console.log(req.body.q1);
+    // req.session.PerDataQuest
+
+    var dataInterview = new question({
+        name: "dataInterview",
+        any: {
+            PerDataQuest: req.session.PerDataQuest,
+            response: req.body.data
+        },
+    });
+
+    dataInterview.save(function(err) {
+        if (err) throw err;
+
+        // сохранение успешно
+    });
+
+    res.redirect('/');
 }

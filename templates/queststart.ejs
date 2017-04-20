@@ -8,8 +8,7 @@
                 <center><b><p class="naz"> Перед тем как перейти к опросу, заполните необходимые поля:</p></b></center>
                 <br><br><br>
 
-                <form method="POST" id="usr_data">
-                    <input name="_token" type="hidden" value="t3N62BJ0sfBJRi3sk8RDuX5n1OmAXZ5ZWlYYZWnI">
+                <form action="interview" method="post" accept-charset="utf-8" name="PerDataQuest" id="PerDataQuest">
                     <div class="vubor">
                         <label id="label1"> Место проживания :</label>
                         <select required name="okato">
@@ -116,12 +115,12 @@
                         <label id="label1">Пол :</label>
                         <div class="vubor" style="width: 450px; padding-left: 90px; padding-right: 90px;">
                             <div class="radioblock">
-                                <input required type="radio" name="gender" value="true" class="radio1" id="men">
-                                <label for="radio" class="pd" value="Мужской">Мужской</label>
+                                <input required type="radio" class="radio1" name="gender" id="men">
+                                <label for="men" class="pd">Мужской</label>
                             </div>
                             <div class="radioblock">
-                                <input required type="radio" name="gender" value="false" class="radio1" id="woman">
-                                <label for="radio" class="pd">Женский</label>
+                                <input required type="radio" class="radio1" name="gender" id="wom">
+                                <label for="wom" class="pd">Женский</label>
                             </div>
                         </div>
                     </div>
@@ -169,12 +168,12 @@
                         <label id="label1">Употребление табачных изделий :</label>
                         <div class="vubor" style="width: 450px; padding-left: 90px; padding-right: 90px;">
                             <div class="radioblock">
-                                <input required type="radio" name="smoking" value="try" class="radio1" id="yes">
-                                <label for="radio" class="pd">Курю</label>
+                                <input required type="radio" name="smok" class="radio1" id="smok">
+                                <label for="smok" class="pd">Курю</label>
                             </div>
                             <div class="radioblock">
-                                <input required type="radio" name="smoking" value="false" class="radio1" id="no">
-                                <label for="radio" class="pd">Не курю</label>
+                                <input required type="radio" name="smok" class="radio1" id="nosmok">
+                                <label for="nosmok" class="pd">Не курю</label>
                             </div>
                         </div>
                     </div>
@@ -193,34 +192,114 @@
 
 
                     <center>
-                        <input id="OK" value="Начать!" type="submit">
+                        <input type="submit" id="OK" value="Начать!">
                     </center>
                 </form>
+            </div>
+            <div class="wrapper" style="display: none;" id="quest">
+                <p class="ca-main questions" id="question">Вы болели хоть раз в жизни?</p>
+                <button class="buttons ca-main" type="submit" onclick="resQuest(1)"> Да </button>
+                <button class="buttons ca-main" type="submit" onclick="resQuest(0)"> Нет </button>
+            </div>
+            <div class="wrapper" style="display: none;" id="questFin">
+                <p class="finish">Спасибо, что приняли участие в опросе!</p>
+                <button class="buttons_f ca-main" type="submit" onclick="resFin()"> Завершить опрос</button>
             </div>
         </div>
     </div>
 
     <script>
-        $("#usr_data").submit(function(e) {
-
-            console.log('1');
+        $("#PerDataQuest").submit(function(e) {
             e.preventDefault();
-            var Form = document.forms["signin"];
-            var email = Form.elements["email"].value;
-            var pwd = Form.elements["pwd"].value;
+            var Form = document.forms["PerDataQuest"];
+            var okato = Form.elements["okato"].value;
+            var gender = Form.elements["gender"].value;
+            var age_group_id = Form.elements["age_group_id"].value;
+            var height_group_id = Form.elements["height_group_id"].value;
+            var weight_group_id = Form.elements["weight_group_id"].value;
+            var smok = Form.elements["smok"].value;
 
             $.ajax({
                 type: "POST",
-                url: "/questions",
+                url: "/interview",
                 data: JSON.stringify({
-                    email: email,
-                    pwd: pwd
+                    okato: okato,
+                    gender: gender,
+                    age_group_id: age_group_id,
+                    height_group_id: height_group_id,
+                    weight_group_id: weight_group_id,
+                    smok: smok
                 }),
                 dataType: "json",
                 contentType: "application/json",
                 success: function(data) {
                     console.log(data);
+                    window.questions = data;
+                    window.qnum = "q1";
+                    document.getElementById("gl1").style.display = 'none';
+                    document.getElementById("quest").style.display = '';
+                    document.getElementById("question").innerHTML = questions.any.q1;
                 },
             });
         });
+    </script>
+
+    <script>
+        function resQuest(res) {
+            console.log(res);
+            console.log(window.questions.any);
+
+            window.questions.any[window.qnum] = res;
+
+            var next = logic(res); // возвращает номер(название) следующего вопроса
+            if (next == "qend") {
+                document.getElementById("quest").style.display = 'none';
+                document.getElementById("questFin").style.display = '';
+            }
+
+            window.qnum = next;
+            document.getElementById("question").innerHTML = window.questions.any[next];
+        }
+
+        function logic(res) {
+
+            if (window.qnum.indexOf("q1") != -1)
+                if (window.qnum == "q1")
+                    if (res == 1)
+                        return "q1_1";
+                    else return "q2";
+            else
+            if (window.qnum == "q1_1")
+                if (res == 1)
+                    return "q1_2"
+                else return "q2"
+            else return "q2"
+
+            if (window.qnum == "q2")
+                return "q3"
+
+            if (window.qnum == "q3")
+                return "q4"
+
+            if (window.qnum.indexOf("q4") != -1)
+                if (window.qnum == "q4")
+                    if (res == 0)
+                        return "q4_1"
+                    else return "qend"
+            else return "qend"
+        }
+
+        function resFin() {
+            console.log("отправка");
+            console.log(JSON.stringify(window.questions.any));
+            var res = JSON.stringify(window.questions.any);
+            $.ajax({
+                type: "POST",
+                url: "/questions",
+                data: res,
+                dataType: "json",
+                contentType: "application/html",
+                success: function(data) {}
+            });
+        }
     </script>

@@ -45,6 +45,10 @@ app.use(function(err, req, res, next) {
 
 app.use('/', router);
 
+// Загрузка в базу вопросов
+// var q = require('./routes/models/loadQuestion')
+// q();
+
 app.listen(3000, function() {
     console.log("Сервер запущен:");
 });
