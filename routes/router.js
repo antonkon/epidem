@@ -21,4 +21,8 @@ router.post('/interview', handlers.postInterviewFirst);
 // обработчик ответов опросника
 router.post('/responses', handlers.responses);
 
+router.get('/map', handlers.map);
+
+router.get('/charts', handlers.charts);
+
 module.exports = router;

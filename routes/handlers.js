@@ -133,3 +133,11 @@ exports.responses = function(req, res) {
 
     res.json("ok");
 }
+
+exports.map = function(req, res) {
+    res.render('map', { title: 'Карта', err: false });
+}
+
+exports.charts = function(req, res) {
+    res.render('charts', { title: 'Диаграммы', err: false });
+}
