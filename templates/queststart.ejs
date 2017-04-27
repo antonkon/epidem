@@ -7,7 +7,6 @@
                 <br>
                 <center><b><p class="naz"> Перед тем как перейти к опросу, заполните необходимые поля:</p></b></center>
                 <br><br><br>
-
                 <form action="interview" method="post" accept-charset="utf-8" name="PerDataQuest" id="PerDataQuest">
                     <div class="vubor">
                         <label id="label1"> Место проживания :</label>
@@ -207,6 +206,13 @@
                 <p class="ca-mainQuestion questions">Спасибо, что приняли участие в опросе!</p>
                 <button class="buttonsQuestion buttonsQuestions finishbut" type="submit" onclick="resFin()"> Завершить опрос</button>
             </div>
+			<div id="overlay" style = "display: none;">
+				<div class="popup"> 
+					<h2>Внимание!</h2> 
+                    <p> Пожалуйста, отвечайте на вопросы честно! </p> 
+                    <button class="close" title="OK" onclick="document.getElementById('overlay').style.display='none';"></button> 
+				</div> 
+			</div>
         </div>
     </div>
 
@@ -240,6 +246,8 @@
                     window.qnum = "q1";
                     document.getElementById("gl1").style.display = 'none';
                     document.getElementById("quest").style.display = '';
+					document.getElementById("overlay").style.display = 'block';
+					console.log(document.getElementById("overlay").style.display);
                     document.getElementById("question").innerHTML = questions.any.q1;
                 },
             });
