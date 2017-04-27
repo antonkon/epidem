@@ -79,21 +79,39 @@ html
     z-index: 110; 
 }
 
-.footer
-{
-    color: white;
-    padding: 33px;
-    font-size: 12px;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
-    min-width: 950px;
-    margin-bottom: 0;
-    margin-top: 100px;
-    height: 80px;
-    z-index: 110;
+.footer-list {
+    float: right;
+    margin-right: 70px;
+    line-height: 23px;
 }
 
+.footer-list h3 {
+    font-weight:  600;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.footer-list li a,
+footer p,
+footer input,
+footer textarea,
+footer button {
+    font-size: 12px;
+    line-height: 24px;
+}
+ul {
+	list-style: none;
+}
+.footer-list li a,
+footer p {
+    font-size: 14px;
+}
+.container  {
+	padding-top:30px;
+	margin-top:50px;
+	padding-bottom:30px;
+	border-bottom: 1px solid white;
+}
 .regfield
 {
     padding: 20px;
@@ -151,13 +169,12 @@ html
 }
 
 footer {
-    padding: 65px 0 25px 0;
+    
     background-color: #b27ac0;
     color: #fbfbfb;
+	margin-top:30px
 }
-footer .container > .clearfix {
-    border-bottom: 1px solid white;
-}
+
 footer ul > li > a {
     color:  #fbfbfb ;
 }
@@ -165,57 +182,27 @@ a:hover, a:focus {
     color:#04c0df;
     text-decoration: underline;
 }
-footer h2,
+
 footer h3 {
     color:#fbfbfb;
 }
 
 footer h2 {
-    margin: 2px 0 22px 0;
-    font-size: 22px;
+	color:#fbfbfb;
+    font-size: 24px;
 }
 
 .left-side {
-    float: right;
+	float: left;
     max-width: 370px;
     padding-right: 35px;
 }
 
 .left-side p {
+	
     margin-bottom: 24px;
 }
 
-.right-side {
-    float: left;
-    margin-top: -50px;
-}
-
-.footer-list {
-    float: left;
-    padding: 30px;
-    margin-right: 70px;
-    line-height: 23px;
-}
-
-.footer-list h3 {
-    font-weight:  600;
-    font-size: 15px;
-    margin-bottom: 25px;
-}
-
-.footer-list li a,
-footer p,
-footer input,
-footer textarea,
-footer button {
-    font-size: 12px;
-    line-height: 24px;
-}
-
-.footer-list li a,
-footer p {
-    font-size: 14px;
-}
-footer .container > .clearfix {
-    border-bottom: 1px solid  #fbfbfb;
+ul{
+	padding: 0;
 }
