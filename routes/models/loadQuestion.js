@@ -1,4 +1,4 @@
-var question = require('./model').Question;
+var interview = require('./model').Interview;
 var fs = require('fs');
 
 module.exports = function() {
@@ -10,12 +10,12 @@ module.exports = function() {
     }
 
     // console.log(Quest);
-    var quest = new question({
-        name: "quest",
-        any: Quest,
+    var quest = new interview({
+        name: "questions",
+        any: Quest
     });
 
-    question.find({ name: "quest" }, function(err, qu) {
+    interview.find({ name: "questions" }, function(err, qu) {
         if (err) throw err;
 
         if (qu.length == 0) {
@@ -27,7 +27,7 @@ module.exports = function() {
             });
         } else {
             // сохранение успешно
-            question.update({ name: "quest" }, Quest, function(err) {
+            interview.update({ name: "questions" }, Quest, function(err) {
                 if (err) throw err;
 
                 console.log("Вопросы обновлены !");

@@ -19,6 +19,6 @@ router.get('/interview', handlers.getInterviewFirst);
 router.post('/interview', handlers.postInterviewFirst);
 
 // обработчик ответов опросника
-router.post('/questions', handlers.questions);
+router.post('/responses', handlers.responses);
 
 module.exports = router;

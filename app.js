@@ -5,6 +5,8 @@ var express = require('express'),
     errorHandler = require('errorhandler'),
     session = require('express-session'),
     mongostore = require('connect-mongo/es5')(session),
+    conf = require('config'),
+    mongoose = require('mongoose'),
     app = express();
 
 
@@ -15,7 +17,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride());
-
+mongoose.connect(conf.get('mongoose.url'));
 app.use(session({
     secret: 'epidem gpo',
     key: 'epi',
@@ -25,7 +27,7 @@ app.use(session({
         maxAge: null
     },
     store: new mongostore({
-        url: 'mongodb://localhost/epidem',
+        url: conf.get('mongoose.url'),
     })
 }));
 
@@ -46,9 +48,12 @@ app.use(function(err, req, res, next) {
 app.use('/', router);
 
 // Загрузка в базу вопросов
-// var q = require('./routes/models/loadQuestion')
-// q();
+if (conf.get('updatedb')) {
+    var q = require('./routes/models/loadQuestion')
+    q();
+}
 
-app.listen(3000, function() {
+
+app.listen(conf.get('port'), function() {
     console.log("Сервер запущен:");
 });

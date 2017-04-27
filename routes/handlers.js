@@ -1,5 +1,5 @@
 var model = require('./models/model').Register;
-var question = require('./models/model').Question;
+var interview = require('./models/model').Interview;
 var async = require('async');
 
 exports.main = function(req, res, next) {
@@ -110,31 +110,26 @@ exports.postInterviewFirst = function(req, res) {
 
 getQuestions = function(req, res) {
     // Отправить вопросы
-    question.findOne({ name: "quest" }, function(err, quest) {
+    interview.findOne({ name: "questions" }, function(err, quest) {
         if (err) throw err;
 
         res.json(quest);
     });
 }
 
-exports.questions = function(req, res) {
-    // Отправить вопросы
-
+exports.responses = function(req, res) {
+    // Ответы на вопросы
     // req.session.PerDataQuest
 
-    var dataInterview = new question({
+    var dataInterview = new interview({
         name: "dataInterview",
         any: {
             PerDataQuest: req.session.PerDataQuest,
             response: req.body
-        },
+        }
     });
 
-    dataInterview.save(function(err) {
-        if (err) throw err;
-
-        // сохранение успешно
-    });
+    dataInterview.interview_save();
 
     res.json("ok");
 }

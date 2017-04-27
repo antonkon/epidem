@@ -115,11 +115,11 @@
                         <label id="label1">Пол :</label>
                         <div class="vubor" style="width: 450px; padding-left: 90px; padding-right: 90px;">
                             <div class="radioblock">
-                                <input required type="radio" class="radio1" name="gender" id="men">
+                                <input required type="radio" class="radio1" name="gender" id="men" value="men">
                                 <label for="men" class="pd">Мужской</label>
                             </div>
                             <div class="radioblock">
-                                <input required type="radio" class="radio1" name="gender" id="wom">
+                                <input required type="radio" class="radio1" name="gender" id="wom" value="wom">
                                 <label for="wom" class="pd">Женский</label>
                             </div>
                         </div>
@@ -296,7 +296,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "/questions",
+                url: "/responses",
                 data: JSON.stringify(res),
                 dataType: "json",
                 contentType: "application/json",
