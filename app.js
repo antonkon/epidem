@@ -48,7 +48,7 @@ app.use(function(err, req, res, next) {
 app.use('/', router);
 
 // Загрузка в базу вопросов
-if (conf.get('updatedb')) {
+if (conf.get('updatequest')) {
     var q = require('./routes/models/loadQuestion')
     q();
 }

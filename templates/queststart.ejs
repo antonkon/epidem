@@ -196,23 +196,23 @@
                 </form>
             </div>
             <div class="wrapperQuestion" style="display: none;" id="quest">
-                <p class="ca-mainQuestion questions" id="question">Вы болели хоть раз в жизни?</p>
-				<div class=centerButtons>
-					<button class="buttonsQuestion" class="buttonsQuestions" type="submit" onclick="resQuest(1)"> Да </button>
-					<button class="buttonsQuestion" class="buttonsQuestions" type="submit" onclick="resQuest(0)"> Нет </button>
-				</div>
+                <p class="ca-mainQuestion questions" id="question"></p>
+                <div class=centerButtons>
+                    <button class="buttonsQuestion" class="buttonsQuestions" type="submit" onclick="resQuest(1)"> Да </button>
+                    <button class="buttonsQuestion" class="buttonsQuestions" type="submit" onclick="resQuest(0)"> Нет </button>
+                </div>
             </div>
             <div class="wrapperQuestion" style="display: none;" id="questFin">
                 <p class="ca-mainQuestion questions">Спасибо, что приняли участие в опросе!</p>
                 <button class="buttonsQuestion buttonsQuestions finishbut" type="submit" onclick="resFin()"> Завершить опрос</button>
             </div>
-			<div id="overlay" style = "display: none;">
-				<div class="popup"> 
-					<h2>Внимание!</h2> 
-                    <p> Пожалуйста, отвечайте на вопросы честно! </p> 
-                    <button class="close" title="OK" onclick="document.getElementById('overlay').style.display='none';"></button> 
-				</div> 
-			</div>
+            <div id="overlay" style="display: none;">
+                <div class="popup">
+                    <h2>Внимание!</h2>
+                    <p> Пожалуйста, отвечайте на вопросы честно! </p>
+                    <button class="close" title="OK" onclick="document.getElementById('overlay').style.display='none';"></button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -242,13 +242,13 @@
                 contentType: "application/json",
                 success: function(data) {
                     console.log(data);
-                    window.questions = data;
+                    window.questions = data.response;
                     window.qnum = "q1";
                     document.getElementById("gl1").style.display = 'none';
                     document.getElementById("quest").style.display = '';
-					document.getElementById("overlay").style.display = 'block';
-					console.log(document.getElementById("overlay").style.display);
-                    document.getElementById("question").innerHTML = questions.any.q1;
+                    document.getElementById("overlay").style.display = 'block';
+                    console.log(document.getElementById("overlay").style.display);
+                    document.getElementById("question").innerHTML = questions.q1;
                 },
             });
         });
@@ -256,7 +256,7 @@
 
     <script>
         function resQuest(res) {
-            window.questions.any[window.qnum] = res;
+            window.questions[window.qnum] = res;
 
             var next = logic(res); // возвращает номер(название) следующего вопроса
             if (next == "qend") {
@@ -265,7 +265,7 @@
             }
 
             window.qnum = next;
-            document.getElementById("question").innerHTML = window.questions.any[next];
+            document.getElementById("question").innerHTML = window.questions[next];
         }
 
         function logic(res) {
@@ -300,9 +300,9 @@
             console.log("отправка");
 
             var res = {}
-            for (key in window.questions.any)
+            for (key in window.questions)
                 if (key.indexOf("q") != -1)
-                    res[key] = window.questions.any[key];
+                    res[key] = window.questions[key];
 
             $.ajax({
                 type: "POST",

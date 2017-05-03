@@ -1,10 +1,11 @@
 var interview = require('./model').Interview;
 var fs = require('fs');
+var conf = require('config');
 
 module.exports = function() {
 
     try {
-        var Quest = JSON.parse(fs.readFileSync(__dirname + "/Questions.json"));
+        var Quest = JSON.parse(fs.readFileSync(__dirname + "/" + conf.get('file_questions')));
     } catch (e) {
         console.log(e);
     }
@@ -12,7 +13,7 @@ module.exports = function() {
     // console.log(Quest);
     var quest = new interview({
         name: "questions",
-        any: Quest
+        response: Quest
     });
 
     interview.find({ name: "questions" }, function(err, qu) {
@@ -27,7 +28,7 @@ module.exports = function() {
             });
         } else {
             // сохранение успешно
-            interview.update({ name: "questions" }, Quest, function(err) {
+            interview.update({ name: "questions" }, { $set: { response: Quest } }, function(err) {
                 if (err) throw err;
 
                 console.log("Вопросы обновлены !");

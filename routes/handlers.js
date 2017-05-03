@@ -123,10 +123,8 @@ exports.responses = function(req, res) {
 
     var dataInterview = new interview({
         name: "dataInterview",
-        any: {
-            PerDataQuest: req.session.PerDataQuest,
-            response: req.body
-        }
+        PerDataQuest: req.session.PerDataQuest,
+        response: req.body
     });
 
     dataInterview.interview_save();

@@ -61,63 +61,22 @@ exports.Register = mongoose.model('register', user_reg);
 
 
 // модель опроса пользователя
-var interview = new mongoose.Schema({ name: String, any: {} });
+var interview = new mongoose.Schema({
+    name: String,
+    PerDataQuest: {},
+    response: {},
+    date: {
+        type: Date,
+        default: Date.now
+    }
+});
+
 interview.methods.interview_save = function() {
-
-
     this.save(function(err) {
         if (err) throw err;
 
-        console.log("1");
         // сохранение успешно
     });
 };
 
 exports.Interview = mongoose.model('interview', interview);
-
-
-// модель ростовой группы
-var tall_group = new mongoose.Schema({
-    _id: Number,
-    up_value: Number,
-    down_value: Number
-});
-
-exports.Tall_group = mongoose.model('tall_group', tall_group);
-
-
-// модель социального статуса
-var social_status = new mongoose.Schema({
-    _id: Number,
-    name_status: String
-});
-
-exports.Social_status = mongoose.model('social_status', social_status);
-
-
-// модель весовой группы
-var weight_group = new mongoose.Schema({
-    _id: Number,
-    up_value: Number,
-    down_value: Number
-});
-
-exports.Weight_group = mongoose.model('weight_group', weight_group);
-
-// модель возростной группы
-var age_group = new mongoose.Schema({
-    _id: Number,
-    up_value: Number,
-    down_value: Number
-});
-
-exports.Age_group = mongoose.model('age_group', age_group);
-
-
-// модель групп регионов
-var okato = new mongoose.Schema({
-    _id: Number,
-    name_region: String
-});
-
-exports.Okato = mongoose.model('okato', okato);
