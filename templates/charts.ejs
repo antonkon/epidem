@@ -1,7 +1,16 @@
 <% layout('baza') %>
 
 
-    <div id="charts" style="width: 900px; height: 500px;"></div>
+    <h1 class="text-center"> Диаграммы </h1>
+    <hr>
+    <div id="charts" style="width: 800px; height: 600px; display: inline-block;"></div>
+    <div id="param">
+        <h4>Параметры выборки:</h4>
+        <br>
+        <input name="r1" type="radio" checked> Круговая
+        <input name="r1" type="radio"> Линейная
+        <input name="r1" type="radio"> Столбцовая
+    </div>
 
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
