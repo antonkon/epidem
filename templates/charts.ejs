@@ -4,12 +4,52 @@
     <h1 class="text-center"> Диаграммы </h1>
     <hr>
     <div id="charts" style="width: 800px; height: 600px; display: inline-block;"></div>
-    <div id="param">
-        <h4>Параметры выборки:</h4>
-        <br>
+    <div id="param" style="overflow: auto;">
+        <h4><b>Параметры выборки:</b></h4>
+        <hr>
+        <h5><b>Тип диаграммы:</b></h5>
         <input name="r1" type="radio" checked> Круговая
         <input name="r1" type="radio"> Линейная
         <input name="r1" type="radio"> Столбцовая
+        <hr>
+        <h5><b>Пол:</b></h5>
+        <input name="r2" type="radio" checked> М
+        <input name="r2" type="radio"> Ж
+        <input name="r2" type="radio"> Оба
+        <hr>
+        <h5><b>Употребление табачных изделий:</b></h5>
+        <input name="r3" type="radio" checked> Нет
+        <input name="r3" type="radio"> Да
+        <input name="r3" type="radio"> Оба
+        <hr>
+        <h5><b>Только диагноз </b></h5>
+        <input name="r4" type="checkbox">
+        <hr>
+        <h5><b>Диагнозы:</b></h5>
+        <select name="r5" style="width: 210px;">
+            <option value="0" selected>Все варианты</option>  
+            <option value="1">Ревматоидный артрит
+            <option value="2">Болезни глаз
+            <option value="3">Аритмия
+            <option value="4">Артериальная гипертензия
+            <option value="5">Болезни органов дыхания
+            <option value="6">Болезни почек
+            <option value="7">Сколиоз     
+        </select>
+        <hr>
+        <h5><b>Рост:</b></h5>
+        <select name="r6" style="width: 210px;">
+            <option value="0" selected>Все варианты</option>  
+            <option value="1">1-10
+            <option value="2">10-20
+            <option value="3">20-30
+            <option value="4">30-50    
+        </select>
+        <hr>
+        <center>
+            <button id="butUpdate" onclick="update();">Показать</button>
+        </center>
+        <br>
     </div>
 
 
@@ -39,5 +79,29 @@
             var chart = new google.visualization.PieChart(document.getElementById('charts'));
 
             chart.draw(data, options);
+        }
+
+        function update() {
+
+
+            $.ajax({
+                type: "POST",
+                url: "/charts",
+                data: JSON.stringify({
+                    okato: okato
+                }),
+                dataType: "json",
+                contentType: "application/json",
+                success: function(data) {
+                    console.log(data);
+                    window.questions = data.response;
+                    window.qnum = "q1";
+                    document.getElementById("gl1").style.display = 'none';
+                    document.getElementById("quest").style.display = '';
+                    document.getElementById("overlay").style.display = 'block';
+                    console.log(document.getElementById("overlay").style.display);
+                    document.getElementById("question").innerHTML = questions.q1;
+                },
+            });
         }
     </script>

@@ -19,8 +19,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride());
 mongoose.connect(conf.get('mongoose.url'));
 app.use(session({
-    secret: 'epidem gpo',
-    key: 'epi',
+    secret: conf.mongoose.options.secret,
+    key: conf.mongoose.options.key,
     cookie: {
         path: "/",
         httpOnly: true,

@@ -139,3 +139,7 @@ exports.map = function(req, res) {
 exports.charts = function(req, res) {
     res.render('charts', { title: 'Диаграммы', err: false });
 }
+
+exports.apiCharts = function(res, rec) {
+
+}
