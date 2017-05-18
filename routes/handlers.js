@@ -141,5 +141,5 @@ exports.charts = function(req, res) {
 }
 
 exports.apiCharts = function(res, rec) {
-
+    console.log(res.body);
 }
