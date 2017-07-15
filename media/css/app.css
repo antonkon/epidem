@@ -15,6 +15,7 @@ html
    width: 100%;
    padding-top: 60px;
    min-height: 100vh;
+   overflow: hidden;
 }
 
 .logo
@@ -107,10 +108,17 @@ footer p {
     font-size: 14px;
 }
 .container  {
-	padding-top:30px;
 	margin-top:50px;
-	padding-bottom:30px;
 	border-bottom: 1px solid white;
+    
+}
+.footer-container{
+    margin-top:50px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #b27ac0;
+    padding-left: 50px;
 }
 .regfield
 {
@@ -190,12 +198,6 @@ footer h3 {
 footer h2 {
 	color:#fbfbfb;
     font-size: 24px;
-}
-
-.left-side {
-	float: left;
-    max-width: 370px;
-    padding-right: 35px;
 }
 
 .left-side p {
