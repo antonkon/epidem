@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var handlers = require('./handlers');
+var admin_handlers = require('./admin_handlers');
 
 
 router.get('/', handlers.main);
@@ -29,5 +30,11 @@ router.post('/charts', handlers.apiCharts)
 router.get('/export', handlers.export);
 
 router.get('/profile', handlers.profile);
+
+router.get('/admin', admin_handlers.admin);
+
+router.get('/admin_one', admin_handlers.admin_one);
+
+router.get('/admin_reg', admin_handlers.admin_reg);
 
 module.exports = router;

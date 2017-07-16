@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<link rel="shortcut icon" href="admin/img/admin.png">
+    <title><%= title %></title>
+	<% if (user) { %>
+	<link href="admin/css/admin.css" rel="stylesheet">
+	<%} else {%>
+	<link href="css/admin.css" rel="stylesheet">
+	<% } %>
+  </head>
+  <body>
+  <% if (user) { %>
+<%- partial('admin_panel') %>
+	<% } %>
+    <div>	
+<%- body %>
+    </div>
+  </body>
+</html>

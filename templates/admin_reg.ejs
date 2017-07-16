@@ -1,0 +1,42 @@
+<% layout('admin_baza') %>
+
+<script type="text/javascript" src="admin/js/search.js"></script>
+
+<div class="osnova">
+		<h1>Управление администраторами сайта</h1>
+		<div class="reg">
+			<h3>Регистрация нового администратора</h3>
+				<div class="reg_vn">
+					<div class="form">
+						<label class="label">Логин: </label>
+						<input required="true" id="login" class="inp" type="text" name="login" placeholder="Введите логин" >
+					</div>
+					<div class="form">
+						<label class="label">Пароль: </label>
+						<input required="true" id="pass" class="inp" type="password" name="pass" placeholder="Введите пароль" >
+					</div>
+					<input class="button_2" onclick="add()" style="outline: none;" value="Зарегистрировать" type="submit" id="submit">
+				</div>		
+		</div>
+		<div class="table_admin">
+			<h3>Действующие администраторы</h3>
+			<input type="text" id="myInput2" onkeyup="myFunction2()" placeholder="Поиск по таблице..">
+			<table id="table_admin">
+				<tr>
+					<th>Логин</th>
+					<th>Действие</th>
+				</tr>
+				<tr>
+					<td>ЦАРЬ</td>
+					<td class="act-1">
+						<input class="button_2r" onclick="deleteRow2(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
+					</td>
+				</tr>
+				<tr>
+					<td>Антонио</td>
+					<td class="act-1">
+						<input class="button_2r" onclick="deleteRow2(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
+					</td>
+				</tr>
+		</div>
+	</div>

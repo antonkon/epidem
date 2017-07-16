@@ -1,0 +1,24 @@
+<% layout('admin_baza') %>
+
+
+	<div class="fon">
+		<h1>Вход в панель управления</h1>
+		<div class="left">
+			<p>Введите существующие логин и пароль для доступа к панели управления</p>
+			<p><a href="/">Перейти на главную страницу сайта</a></p>
+			<div class="img"><p><img src="img/lock.png"></p></div>
+		</div>
+		<div class="right">
+			<div class="data">
+				<div class="form">
+					<label class="label">Логин: </label>
+					<input required="true" class="inp" type="text" name="login" placeholder="Введите Ваш логин" >
+				</div>
+				<div class="form">
+					<label class="label">Пароль: </label>
+					<input required="true" class="inp" type="password" name="pass" placeholder="Введите Ваш пароль" >
+				</div>
+				<input class="button_1" style="outline: none;" value="Войти" type="submit" id="submit">
+			</div>	
+		</div>
+	</div>
