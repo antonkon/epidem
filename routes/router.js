@@ -26,4 +26,8 @@ router.get('/map', handlers.map);
 router.get('/charts', handlers.charts);
 router.post('/charts', handlers.apiCharts)
 
+router.get('/export', handlers.export);
+
+router.get('/profile', handlers.profile);
+
 module.exports = router;

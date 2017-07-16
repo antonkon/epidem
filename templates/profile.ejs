@@ -1,0 +1,72 @@
+<% layout('baza') %>
+
+<div class="profile-change">
+			<h1 class="text-center" class="profile-change">Редактирование Профиля</h1>
+
+    		<div class="regfield">
+
+            <script>
+                $(document).ready(function(){
+                $("form").submit(function(){
+                alert("Ваши данные изменены");
+                    });
+                });
+                </script>
+
+				<div class="form-group" action="">
+            		<label for="phone">Телефон: </label>
+            		<form >
+					<input class="form-control" type="tel" placeholder="Введите Ваш новый телефон" pattern="[7-8]{1}[0-9]{10}" required>
+					<input type="submit" value="Изменить">
+					</form>
+        		</div>
+
+                
+        		<div class="form-group" action="">
+            		<label  for="email">E-mail: </label>
+            		<form >
+					<input class="form-control" type="email" placeholder="Введите Ваш новый e-mail" required>
+					<input type="submit" value="Изменить"  onClick="formSubmitter()">
+                    <div id='message'></div>
+					</form>
+        		</div>
+
+                <div class="password" for="password">Пароль</div>
+
+        		
+		<form class="pure-form" action="">
+			<div class="form-group" >
+            	<label  for="password">Изменение пароля: </label>
+            	<input " class="form-control" type="password" id="txtNewPassword" placeholder="Введите старый пароль" required>
+        	</div>
+
+    		<div class="form-group">
+        		<label for="password">Новый Пароль: </label>
+        		<input type="password" placeholder="Введите новый пароль" id="password" required>
+       		 </div>
+
+			<div class="form-group">
+        		<label  for="password">Подтвердить: </label>
+        		<input type="password" placeholder="Подтвердите пароль" id="confirm_password" required>
+        	</div>
+
+        	<script>
+        	var password = document.getElementById("password")
+  			, confirm_password = document.getElementById("confirm_password");
+
+			function validatePassword(){
+	  		if(password.value != confirm_password.value) {
+	    		confirm_password.setCustomValidity("Пароли не совпадают");
+	  		} else {
+	   		 confirm_password.setCustomValidity('');
+	  		}
+		}
+		password.onchange = validatePassword;
+		confirm_password.onkeyup = validatePassword;
+        	</script>
+       		 <button type="submit" class="pure-button pure-button-primary">Изменить</button>
+    		
+		</form>
+
+    		</div>
+		</div>
