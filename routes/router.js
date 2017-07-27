@@ -32,6 +32,7 @@ router.get('/export', handlers.export);
 router.get('/profile', handlers.profile);
 
 router.get('/admin', admin_handlers.admin);
+router.post('/admin', admin_handlers.admin_post);
 
 router.get('/admin_one', admin_handlers.admin_one);
 

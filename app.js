@@ -53,6 +53,12 @@ if (conf.get('updatequest')) {
     q();
 }
 
+// загрузка главного админа в базу
+if (conf.get('update_admin')) {
+    var q = require('./routes/models/loadadmin')
+    q();
+}
+
 
 app.listen(conf.get('port'), function() {
     console.log("Сервер запущен:");

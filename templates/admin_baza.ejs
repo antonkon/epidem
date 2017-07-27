@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<link rel="shortcut icon" href="admin/img/admin.png">
     <title><%= title %></title>
-	<% if (user) { %>
-	<link href="admin/css/admin.css" rel="stylesheet">
-	<%} else {%>
+	<link href="admin/img/admin.png" rel="shortcut icon">
+	<script type="text/javascript" src="/js/fullPage/jquery.fullPage.js"></script>
+	<link href="/admin/css/admin.css" rel="stylesheet">
+	<!-- <% if (user == 3) { %> 
 	<link href="css/admin.css" rel="stylesheet">
-	<% } %>
+	<%} else {%>
+	<link href="/admin/css/admin.css" rel="stylesheet">
+	<% } %> -->
   </head>
   <body>
-  <% if (user) { %>
+  <% if (user && user != 3) { %>
 <%- partial('admin_panel') %>
 	<% } %>
     <div>	

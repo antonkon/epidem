@@ -1,12 +1,17 @@
 {
     "port": 3000,
     "mongoose": {
-        "url": "mongodb://127.0.0.1/epidem",
+        "url": "mongodb://192.168.0.101/epidem",
         "options": {
             "secret": "epidem gpo",
             "key": "epi"
         }
     },
     "updatequest": false,
+	"update_admin": false,
+	"admin_data": {
+		"login": "Vlastelin",
+		"pwd": "tsar"
+	},
     "file_questions": "devQuest.json"
 }
