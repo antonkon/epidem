@@ -37,4 +37,8 @@ router.get('/admin_one', admin_handlers.admin_one);
 
 router.get('/admin_reg', admin_handlers.admin_reg);
 
+router.get('/admin_users', admin_handlers.admin_users);
+
+router.get('/admin_data', admin_handlers.admin_data);
+
 module.exports = router;

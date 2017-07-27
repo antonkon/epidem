@@ -1,0 +1,110 @@
+<% layout('admin_baza') %>
+
+<script type="text/javascript" src="admin/js/search.js"></script>
+
+	
+	<div class="osnova_user">
+		<h1>Управление пользователями сайта</h1>
+		<h3>Заявки на регистрацию</h3>
+		<div class="zapros_table">
+		<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Поиск по таблице..">
+			<table id="zapros_table">
+				<tr>
+					<th>ФИО пользователя</th>
+					<th>Почта</th>
+					<th>Организация</th>
+					<th>Телефон</th>
+					<th>Действие</th>
+				</tr>
+				<tr>
+					<td>1Гусев xffdng Владимирович</td>
+					<td>gvv1997@mail.ru</td>
+					<td>Федеральная Служба Управления</td>
+					<td>8-800-555-3535</td>
+					<td class="act">
+						<input class="button_2g" onclick="addRow(this)" style="outline: none;" value="Добавить" type="submit" id="submit">
+						<input class="button_2r" onclick="deleteRow(this)" style="outline: none;" value="Отклонить" type="submit" id="submit">
+					</td>
+				</tr>
+				<tr>
+					<td>2Гусев Вячеслав Владимирович</td>
+					<td>gvv1997@mail.ru</td>
+					<td>Федеральная Служба</td>
+					<td>8-800-555-3535</td>
+					<td class="act">
+						<input class="button_2g" onclick="addRow(this)" style="outline: none;" value="Добавить" type="submit" id="submit">
+						<input class="button_2r" onclick="deleteRow(this)" style="outline: none;" value="Отклонить" type="submit" id="submit">
+					</td>
+				</tr>
+				<tr>
+					<td>3Кондратов Антон Валерьевич</td>
+					<td>kondraton@mail.ru</td>
+					<td>................</td>
+					<td>8-800-200-5000</td>
+					<td class="act">
+						<input class="button_2g" onclick="addRow(this)" style="outline: none;" value="Добавить" type="submit" id="submit">
+						<input class="button_2r" onclick="deleteRow(this)" style="outline: none;" value="Отклонить" type="submit" id="submit">
+					</td>
+				</tr>
+				<tr>
+					<td>4Гусев Вячеслав Владимирович</td>
+					<td>gvv1997@mail.ru</td>
+					<td>Федеральная Служба Управления</td>
+					<td>8-800-555-3535</td>
+					<td class="act">
+						<input class="button_2g" onclick="addRow(this)" style="outline: none;" value="Добавить" type="submit" id="submit">
+						<input class="button_2r" onclick="deleteRow(this)" style="outline: none;" value="Отклонить" type="submit" id="submit">
+					</td>
+				</tr>
+			</table>
+		</div>	
+		<h3>Одобренные пользователи</h3>
+		<div class="user_table">
+		<input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Поиск по таблице..">
+			<table id="user_table">
+				<tr>
+					<th>ФИО пользователя</th>
+					<th>Почта</th>
+					<th>Организация</th>
+					<th>Телефон</th>
+					<th>Действие</th>
+				</tr>
+				<tr>
+					<td>Гусев Вячеслав Владимирович</td>
+					<td>gvv1997@mail.ru</td>
+					<td>Федеральная Служба Управления</td>
+					<td>8-800-555-3535</td>
+					<td class="act">
+						<input class="button_2r" onclick="deleteRow1(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
+					</td>
+				</tr>
+				<tr>
+					<td>Гусев Вячеслав Владимирович</td>
+					<td>gvv1997@mail.ru</td>
+					<td>Федеральная Служба Управления</td>
+					<td>8-800-555-3535</td>
+					<td class="act">
+						<input class="button_2r" onclick="deleteRow1(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
+					</td>
+				</tr>
+				<tr>
+					<td>Гусев Вячеслав Владимирович</td>
+					<td>gvv1997@mail.ru</td>
+					<td>Федеральная Служба Управления</td>
+					<td>8-800-555-3535</td>
+					<td class="act">
+						<input class="button_2r" onclick="deleteRow1(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
+					</td>
+				</tr>
+				<tr>
+					<td>Гусев Вячеслав Владимирович</td>
+					<td>gvv1997@mail.ru</td>
+					<td>Федеральная Служба Управления</td>
+					<td>8-800-555-3535</td>
+					<td class="act">
+						<input class="button_2r" onclick="deleteRow1(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
+					</td>
+				</tr>
+			</table>
+		</div>	
+	</div>
