@@ -16,7 +16,7 @@
 		</div>
 		<div class="right">
 			<div class="data">
-				<form action="admin" method="post" name="signinAdmin" id="signinAdmin" accept-charset="utf-8">
+				<form action="/admin" method="post" name="signinAdmin" id="signinAdmin" accept-charset="utf-8">
 				<div class="form">
 					<label class="label">Логин: </label>
 					<input required="true" class="inp" type="text" name="login" placeholder="Введите Ваш логин" id="login" >
@@ -49,9 +49,6 @@
                     return true;
                 }
             }
-			
-			console.log(login);
-			console.log(pwd);
 
             return false;
         });

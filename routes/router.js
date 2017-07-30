@@ -34,6 +34,8 @@ router.get('/profile', handlers.profile);
 router.get('/admin', admin_handlers.admin);
 router.post('/admin', admin_handlers.admin_post);
 
+router.get('/admin_logout', admin_handlers.logout);
+
 router.get('/admin_one', admin_handlers.admin_one);
 
 router.get('/admin_reg', admin_handlers.admin_reg);

@@ -2,7 +2,11 @@ var modelAdmin = require('./models/admin_model').AdminRegister;
 var async = require('async');
 
 exports.admin = function(req, res) {
-    res.render('admin', { title: 'Вход в панель управления', err: false, user: 3 });
+	if (req.session.admin) {
+		res.redirect('/admin_one');
+	} else {	
+		res.render('admin', { title: 'Вход в панель управления', err: false, user: 3 });
+	}
 }
 
 exports.admin_post = function(req, res) {
@@ -40,17 +44,44 @@ exports.admin_post = function(req, res) {
 exports.admin_one = function(req, res) {
 	// сделать проверку на вход
 	
-    res.render('admin_one', { title: 'Статистика', err: false, user: true });
+	if (!req.session.admin) {
+		res.redirect('/admin');
+	} else {	
+		res.render('admin_one', { title: 'Статистика', err: false, user: true });
+	}
 }
 
 exports.admin_reg = function(req, res) {
-    res.render('admin_reg', { title: 'Регистрация', err: false, user: true });
+	if (!req.session.admin) {
+		res.redirect('/admin');
+	} else {
+		res.render('admin_reg', { title: 'Регистрация', err: false, user: true });
+	}
 }
 
 exports.admin_users = function(req, res) {
-    res.render('admin_users', { title: 'Пользователи', err: false, user: true });
+	if (!req.session.admin) {
+		res.redirect('/admin');
+	} else {
+		res.render('admin_users', { title: 'Пользователи', err: false, user: true });
+	}
 }
 
 exports.admin_data = function(req, res) {
-    res.render('admin_data', { title: 'Справочные таблицы', err: false, user: true });
+	if (!req.session.admin) {
+		res.redirect('/admin');
+	} else {
+		res.render('admin_data', { title: 'Справочные таблицы', err: false, user: true });
+	}
 }
+
+exports.logout = function(req, res) {
+    // разлогинить
+    if (req.session.admin) {
+        delete req.session.admin;
+        res.redirect('/admin');
+    }
+};
+
+
+
