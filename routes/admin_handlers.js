@@ -8,15 +8,12 @@ exports.admin = function(req, res) {
 exports.admin_post = function(req, res) {
 	var login = req.body.login;
     var pwd = req.body.pwd;
-	console.log(login);
-	console.log(pwd);
 	
     async.waterfall([
         function(callback) {
             modelAdmin.findOne({ login: login }, callback);
         },
         function(admin, callback) {
-			console.log(admin);
             if (admin) {
                 if (admin.checkPwd(pwd)) {
                     // 200 ok

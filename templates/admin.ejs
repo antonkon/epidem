@@ -16,14 +16,14 @@
 		</div>
 		<div class="right">
 			<div class="data">
-				<form action="/admin" method="post" name="signinAdmin" id="signinAdmin" accept-charset="utf-8">
+				<form action="admin" method="post" name="signinAdmin" id="signinAdmin" accept-charset="utf-8">
 				<div class="form">
 					<label class="label">Логин: </label>
-					<input required="true" class="inp" type="text" placeholder="Введите Ваш логин" id="login" >
+					<input required="true" class="inp" type="text" name="login" placeholder="Введите Ваш логин" id="login" >
 				</div>
 				<div class="form">
 					<label class="label">Пароль: </label>
-					<input required="true" class="inp" type="password" placeholder="Введите Ваш пароль" id="pwd" >
+					<input required="true" class="inp" type="password" name="pwd" placeholder="Введите Ваш пароль" id="pwd" >
 				</div>
 				<% if(err) {%>
 					<div class="error_block">
@@ -39,6 +39,7 @@
 	<script type="text/javascript" src="js/inputCheck.js"></script>
 	<script>
 		$("#signinAdmin").submit(function(e) {
+			console.log("1");
             var Form = document.forms["signin"];
             var login = Form.elements["login"].id;
             var pwd = Form.elements["pwd"].id;
