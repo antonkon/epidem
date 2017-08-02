@@ -5,7 +5,8 @@ module.exports = function() {
 	
 	var admin = new adminRegister({
         login: conf.admin_data.login,
-        pwd: conf.admin_data.pwd
+        pwd: conf.admin_data.pwd,
+		mainAdmin: true
     });
 
     adminRegister.find({ login: conf.admin_data.login}, function(err, qu) {

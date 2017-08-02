@@ -110,17 +110,3 @@ function deleteRow2(r)
 var i = r.parentNode.parentNode.rowIndex;
 document.getElementById("table_admin").deleteRow(i);
 }
-
-function add(){
-	var a = document.getElementById("login").value;
-	var b = document.getElementById("pass").value;
-	var x = document.getElementById('table_admin').insertRow(1);
-	var g = document.getElementById('table_admin');
-	td4 = g.getElementsByTagName("td")[1].innerHTML;
-	var y = x.insertCell(0);
-	var z = x.insertCell(1);
-	y.innerHTML=a;
-	z.innerHTML=td4;
-	document.getElementById("login").value = "";
-	document.getElementById("pass").value = "";
-}

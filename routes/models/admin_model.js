@@ -19,6 +19,10 @@ var admin_reg = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+	mainAdmin: {
+        type: Boolean,
+        default: false
     }
 });
 

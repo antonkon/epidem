@@ -39,6 +39,7 @@ router.get('/admin_logout', admin_handlers.logout);
 router.get('/admin_one', admin_handlers.admin_one);
 
 router.get('/admin_reg', admin_handlers.admin_reg);
+router.post('/admin_reg',admin_handlers.admin_reg_post);
 
 router.get('/admin_users', admin_handlers.admin_users);
 

@@ -8,3 +8,4 @@ logs/*
 migrations/
 node_modules/
 cmd.bat
+*.lnk
