@@ -5,14 +5,9 @@
 	<link href="admin/img/admin.png" rel="shortcut icon">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<link href="/admin/css/admin.css" rel="stylesheet">
-	<!-- <% if (user == 3) { %> 
-	<link href="css/admin.css" rel="stylesheet">
-	<%} else {%>
-	<link href="/admin/css/admin.css" rel="stylesheet">
-	<% } %> -->
   </head>
   <body>
-  <% if (user && user != 3) { %>
+  <% if (typeof flag == "undefined") { %>
 <%- partial('admin_panel') %>
 	<% } %>
     <div>	
