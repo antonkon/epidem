@@ -67,6 +67,8 @@ exports.admin_reg = function(req, res) {
 		
 		// взять из базы имена админов
 		modelAdmin.find({}, function (err, admins) {
+			if (err) throw err;
+			
 			res.render('admin_reg', { title: 'Регистрация', err: false, admins: admins });
 		});
 	}
@@ -85,7 +87,9 @@ exports.admin_reg_post = function(req, res, next) {
         if (err) {
             if (err.name === 'MongoError' && err.code === 11000) {
                 // ошибка регистрации: user с такими данными уже есть
-                modelAdmin.find({}, function (err, admins) {				
+                modelAdmin.find({}, function (err, admins) {	
+					if (err) throw err;
+				
 					res.render('admin_reg', {
 						title: 'Ошибка регистрации',
 						err: 'Пользователь с такими данными уже зарегистрирован !',
@@ -100,6 +104,8 @@ exports.admin_reg_post = function(req, res, next) {
         } else {
             // регистрация успешна
             modelAdmin.find({}, function (err, admins) {
+				if (err) throw err;
+				
 				res.render('admin_reg', { title: 'Регистрация', err: false, admins: admins });
 			});
         }
@@ -111,6 +117,8 @@ exports.admin_users = function(req, res) {
 		res.redirect('/admin');
 	} else {
 		modelAdmin.find({}, function (err, admins) {
+			if (err) throw err;
+			
 			res.render('admin_users', { title: 'Пользователи', err: false });
 		});	
 	}
@@ -130,7 +138,15 @@ exports.logout = function(req, res) {
         delete req.session.admin;
         res.redirect('/admin');
     }
-};
+}
 
-
+exports.admin_del = function(req, res) {
+	var login = req.body.login;
+	
+	modelAdmin.remove({ login: login }, function (err) {
+		if (err) throw err;
+	
+		res.json("ok");
+	});
+}
 

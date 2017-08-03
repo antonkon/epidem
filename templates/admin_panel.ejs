@@ -1,7 +1,11 @@
 <div class="menu menu_fon">
 		<div class="user">
 		<p>Текущий администратор:</p>
-		<h2><%= admin.login %></h2>
+		<% if (admin.mainAdmin) { %>
+			<h2 style="color: gold;"><%= admin.login %></h2>
+		<% } else { %>
+			<h2><%= admin.login %></h2>
+		<% } %>
 		</div>
 		<ul>
 			<a href="/admin_one">
@@ -19,4 +23,5 @@
 			<a href="/admin_logout">
 				<li class="li_menu out"><input class="button" style="outline: none;" value="Выйти" type="submit" id="submit"></li>
 			</a>
-	</div>	
+		
+</div>	
