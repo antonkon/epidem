@@ -38,9 +38,13 @@
 						<td><%= admins[i].login %></td>
 						<td class="act-1">
 							<% if (admins[i].mainAdmin) { %>
-							<input class="button_2r" style="outline: none; background-color: gray;" value="Удалить" type="submit" id="submit">
+								<input class="button_2r" style="outline: none; background-color: gray;" value="Удалить" type="submit" id="submit">
 							<%} else {%>
-							<input class="button_2r" onclick="deleteRow2(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
+								<% if (admin.mainAdmin) { %>
+									<input class="button_2r" onclick="deleteRow2(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
+								<% } else { %>
+									<input class="button_2r" style="outline: none; background-color: gray;" value="Удалить" type="submit" id="submit">
+								<% } %>
 							<% } %>
 							
 						</td>

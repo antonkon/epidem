@@ -241,6 +241,9 @@ caption {
 
 .user{
 	text-align: center;	
+	width:80%;
+	overflow: hidden;
+	margin: 0 auto;
 }
 
 .user h2{
