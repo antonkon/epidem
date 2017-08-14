@@ -140,6 +140,14 @@ exports.charts = function(req, res) {
     res.render('charts', { title: 'Диаграммы', err: false });
 }
 
+exports.export = function(req, res) {
+    res.render('export', { title: 'Экспорт', err: false });
+}
+
+exports.profile = function(req, res) {
+    res.render('profile', { title: 'Профиль пользователя', err: false });
+}
+
 exports.apiCharts = function(res, rec) {
     console.log(res.body);
 }

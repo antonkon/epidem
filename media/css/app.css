@@ -2,19 +2,19 @@
 
 html
 {
-    height: 100%;
 	width: 100%;
     min-height: 100vh;
+    position: relative;
+    min-height: 100%;
 }
 
 .appbody
 {
    background-color: #FBFBFB;
    color: black;
-   height: 100%;
    width: 100%;
-   padding-top: 60px;
-   min-height: 100vh;
+   padding-top:60px;
+   margin-bottom:60px;
 }
 
 .logo
@@ -37,7 +37,7 @@ html
 
 .main_container
 {
-    min-height: 91vh;
+    min-height: 600px;
 }
 
 .logo:hover
@@ -107,10 +107,12 @@ footer p {
     font-size: 14px;
 }
 .container  {
-	padding-top:30px;
-	margin-top:50px;
-	padding-bottom:30px;
 	border-bottom: 1px solid white;
+    
+}
+.footer-container{
+    background-color: #b27ac0;
+    width: 100%;
 }
 .regfield
 {
@@ -170,9 +172,13 @@ footer p {
 
 footer {
     
-    background-color: #b27ac0;
     color: #fbfbfb;
-	margin-top:30px
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    margin-top: 60px;
+
 }
 
 footer ul > li > a {
@@ -190,17 +196,14 @@ footer h3 {
 footer h2 {
 	color:#fbfbfb;
     font-size: 24px;
-}
-
-.left-side {
-	float: left;
-    max-width: 370px;
-    padding-right: 35px;
+    position: absolute;
+    margin-right: 20px;
 }
 
 .left-side p {
-	
-    margin-bottom: 24px;
+    float: left;
+    margin-top: 25px;
+    margin-left: 200px;
 }
 
 ul{

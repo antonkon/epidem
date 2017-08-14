@@ -34,6 +34,7 @@ app.use(session({
 app.use(express.static(__dirname + '/media'));
 
 app.use(require('./routes/loadUser'));
+app.use(require('./routes/loadAdmin'));
 
 app.use(function(err, req, res, next) {
     if ('development' == app.get('env')) {
@@ -49,7 +50,13 @@ app.use('/', router);
 
 // Загрузка в базу вопросов
 if (conf.get('updatequest')) {
-    var q = require('./routes/models/loadQuestion')
+    var q = require('./routes/models/loadQuestion');
+    q();
+}
+
+// загрузка главного админа в базу
+if (conf.get('update_admin')) {
+    var q = require('./routes/models/saveAdmin');
     q();
 }
 

@@ -1,0 +1,106 @@
+<% layout('admin_baza') %>
+
+<script type="text/javascript" src="admin/js/search.js"></script>
+
+<div class="osnova">
+		<h1>Управление администраторами сайта</h1>
+		<div class="reg">
+			<h3>Регистрация нового администратора</h3>
+				<form action="/admin_reg" method="post" id="admin_reg" accept-charset="utf-8" class="reg_vn" name="admin_reg">
+					<div class="form">
+						<label class="label">Логин: </label>
+						<input required="true" id="login" class="inp" type="text" name="login" placeholder="Введите логин" >
+					</div>
+					<div class="form">
+						<label class="label">Пароль: </label>
+						<input required="true" id="pass" class="inp" type="password" name="pass" placeholder="Введите пароль" >
+					</div>
+					<div class="error_block" id="error_block">
+					<% if(err) {%>		
+					<strong style="color: red;"><%= err  %></strong>
+					<%}%>
+					</div>
+					<input class="button_2" style="outline: none;" value="Зарегистрировать" type="submit" id="submit">
+				</form>	
+				
+		</div>
+		<div class="table_admin">
+			<h3>Действующие администраторы</h3>
+			<input type="text" id="myInput2" onkeyup="myFunction2()" placeholder="Поиск по таблице..">
+			<table id="table_admin">
+				<tr>
+					<th>Логин</th>
+					<th>Действие</th>
+				</tr>
+				<% for (var i=0; i<admins.length; i++) {%>
+				
+					<tr>
+						<td><%= admins[i].login %></td>
+						<td class="act-1">
+							<% if (admins[i].mainAdmin) { %>
+								<input class="button_2r" style="outline: none; background-color: gray;" value="Удалить" type="submit" id="submit">
+							<%} else {%>
+								<% if (admin.mainAdmin) { %>
+									<input class="button_2r" onclick="deleteAdmin(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
+								<% } else { %>
+									<input class="button_2r" style="outline: none; background-color: gray;" value="Удалить" type="submit" id="submit">
+								<% } %>
+							<% } %>
+							
+						</td>
+					</tr>
+				
+				<% } %>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="js/inputCheck.js"></script>
+	<script>
+		$("#admin_reg").submit(function(e) {
+			
+			var Form = document.forms.admin_reg;
+            var login = Form.elements.login.id;
+            var pass = Form.elements.pass.id;
+			
+			 if (validateName(login)) {
+                if (validatePassword(pass)) {
+					// проверка полей прошла успешно
+                    return true;
+                } else {
+					// Ошибка: Пароль слишком короткий!
+					$('#error_block').html('<strong style="color: red;">Пароль слишком короткий!</strong>'); 
+				}
+				
+            } else {
+				// сообщить об ошибке пользователю
+				// ошибка: Поле с именем не может быть пустым!
+				$('#error_block').html('<strong style="color: red;">Поле с именем не может быть пустым!</strong>'); 
+			}
+			
+            return false;
+        });
+		
+		function deleteAdmin(r) {
+			var i = r.parentNode.parentNode.rowIndex;
+			var m = document.getElementById('table_admin');
+			var tr = m.getElementsByTagName("tr")[i];
+			var td = tr.getElementsByTagName("td")[0].innerHTML;
+
+			$.ajax({
+                type: "POST",
+                url: "/adminDel",
+                data: JSON.stringify({
+                    login: td
+                }),
+                dataType: "json",
+                contentType: "application/json",
+                success: function(data) {
+                    // console.log(data);
+                },
+            });
+			
+			deleteRow2(r);
+		}
+		
+	</script>
+	

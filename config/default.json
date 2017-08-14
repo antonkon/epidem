@@ -8,5 +8,10 @@
         }
     },
     "updatequest": false,
+	"update_admin": false,
+	"admin_data": {
+		"login": "Vlastelin",
+		"pwd": "tsar"
+	},
     "file_questions": "devQuest.json"
 }
