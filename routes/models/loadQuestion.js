@@ -10,7 +10,6 @@ module.exports = function() {
         console.log(e);
     }
 
-    // console.log(Quest);
     var quest = new interview({
         name: "questions",
         response: Quest

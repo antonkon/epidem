@@ -198,8 +198,8 @@
             <div class="wrapperQuestion" style="display: none;" id="quest">
                 <p class="ca-mainQuestion questions" id="question"></p>
                 <div class=centerButtons>
-                    <button class="buttonsQuestion" class="buttonsQuestions" type="submit" onclick="resQuest(1)"> Да </button>
-                    <button class="buttonsQuestion" class="buttonsQuestions" type="submit" onclick="resQuest(0)"> Нет </button>
+                    <button class="buttonsQuestion" class="buttonsQuestions" type="submit" onclick="resQuest('+')"> Да </button>
+                    <button class="buttonsQuestion" class="buttonsQuestions" type="submit" onclick="resQuest('-')"> Нет </button>
                 </div>
             </div>
             <div class="wrapperQuestion" style="display: none;" id="questFin">
@@ -241,13 +241,15 @@
                 dataType: "json",
                 contentType: "application/json",
                 success: function(data) {
-                    window.questions = data.response;
-                    window.qnum = "q1";
+                    window.questions = data.quest.response;
+                    window.logic = data.logic.response;
+                    window.qnum = 1;
+                    window.noznum = 1;
+                    window.resnoz = {};
                     document.getElementById("gl1").style.display = 'none';
                     document.getElementById("quest").style.display = '';
                     document.getElementById("overlay").style.display = 'block';
-                    console.log(document.getElementById("overlay").style.display);
-                    document.getElementById("question").innerHTML = questions.q1;
+                    document.getElementById("question").innerHTML = questions.q1_1;
                 },
             });
         });
@@ -255,58 +257,107 @@
 
     <script>
         function resQuest(res) {
-            window.questions[window.qnum] = res;
+            function strstr(log_str, res_str) {
+                for (i = 0; i < res_str.length; i++) {
+                    if ((log_str[i] == res_str[i]) || (log_str[i] == "/" && res_str[i] != "0") || (log_str[i] == "_")) {
+                        continue;
+                    } else {
+                        return false;
+                    }
+                }
 
-            var next = logic(res); // возвращает номер(название) следующего вопроса
+                return true;
+            }
+
+            function strcmp(log_str, res_str) {
+                for (i = 0; i < log_str.length; i++) { // возможные варианты в res: "+" "-" "0" и в log: "+" "-" "/" "_"
+                    if ((log_str[i] == res_str[i]) || (log_str[i] == "/" && res_str[i] != "0") || (log_str[i] == "_")) {
+                        continue;
+                    } else {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            function logic(res) {
+                // qnum - кол-во пройденых вопросов по текущей позологии
+                // noznum - текущая нозология
+                // window.noznum
+                // window.qnum
+
+                window.resnoz["q" + window.noznum] = window.resnoz["q" + window.noznum].substr(0, window.qnum - 1) + res +
+                    window.resnoz["q" + window.noznum].substr(window.qnum);
+
+
+                log_mas = window.logic["q" + window.noznum];
+                res_mas = window.resnoz["q" + window.noznum];
+
+
+                for (i = 0; i < log_mas[1].length; i++) {
+                    log_str = log_mas[1][i];
+                    if (strstr(log_str, res_mas.substring(0, window.qnum))) {
+                        for (j = window.qnum; j < log_str.length; j++) {
+                            if (log_str[j] == "_") {
+                                continue;
+                            } else {
+                                window.qnum = j + 1;
+                                return "q" + window.noznum + "_" + window.qnum;
+                            }
+                        }
+                        if (j >= log_str.length) {
+
+                            // и определить результат
+                            for (k = 2; k < log_mas.length; k++) {
+                                if (strstr(log_mas[k].substring(0, log_mas[k].indexOf(">")), res_mas)) {
+                                    window.resnoz["q" + window.noznum] = log_mas[k].substring(log_mas[k].indexOf(">") + 1);
+                                    break;
+                                }
+                            }
+
+                            // перейти к другой нозологии
+                            window.noznum++;
+                            window.qnum = 1;
+
+                            // проверка на окончание нозологий
+                            if (window.noznum >= window.questions.noz) {
+                                return "qend";
+                            }
+
+                            return "q" + window.noznum + "_" + window.qnum;;
+                        }
+                    }
+                }
+                console.log("Ошибка!");
+            }
+
+
+
+            if (window.resnoz["q" + window.noznum] === undefined) {
+                window.resnoz["q" + window.noznum] = "";
+                for (i = 0; i < window.logic["q" + window.noznum][0]; i++) {
+                    window.resnoz["q" + window.noznum] = window.resnoz["q" + window.noznum] + "0";
+                }
+            }
+
+            // возвращает номер(название) следующего вопроса
+            next = logic(res);
             if (next == "qend") {
                 document.getElementById("quest").style.display = 'none';
                 document.getElementById("questFin").style.display = '';
             }
 
-            window.qnum = next;
             document.getElementById("question").innerHTML = window.questions[next];
-        }
-
-        function logic(res) {
-
-            if (window.qnum.indexOf("q1") != -1)
-                if (window.qnum == "q1")
-                    if (res == 1)
-                        return "q1_1";
-                    else return "q2";
-            else
-            if (window.qnum == "q1_1")
-                if (res == 1)
-                    return "q1_2"
-                else return "q2"
-            else return "q2"
-
-            if (window.qnum == "q2")
-                return "q3"
-
-            if (window.qnum == "q3")
-                return "q4"
-
-            if (window.qnum.indexOf("q4") != -1)
-                if (window.qnum == "q4")
-                    if (res == 0)
-                        return "q4_1"
-                    else return "qend"
-            else return "qend"
         }
 
         function resFin() {
             console.log("отправка");
 
-            var res = {}
-            for (key in window.questions)
-                if (key.indexOf("q") != -1)
-                    res[key] = window.questions[key];
-
             $.ajax({
                 type: "POST",
                 url: "/responses",
-                data: JSON.stringify(res),
+                data: JSON.stringify(window.resnoz),
                 dataType: "json",
                 contentType: "application/json",
                 success: function(data) {
