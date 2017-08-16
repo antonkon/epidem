@@ -175,11 +175,6 @@ exports.responses = function(req, res) {
 
     // }
 
-    // var noz = {};
-    // for (key in req.body) {
-    //     req.body[key]
-    // }
-
     var dataInterview = new interview({
         name: "dataInterview",
         PerDataQuest: req.session.PerDataQuest,
