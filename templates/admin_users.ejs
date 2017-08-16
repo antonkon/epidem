@@ -26,6 +26,22 @@
 						<input class="button_2r" onclick="deleteRow(this)" style="outline: none;" value="Отклонить" type="submit" id="submit">
 					</td>
 				</tr>
+				<% for (var i=0; i<users.length; i++) {%>
+				
+					<tr>
+						<td><%= users[i].login %></td>
+						<td><%= users[i].email %></td>
+						<td><%= users[i].org %></td>
+						<td><%= users[i].number %></td>
+						<td class="act">
+								<input class="button_2g" onclick="addRow(this)" style="outline: none;" value="Добавить" type="submit" id="submit">
+								<input class="button_2r" onclick="deleteRow(this)" style="outline: none;" value="Отклонить" type="submit" id="submit">
+							<% } %>
+							
+						</td>
+					</tr>
+				
+				<% } %>
 				<tr>
 					<td>2Гусев Вячеслав Владимирович</td>
 					<td>gvv1997@mail.ru</td>

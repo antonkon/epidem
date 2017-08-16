@@ -1,5 +1,6 @@
 var modelAdmin = require('./models/admin_model').AdminRegister;
 var async = require('async');
+var modelRegister = require('./models/model').Register;
 
 // Страница входа
 exports.admin = function(req, res) {
@@ -118,8 +119,10 @@ exports.admin_users = function(req, res) {
 	} else {
 		modelAdmin.find({}, function (err, admins) {
 			if (err) throw err;
-			
-			res.render('admin_users', { title: 'Пользователи', err: false });
+			modelRegister.find({isValid: false}, function (err, users) {
+				if (err) throw err;		
+				res.render('admin_users', { title: 'Пользователи', err: false, users: users, admins: admins });
+			});
 		});	
 	}
 }
