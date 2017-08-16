@@ -14,7 +14,7 @@ router.get('/logout', handlers.logout);
 router.get('/signup', handlers.getSignup);
 router.post('/signup', handlers.postSignup);
 
-// отдает страницу с интервью
+// отдает страницу с опросом
 router.get('/interview', handlers.getInterviewFirst);
 // Записывает пользовательские данные в сессию
 router.post('/interview', handlers.postInterviewFirst);

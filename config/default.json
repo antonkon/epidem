@@ -7,11 +7,13 @@
             "key": "epi"
         }
     },
-    "updatequest": false,
-	"update_admin": false,
-	"admin_data": {
-		"login": "Vlastelin",
-		"pwd": "tsar"
-	},
-    "file_questions": "devQuest.json"
+    "update_quest": false,
+    "update_logic": false,
+    "update_admin": false,
+    "admin_data": {
+        "login": "Vlastelin",
+        "pwd": "tsar"
+    },
+    "file_questions": "Questions.json",
+    "file_logic": "Logics.json"
 }

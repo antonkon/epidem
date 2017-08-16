@@ -1,24 +1,20 @@
 @import "http://webfonts.ru/import/aleksandrac.css";
-
-html
-{
-	width: 100%;
+html {
+    width: 100%;
     min-height: 100vh;
     position: relative;
     min-height: 100%;
 }
 
-.appbody
-{
-   background-color: #FBFBFB;
-   color: black;
-   width: 100%;
-   padding-top:60px;
-   margin-bottom:60px;
+.appbody {
+    background-color: #FBFBFB;
+    color: black;
+    width: 100%;
+    padding-top: 60px;
+    margin-bottom: 60px;
 }
 
-.logo
-{
+.logo {
     position: absolute;
     display: inline-block;
     height: 40px;
@@ -28,26 +24,22 @@ html
     transition: all 200ms;
 }
 
-.logo img{
+.logo img {
     margin-top: 0px;
     display: inline;
     height: 40px;
     width: auto;
 }
 
-.main_container
-{
-    min-height: 600px;
+.main_container {
+    min-height: 585px;
 }
 
-.logo:hover
-{
+.logo:hover {
     top: 8px;
 }
 
-
-.username_bar
-{
+.username_bar {
     position: absolute;
     top: 0;
     right: 150px;
@@ -59,14 +51,12 @@ html
     line-height: 60px;
 }
 
-.head_foot_color
-{
+.head_foot_color {
     background-color: #B18C8E;
     opacity: 0.98;
 }
 
-.header
-{
+.header {
     position: fixed;
     top: 0;
     left: 0;
@@ -76,7 +66,7 @@ html
     min-width: 1200px;
     color: white;
     font-weight: bold;
-    z-index: 110; 
+    z-index: 110;
 }
 
 .footer-list {
@@ -86,7 +76,7 @@ html
 }
 
 .footer-list h3 {
-    font-weight:  600;
+    font-weight: 600;
     font-size: 15px;
     margin-bottom: 25px;
 }
@@ -99,32 +89,34 @@ footer button {
     font-size: 12px;
     line-height: 24px;
 }
+
 ul {
-	list-style: none;
+    list-style: none;
 }
+
 .footer-list li a,
 footer p {
     font-size: 14px;
 }
-.container  {
-	border-bottom: 1px solid white;
-    
+
+.container {
+    border-bottom: 1px solid white;
 }
-.footer-container{
+
+.footer-container {
     background-color: #b27ac0;
     width: 100%;
 }
-.regfield
-{
+
+.regfield {
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     margin-left: 25%;
     margin-right: 25%;
     border-radius: 5px;
 }
 
-.error_block
-{
+.error_block {
     color: white;
     margin-left: 25%;
     margin-right: 25%;
@@ -138,9 +130,8 @@ footer p {
     font-size: 13pt;
 }
 
-.confim_block
-{
-	color: white;
+.confim_block {
+    color: white;
     margin-left: 15%;
     margin-right: 15%;
     background-color: #448fff;
@@ -148,53 +139,50 @@ footer p {
     margin-bottom: 20px;
     margin-top: 3%;
     padding: 25px;
-	text-align:center;
-	font-size:15pt;
-	line-height: 0.8;
+    text-align: center;
+    font-size: 15pt;
+    line-height: 0.8;
 }
 
-.confim
-{
-	text-align:center;
-	margin-top:3%;
-	opacity: 0.55;
-	
+.confim {
+    text-align: center;
+    margin-top: 3%;
+    opacity: 0.55;
 }
 
-.big_text
-{
-	font-size:20pt;
+.big_text {
+    font-size: 20pt;
 }
-.center
-{
-	text-align: center;
+
+.center {
+    text-align: center;
 }
 
 footer {
-    
     color: #fbfbfb;
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 60px;
     margin-top: 60px;
-
 }
 
-footer ul > li > a {
-    color:  #fbfbfb ;
+footer ul>li>a {
+    color: #fbfbfb;
 }
-a:hover, a:focus {
-    color:#04c0df;
+
+a:hover,
+a:focus {
+    color: #04c0df;
     text-decoration: underline;
 }
 
 footer h3 {
-    color:#fbfbfb;
+    color: #fbfbfb;
 }
 
 footer h2 {
-	color:#fbfbfb;
+    color: #fbfbfb;
     font-size: 24px;
     position: absolute;
     margin-right: 20px;
@@ -206,6 +194,6 @@ footer h2 {
     margin-left: 200px;
 }
 
-ul{
-	padding: 0;
+ul {
+    padding: 0;
 }

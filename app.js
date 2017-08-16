@@ -49,15 +49,21 @@ app.use(function(err, req, res, next) {
 app.use('/', router);
 
 // Загрузка в базу вопросов
-if (conf.get('updatequest')) {
+if (conf.get('update_quest')) {
     var q = require('./routes/models/loadQuestion');
     q();
 }
 
+// Загрузка в базу логики
+if (conf.get('update_logic')) {
+    var l = require('./routes/models/loadLogic');
+    l();
+}
+
 // загрузка главного админа в базу
 if (conf.get('update_admin')) {
-    var q = require('./routes/models/saveAdmin');
-    q();
+    var a = require('./routes/models/saveAdmin');
+    a();
 }
 
 
