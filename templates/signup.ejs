@@ -20,6 +20,16 @@
                         <input required="true" class="form-control" type="text" onblur="validateEmail('signup_email')" onfocus="focusField('signup_email')" name="email" id="signup_email" placeholder="Введите Ваш e-mail">
                     </div>
 
+					<div class="form-group">
+                        <label class="control-label" for="signup_number">Телефон: </label>
+                        <input required="true" class="form-control" type="text" onblur="validateNumber('signup_number')" onfocus="focusField('signup_number')" name="number" id="signup_number" placeholder="Введите Ваш номер телефона">
+                    </div>
+					
+					<div class="form-group">
+                        <label class="control-label" for="signup_org">Организация: </label>
+                        <input required="true" class="form-control" type="text" onblur="validateName('signup_org')" onfocus="focusField('signup_org')" name="org" id="signup_org" placeholder="Введите название Вашей организации">
+                    </div>
+					
                     <div class="form-group">
                         <label class="control-label" for="signup_pwd">Пароль: </label>
                         <input required="true" class="form-control" type="password" onblur="validatePassword('signup_pwd')" onfocus="focusField('signup_pwd')" name="pwd" id="signup_pwd" placeholder="Придумайте пароль">

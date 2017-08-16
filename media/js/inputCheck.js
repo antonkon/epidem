@@ -22,6 +22,30 @@ function validateEmail(id) {
     }
 }
 
+function validateNumber(id) {
+	var number = document.getElementById(id);
+    if (checkNumber(number.value)) {
+        number.parentNode.classList.remove('has-error');
+        number.parentNode.classList.add("has-success");
+        return true;
+    } else {
+        number.parentNode.classList.add('has-error');
+        return false;
+    }
+}
+function checkNumber(number) {
+	if (number == "") {
+        return false;
+    } else {
+        var valid = /^[0-9]{10,11}$/.test(number);
+        if (valid) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 function validatePassword(id) {
     var pwd = document.getElementById(id);
 
