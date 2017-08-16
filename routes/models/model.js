@@ -22,6 +22,14 @@ var user_reg = new mongoose.Schema({
         unique: true,
         required: true
     },
+    number: {
+        type: Number,
+        required: true
+    },
+    org: {
+        type: String,
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now

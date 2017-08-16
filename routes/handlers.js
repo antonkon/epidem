@@ -56,7 +56,9 @@ exports.postSignup = function(req, res, next) {
     var user = new model({
         login: req.body.login,
         pwd: req.body.pwd,
-        email: req.body.email
+        email: req.body.email,
+        number: req.body.number,
+        org: req.body.org
     });
 
     user.save(function(err, user, next) {
