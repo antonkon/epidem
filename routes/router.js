@@ -44,6 +44,7 @@ router.post('/adminDel',admin_handlers.admin_del);
 
 router.get('/admin_users', admin_handlers.admin_users);
 router.post('/userDel',admin_handlers.user_del);
+router.post('/userValid',admin_handlers.user_valid);
 
 router.get('/admin_data', admin_handlers.admin_data);
 

@@ -23,8 +23,8 @@
                         <td><%= users_f[i].org %></td>
                         <td><%= users_f[i].number %></td>
                         <td class="act">
-                            <input class="button_2g" onclick="addRow(this)" style="outline: none;" value="Добавить" type="submit" id="submit">
-                            <input class="button_2r" onclick="deleteUser(this)" style="outline: none;" value="Отклонить" type="submit" id="submit">
+                            <input class="button_2g" onclick="addUser(this)" style="outline: none;" value="Добавить" type="submit" id="submit">
+                            <input class="button_2r" onclick="deleteUser(this,'z')" style="outline: none;" value="Отклонить" type="submit" id="submit">
                         </td>
                     </tr>
                 <% } %>
@@ -41,6 +41,15 @@
                     <th>Телефон</th>
                     <th>Действие</th>
                 </tr>
+				<tr style ="display: none">
+					<td>1</td>	
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td class="act">
+						<input class="button_2r" onclick="deleteUser(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
+                    </td>
+				</tr>
                 <% for (var i=0; i<users_t.length; i++) { %>
                     <tr>
                         <td><%= users_t[i].login %></td>
@@ -48,7 +57,7 @@
                         <td><%= users_t[i].org %></td>
                         <td><%= users_t[i].number %></td>
                         <td class="act">
-                            <input class="button_2r" onclick="deleteRow1(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
+                            <input class="button_2r" onclick="deleteUser(this,'u')" style="outline: none;" value="Удалить" type="submit" id="submit">
                         </td>
                     </tr>
                 <% } %>
@@ -57,9 +66,36 @@
     </div>
 	
 	<script>
-	function deleteUser(r) {
-			var i = r.parentNode.parentNode.rowIndex;
+	function addUser(r) {
+		var i = r.parentNode.parentNode.rowIndex;
 			var m = document.getElementById('zapros_table');
+			var tr = m.getElementsByTagName("tr")[i];
+			var td1 = tr.getElementsByTagName("td")[1].innerHTML;
+
+			$.ajax({
+                type: "POST",
+                url: "/userValid",
+                data: JSON.stringify({
+					email: td1
+                }),
+                dataType: "json",
+                contentType: "application/json",
+                success: function(data) {
+                     console.log(data);
+                },
+            });
+	
+		addRow(r);
+	}
+	
+	
+	function deleteUser(r,h) {
+			var i = r.parentNode.parentNode.rowIndex;
+			if (h == "z"){
+				var m = document.getElementById('zapros_table');
+			} else {
+				var m = document.getElementById('user_table');
+				}
 			var tr = m.getElementsByTagName("tr")[i];
 			var td1 = tr.getElementsByTagName("td")[1].innerHTML;
 
@@ -72,10 +108,12 @@
                 dataType: "json",
                 contentType: "application/json",
                 success: function(data) {
-                     console.log(data);
                 },
             });
 			
-			deleteRow(r);
+			if (h == "z"){
+				deleteRow(r);
+			} else { 
+				deleteRow1(r);}
 		}
 	</script>	
