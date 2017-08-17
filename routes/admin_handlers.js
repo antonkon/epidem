@@ -159,3 +159,13 @@ exports.admin_del = function(req, res) {
         res.json("ok");
     });
 }
+
+exports.user_del = function(req, res) {
+	var email = req.body.email;
+	console.log(email);
+    modelRegister.remove({email: email}, function(err) {
+        if (err) throw err;
+
+        res.json("ok");
+    });
+}

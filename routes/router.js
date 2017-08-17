@@ -43,6 +43,7 @@ router.post('/admin_reg',admin_handlers.admin_reg_post);
 router.post('/adminDel',admin_handlers.admin_del);
 
 router.get('/admin_users', admin_handlers.admin_users);
+router.post('/userDel',admin_handlers.user_del);
 
 router.get('/admin_data', admin_handlers.admin_data);
 

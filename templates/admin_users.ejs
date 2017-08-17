@@ -16,36 +16,18 @@
                     <th>Телефон</th>
                     <th>Действие</th>
                 </tr>
-                <!--<tr>
-                    <td>1Гусев xffdng Владимирович</td>
-                    <td>gvv1997@mail.ru</td>
-                    <td>Федеральная Служба Управления</td>
-                    <td>8-800-555-3535</td>
-                    <td class="act">
-                        <input class="button_2g" onclick="addRow(this)" style="outline: none;" value="Добавить" type="submit" id="submit">
-                        <input class="button_2r" onclick="deleteRow(this)" style="outline: none;" value="Отклонить" type="submit" id="submit">
-                    </td>
-                </tr>-->
                 <% for (var i=0; i<users_f.length; i++) { %>
                     <tr>
-                        <td>
-                            <%= users_f[i].login %>
-                        </td>
-                        <td>
-                            <%= users_f[i].email %>
-                        </td>
-                        <td>
-                            <%= users_f[i].org %>
-                        </td>
-                        <td>
-                            <%= users_f[i].number %>
-                        </td>
+                        <td><%= users_f[i].login %></td>
+                        <td><%= users_f[i].email %></td>
+                        <td><%= users_f[i].org %></td>
+                        <td><%= users_f[i].number %></td>
                         <td class="act">
                             <input class="button_2g" onclick="addRow(this)" style="outline: none;" value="Добавить" type="submit" id="submit">
-                            <input class="button_2r" onclick="deleteRow(this)" style="outline: none;" value="Отклонить" type="submit" id="submit">
+                            <input class="button_2r" onclick="deleteUser(this)" style="outline: none;" value="Отклонить" type="submit" id="submit">
                         </td>
                     </tr>
-                    <% } %>
+                <% } %>
             </table>
         </div>
         <h3>Одобренные пользователи</h3>
@@ -61,32 +43,39 @@
                 </tr>
                 <% for (var i=0; i<users_t.length; i++) { %>
                     <tr>
-                        <td>
-                            <%= users_t[i].login %>
-                        </td>
-                        <td>
-                            <%= users_t[i].email %>
-                        </td>
-                        <td>
-                            <%= users_t[i].org %>
-                        </td>
-                        <td>
-                            <%= users_t[i].number %>
-                        </td>
+                        <td><%= users_t[i].login %></td>
+                        <td><%= users_t[i].email %></td>
+                        <td><%= users_t[i].org %></td>
+                        <td><%= users_t[i].number %></td>
                         <td class="act">
                             <input class="button_2r" onclick="deleteRow1(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
                         </td>
                     </tr>
-                    <% } %>
-                        <!--<tr>
-						<td>Гусев Вячеслав Владимирович</td>
-						<td>gvv1997@mail.ru</td>
-						<td>Федеральная Служба Управления</td>
-						<td>8-800-555-3535</td>
-						<td class="act">
-							<input class="button_2r" onclick="deleteRow1(this)" style="outline: none;" value="Удалить" type="submit" id="submit">
-						</td>
-					</tr>-->
+                <% } %>
             </table>
         </div>
     </div>
+	
+	<script>
+	function deleteUser(r) {
+			var i = r.parentNode.parentNode.rowIndex;
+			var m = document.getElementById('zapros_table');
+			var tr = m.getElementsByTagName("tr")[i];
+			var td1 = tr.getElementsByTagName("td")[1].innerHTML;
+
+			$.ajax({
+                type: "POST",
+                url: "/userDel",
+                data: JSON.stringify({
+					email: td1
+                }),
+                dataType: "json",
+                contentType: "application/json",
+                success: function(data) {
+                     console.log(data);
+                },
+            });
+			
+			deleteRow(r);
+		}
+	</script>	
