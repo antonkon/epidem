@@ -130,57 +130,11 @@ getQuestionsLogics = function(req, res, next) {
 
 exports.responses = function(req, res) {
     // Ответы на вопросы
-    // req.session.PerDataQuest
-
-    // try {
-    //     var logics = JSON.parse(fs.readFileSync(__dirname + "/" + conf.get('file_logic')));
-    // } catch (e) {
-    //     console.log(e);
-    // }
-
-    // console.log(logics);
-
-    // var req_q = "";
-
-    // for (key in logics) { // идём по списку логики 
-    //     if (key == "state") continue; // отсееваем первый, так как там все возможные состояния, а не логика
-    //     logic = logics[key]; // берём логику нозологии
-
-    //     console.log(logic);
-    //     // нужно составить ответ для сравнения с логикой
-    //     for (i = 1; i <= logic[0]; i++) { // кол-во вопросов находится на первом месте массива логики
-    //         console.log("q" + key[1] + "_" + i);
-    //         console.log(req.body["q" + key[1] + "_" + i]);
-
-    //         if (req.body["q" + key[1] + "_" + i] == 1) { // состовляем имя свойства и достаём
-    //             req_q = req_q + "+";
-    //         } else {
-    //             if (req.body["q" + key[1] + "_" + i] == 0) {
-    //                 req_q = req_q + "-";
-    //             } else {
-    //                 if (req.body["q" + key[1] + "_" + i].indexOf("|") != -1) { // если есть | то пишем |..| с содержимым
-    //                     req_q = req_q + req.body["q" + key[1] + "_" + i].substring(req.body["q" + key[1] + "_" + i].indexOf("|")) + "|";
-    //                 } else {
-    //                     req_q = req_q + "0";
-    //                 }
-    //             }
-    //         }
-    //     } // ответ сформирован в req_q
-
-    //     lonsole.log(req_q);
-    // теперь нужно сравнить логику и ответы
-    // для этого нужно пройтись по элементам массива
-
-    // for (i = 1; i < logic.length; i++) {
-    //     logic[i]
-    // }
-
-    // }
 
     var dataInterview = new interview({
         name: "dataInterview",
         PerDataQuest: req.session.PerDataQuest,
-        noz: req.body
+        response: req.body
     });
 
     dataInterview.interview_save();

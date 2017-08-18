@@ -198,8 +198,8 @@
             <div class="wrapperQuestion" style="display: none;" id="quest">
                 <p class="ca-mainQuestion questions" id="question"></p>
                 <div class=centerButtons>
-                    <button class="buttonsQuestion" class="buttonsQuestions" type="submit" onclick="resQuest('+')"> Да </button>
-                    <button class="buttonsQuestion" class="buttonsQuestions" type="submit" onclick="resQuest('-')"> Нет </button>
+                    <input class="buttonsQuestion" class="buttonsQuestions" id="butYes" type="submit" onclick="resQuest('+')" value="Да">
+                    <input class="buttonsQuestion" class="buttonsQuestions" id="butNo" type="submit" onclick="resQuest('-')" value="Нет">
                 </div>
             </div>
             <div class="wrapperQuestion" style="display: none;" id="questFin">
@@ -258,7 +258,7 @@
     <script>
         function resQuest(res) {
             function strstr(log_str, res_str) {
-                for (i = 0; i < res_str.length; i++) {
+                for (var i = 0; i < res_str.length; i++) {
                     if ((log_str[i] == res_str[i]) || (log_str[i] == "/" && res_str[i] != "0") || (log_str[i] == "_")) {
                         continue;
                     } else {
@@ -270,8 +270,8 @@
             }
 
             function strcmp(log_str, res_str) {
-                for (i = 0; i < log_str.length; i++) { // возможные варианты в res: "+" "-" "0" и в log: "+" "-" "/" "_"
-                    if ((log_str[i] == res_str[i]) || (log_str[i] == "/" && res_str[i] != "0") || (log_str[i] == "_")) {
+                for (i = 0; i < log_str.length; i++) { // возможные варианты в res: "+" "-" "0" и в log: "+" "-" "0"
+                    if ((log_str[i] == res_str[i]) || (log_str[i] == "0")) {
                         continue;
                     } else {
                         return false;
@@ -282,23 +282,21 @@
             }
 
             function logic(res) {
-                // qnum - кол-во пройденых вопросов по текущей позологии
+                // qnum - номер текушего вопроса
                 // noznum - текущая нозология
-                // window.noznum
-                // window.qnum
 
                 window.resnoz["q" + window.noznum] = window.resnoz["q" + window.noznum].substr(0, window.qnum - 1) + res +
                     window.resnoz["q" + window.noznum].substr(window.qnum);
 
 
-                log_mas = window.logic["q" + window.noznum];
-                res_mas = window.resnoz["q" + window.noznum];
+                var log_mas = window.logic["q" + window.noznum];
+                var res_mas = window.resnoz["q" + window.noznum];
 
 
-                for (i = 0; i < log_mas[1].length; i++) {
-                    log_str = log_mas[1][i];
+                for (var i = 0; i < log_mas[1].length; i++) {
+                    var log_str = log_mas[1][i];
                     if (strstr(log_str, res_mas.substring(0, window.qnum))) {
-                        for (j = window.qnum; j < log_str.length; j++) {
+                        for (var j = window.qnum; j < log_str.length; j++) {
                             if (log_str[j] == "_") {
                                 continue;
                             } else {
@@ -309,8 +307,8 @@
                         if (j >= log_str.length) {
 
                             // и определить результат
-                            for (k = 2; k < log_mas.length; k++) {
-                                if (strstr(log_mas[k].substring(0, log_mas[k].indexOf(">")), res_mas)) {
+                            for (var k = 2; k < log_mas.length; k++) {
+                                if (strcmp(log_mas[k].substring(0, log_mas[k].indexOf(">")), res_mas)) {
                                     window.resnoz["q" + window.noznum] = log_mas[k].substring(log_mas[k].indexOf(">") + 1);
                                     break;
                                 }
@@ -321,7 +319,7 @@
                             window.qnum = 1;
 
                             // проверка на окончание нозологий
-                            if (window.noznum >= window.questions.noz) {
+                            if (window.noznum > window.questions.noz) {
                                 return "qend";
                             }
 
@@ -336,19 +334,27 @@
 
             if (window.resnoz["q" + window.noznum] === undefined) {
                 window.resnoz["q" + window.noznum] = "";
-                for (i = 0; i < window.logic["q" + window.noznum][0]; i++) {
+                for (var i = 0; i < window.logic["q" + window.noznum][0]; i++) {
                     window.resnoz["q" + window.noznum] = window.resnoz["q" + window.noznum] + "0";
                 }
             }
 
             // возвращает номер(название) следующего вопроса
-            next = logic(res);
+            var next = logic(res);
             if (next == "qend") {
                 document.getElementById("quest").style.display = 'none';
                 document.getElementById("questFin").style.display = '';
             }
 
             document.getElementById("question").innerHTML = window.questions[next];
+            if (document.getElementById("butYes").value != "Да") {
+                document.getElementById("butYes").value = "Да";
+                document.getElementById("butNo").value = "Нет";
+            }
+            if (window.questions[next + "_otv1"] !== undefined) {
+                document.getElementById("butYes").value = window.questions[next + "_otv1"];
+                document.getElementById("butNo").value = window.questions[next + "_otv2"];
+            }
         }
 
         function resFin() {
