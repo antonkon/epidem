@@ -96,6 +96,7 @@ exports.getInterviewFirst = function(req, res) {
 exports.postInterviewFirst = function(req, res, next) {
     // обработка данных пользователя анкеты и начало опроса
     // запоминать данные в сессии
+    //console.log(req.body);
 
     req.session.PerDataQuest = {
         okato: req.body.okato,
@@ -103,8 +104,8 @@ exports.postInterviewFirst = function(req, res, next) {
         gender: req.body.gender,
         height_group_id: req.body.height_group_id,
         weight_group_id: req.body.weight_group_id,
-        smoking: req.body.smoking,
-        id_social_status: req.body.id_social_status,
+        smok: req.body.smok,
+        social_status_id: req.body.social_status_id,
     };
 
     getQuestionsLogics(req, res, next);
@@ -158,6 +159,38 @@ exports.profile = function(req, res) {
     res.render('profile', { title: 'Профиль пользователя', err: false });
 }
 
-exports.apiCharts = function(res, rec) {
-    console.log(res.body);
+exports.apiCharts = function(req, res, next) {
+    //console.log(req.body);
+    var param = { name: "dataInterview" };
+
+    for (key in req.body) {
+        switch (key) {
+            case "r2":
+                if (req.body[key] == "M")
+                    param["PerDataQuest.gender"] = "men";
+                else if (req.body[key] == "G")
+                    param["PerDataQuest.gender"] = "wom";
+                break;
+            case "r3":
+                if (req.body[key] == "N")
+                    param["PerDataQuest.smok"] = "No";
+                else if (req.body[key] == "Y")
+                    param["PerDataQuest.smok"] = "Yes";
+                break;
+        }
+    }
+    //console.log(param);
+
+    async.parallel([
+        function(callback) {
+            interview.find(param, callback);
+        },
+        function(callback) {
+            interview.find({ name: "dataInterview" }, callback);
+        }
+    ], function(err, result) {
+        if (err) next(err);
+
+        res.json({ "all": result[1].length, "sample": result[0].length });
+    });
 }

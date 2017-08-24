@@ -129,56 +129,56 @@
                         <label id="label1">Рост :</label>
                         <select required name="height_group_id">
     						<option  value="" >Выберите...</option>  
-                            <option value='false'>ниже 140 см</option>
-                            <option value='false'>140-145 см</option>
-                            <option value='false'>146-150 см</option>
-                            <option value='false'>151-155 см</option>
-                            <option value='false'>156-160 см</option>
-                            <option value='false'>161-165 см</option>
-                            <option value='false'>166-170 см</option>
-                            <option value='false'>171-175 см</option>
+                            <option value='0'>ниже 140 см</option>
+                            <option value='1'>140-145 см</option>
+                            <option value='2'>146-150 см</option>
+                            <option value='3'>151-155 см</option>
+                            <option value='4'>156-160 см</option>
+                            <option value='5'>161-165 см</option>
+                            <option value='6'>166-170 см</option>
+                            <option value='7'>171-175 см</option>
                             <option value="8">176-180 см</option>
-                            <option value='false'>181-185 см</option>
-                            <option value='false'>186-190 см</option>
-                            <option value='false'>выше 190 см</option>       
+                            <option value='9'>181-185 см</option>
+                            <option value='10'>186-190 см</option>
+                            <option value='11false'>выше 190 см</option>       
                         </select>
                     </div>
                     <div class="vubor">
                         <label id="label1">Вес :</label>
                         <select required="" name="weight_group_id">
     						<option  value="">Выберите...</option>  
-                            <option value='false'>ниже 30 кг</option>
-                            <option value='false'>30-35 кг</option>
-                            <option value='false'>36-40 кг</option>
-                            <option value='false'>41-45 кг</option>
-                            <option value='false'>46-50 кг</option>
-                            <option value='false'>51-55 кг</option>
-                            <option value='false'>56-60 кг</option>
-                            <option value='false'>61-65 кг</option>
-                            <option value='false'>66-70 кг</option>
-                            <option value='false'>71-75 кг</option>
-                            <option value='false'>76-80 кг</option>
-                            <option value='false'>81-85 кг</option>
-                            <option value='false'>86-90 кг</option>
-                            <option value='false'>больше 90 кг</option>  
+                            <option value='0'>ниже 30 кг</option>
+                            <option value='1'>30-35 кг</option>
+                            <option value='2'>36-40 кг</option>
+                            <option value='3'>41-45 кг</option>
+                            <option value='4'>46-50 кг</option>
+                            <option value='5'>51-55 кг</option>
+                            <option value='6'>56-60 кг</option>
+                            <option value='7'>61-65 кг</option>
+                            <option value='8'>66-70 кг</option>
+                            <option value='9'>71-75 кг</option>
+                            <option value='10'>76-80 кг</option>
+                            <option value='11'>81-85 кг</option>
+                            <option value='12'>86-90 кг</option>
+                            <option value='13'>больше 90 кг</option>  
     					</select>
                     </div>
                     <div class="vubor">
                         <label id="label1">Употребление табачных изделий :</label>
                         <div class="vubor" style="width: 450px; padding-left: 90px; padding-right: 90px;">
                             <div class="radioblock">
-                                <input required type="radio" name="smok" class="radio1" id="smok">
+                                <input required type="radio" name="smok" class="radio1" id="smok" value="Yes">
                                 <label for="smok" class="pd">Курю</label>
                             </div>
                             <div class="radioblock">
-                                <input required type="radio" name="smok" class="radio1" id="nosmok">
+                                <input required type="radio" name="smok" class="radio1" id="nosmok" value="No">
                                 <label for="nosmok" class="pd">Не курю</label>
                             </div>
                         </div>
                     </div>
                     <div class="vubor">
                         <label id="label1">Социальное положение :</label>
-                        <select name="id_social_status" required>
+                        <select name="social_status_id" required>
                             <option value="">Выберите...</option>  
                             <option value="0">Учащийся школы</option>
                             <option value="1">Студент</option>
@@ -226,6 +226,7 @@
             var height_group_id = Form.elements["height_group_id"].value;
             var weight_group_id = Form.elements["weight_group_id"].value;
             var smok = Form.elements["smok"].value;
+            var social_status_id = Form.elements["social_status_id"].value;
 
             $.ajax({
                 type: "POST",
@@ -236,7 +237,8 @@
                     age_group_id: age_group_id,
                     height_group_id: height_group_id,
                     weight_group_id: weight_group_id,
-                    smok: smok
+                    smok: smok,
+                    social_status_id: social_status_id
                 }),
                 dataType: "json",
                 contentType: "application/json",
