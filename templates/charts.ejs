@@ -14,17 +14,17 @@
         <input name="r1" type="radio" value="Столбцовая"> Столбцовая
         <hr>
         <h5><b>Пол:</b></h5>
-        <input name="r2" type="radio" value="М" checked> М
-        <input name="r2" type="radio" value="Ж"> Ж
-        <input name="r2" type="radio" value="О"> Оба
+        <input name="r2" type="radio" value="M" checked> М
+        <input name="r2" type="radio" value="G"> Ж
+        <input name="r2" type="radio" value="O"> Оба
         <hr>
         <h5><b>Употребление табачных изделий:</b></h5>
-        <input name="r3" type="radio" value="Н" checked> Нет
-        <input name="r3" type="radio" value="Д"> Да
+        <input name="r3" type="radio" value="N" checked> Нет
+        <input name="r3" type="radio" value="Y"> Да
         <input name="r3" type="radio" value="O"> Оба
         <hr>
-        <h5><b>Только диагноз </b></h5>
-        <input name="r4" type="checkbox" value="Д">
+        <h5><b>Только симптомы:</b></h5>
+        <input name="r4" type="checkbox" value="D">
         <hr>
         <h5><b>Диагнозы:</b></h5>
         <select name="r5" style="width: 210px;">
@@ -61,18 +61,9 @@
         google.charts.load('current', {
             'packages': ['corechart']
         });
-        google.charts.setOnLoadCallback(drawChart);
+
 
         function drawChart() {
-
-            var data = google.visualization.arrayToDataTable([
-                ['Task', 'Hours per Day'],
-                ['Work', 11],
-                ['Eat', 2],
-                ['Commute', 2],
-                ['Watch TV', 2],
-                ['Sleep', 7]
-            ]);
 
             var options = {
                 title: 'Данные'
@@ -80,7 +71,7 @@
 
             var chart = new google.visualization.PieChart(document.getElementById('charts'));
 
-            chart.draw(data, options);
+            chart.draw(window.data_chart, options);
         }
 
         function update() {
@@ -88,12 +79,12 @@
             var r2 = $('input[name=r2]:checked').val();
             var r3 = $('input[name=r3]:checked').val();
             var r4 = $('input[name=r4]:checked').val();
-            // var r5 = $('input[name=r5]').val();
-            console.log(r1);
-            console.log(r2);
-            console.log(r3);
-            console.log(r4);
-            console.log(r5);
+            var r5 = $('input[name=r5]').val();
+            // console.log(r1);
+            // console.log(r2);
+            // console.log(r3);
+            // console.log(r4);
+            // console.log(r5);
 
             $.ajax({
                 type: "POST",
@@ -108,8 +99,15 @@
                 dataType: "json",
                 contentType: "application/json",
                 success: function(data) {
-                    console.log(data);
+                    //console.log(data);
 
+                    window.data_chart = google.visualization.arrayToDataTable([
+                        ['Данные', 'Диаграмма выборки'],
+                        ['Выборка', data.sample],
+                        ['Все', data.all]
+                    ]);
+
+                    google.charts.setOnLoadCallback(drawChart);
                 },
             });
         }
