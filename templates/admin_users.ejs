@@ -2,7 +2,6 @@
 
     <script type="text/javascript" src="admin/js/search.js"></script>
 
-
     <div class="osnova_user">
         <h1>Управление пользователями сайта</h1>
         <h3>Заявки на регистрацию</h3>
@@ -66,6 +65,20 @@
     </div>
 	
 	<script>
+	function del()//Любая функция
+		{
+		if(confirm('Удалить?'))
+		/*функция со всплывающим окном
+		с выбором действий "ок" или "отмена"*/
+		{
+		if(confirm('Вы уверены? Удалить?'))
+		{
+		}
+		}
+		}
+	</script>
+	
+	<script>
 	function addUser(r) {
 		var i = r.parentNode.parentNode.rowIndex;
 			var m = document.getElementById('zapros_table');
@@ -90,6 +103,7 @@
 	
 	
 	function deleteUser(r,h) {
+		if(confirm('Вы точно хотите отклонить пользователя?')){
 			var i = r.parentNode.parentNode.rowIndex;
 			if (h == "z"){
 				var m = document.getElementById('zapros_table');
@@ -116,4 +130,5 @@
 			} else { 
 				deleteRow1(r);}
 		}
+	}	
 	</script>	
