@@ -65,20 +65,6 @@
     </div>
 	
 	<script>
-	function del()//Любая функция
-		{
-		if(confirm('Удалить?'))
-		/*функция со всплывающим окном
-		с выбором действий "ок" или "отмена"*/
-		{
-		if(confirm('Вы уверены? Удалить?'))
-		{
-		}
-		}
-		}
-	</script>
-	
-	<script>
 	function addUser(r) {
 		var i = r.parentNode.parentNode.rowIndex;
 			var m = document.getElementById('zapros_table');
@@ -103,7 +89,7 @@
 	
 	
 	function deleteUser(r,h) {
-		if(confirm('Вы точно хотите отклонить пользователя?')){
+		
 			var i = r.parentNode.parentNode.rowIndex;
 			if (h == "z"){
 				var m = document.getElementById('zapros_table');
@@ -111,8 +97,9 @@
 				var m = document.getElementById('user_table');
 				}
 			var tr = m.getElementsByTagName("tr")[i];
+			var td = tr.getElementsByTagName("td")[0].innerHTML;
 			var td1 = tr.getElementsByTagName("td")[1].innerHTML;
-
+			if(confirm('Вы точно хотите отклонить пользователя '+td+'?')){
 			$.ajax({
                 type: "POST",
                 url: "/userDel",
