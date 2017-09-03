@@ -2,7 +2,6 @@
 
     <script type="text/javascript" src="admin/js/search.js"></script>
 
-
     <div class="osnova_user">
         <h1>Управление пользователями сайта</h1>
         <h3>Заявки на регистрацию</h3>
@@ -90,6 +89,7 @@
 	
 	
 	function deleteUser(r,h) {
+		
 			var i = r.parentNode.parentNode.rowIndex;
 			if (h == "z"){
 				var m = document.getElementById('zapros_table');
@@ -97,8 +97,9 @@
 				var m = document.getElementById('user_table');
 				}
 			var tr = m.getElementsByTagName("tr")[i];
+			var td = tr.getElementsByTagName("td")[0].innerHTML;
 			var td1 = tr.getElementsByTagName("td")[1].innerHTML;
-
+			if(confirm('Вы точно хотите отклонить пользователя '+td+'?')){
 			$.ajax({
                 type: "POST",
                 url: "/userDel",
@@ -116,4 +117,5 @@
 			} else { 
 				deleteRow1(r);}
 		}
+	}	
 	</script>	

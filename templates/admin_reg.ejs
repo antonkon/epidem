@@ -85,21 +85,21 @@
 			var m = document.getElementById('table_admin');
 			var tr = m.getElementsByTagName("tr")[i];
 			var td = tr.getElementsByTagName("td")[0].innerHTML;
-
-			$.ajax({
-                type: "POST",
-                url: "/adminDel",
-                data: JSON.stringify({
-                    login: td
-                }),
-                dataType: "json",
-                contentType: "application/json",
-                success: function(data) {
-                    // console.log(data);
-                },
-            });
-			
+			if(confirm('Вы точно хотите удалить администратора '+td+'?')){
+				$.ajax({
+					type: "POST",
+					url: "/adminDel",
+					data: JSON.stringify({
+						login: td
+					}),
+					dataType: "json",
+					contentType: "application/json",
+					success: function(data) {
+						// console.log(data);
+					},
+				});
 			deleteRow2(r);
+			}
 		}
 		
 	</script>
