@@ -197,9 +197,9 @@
             </div>
             <div class="wrapperQuestion" style="display: none;" id="quest">
                 <p class="ca-mainQuestion questions" id="question"></p>
-                <div class=centerButtons>
-                    <input class="buttonsQuestion" class="buttonsQuestions" id="butYes" type="submit" onclick="resQuest('+')" value="Да">
-                    <input class="buttonsQuestion" class="buttonsQuestions" id="butNo" type="submit" onclick="resQuest('-')" value="Нет">
+                <div class=centerButtons id="buttons">
+                    <input class="buttonsQuestion" id="butYes" type="submit" onclick="resQuest('+')" value="Да">
+                    <input class="buttonsQuestion" id="butNo" type="submit" onclick="resQuest('-')" value="Нет">
                 </div>
             </div>
             <div class="wrapperQuestion" style="display: none;" id="questFin">
@@ -352,10 +352,34 @@
             if (document.getElementById("butYes").value != "Да") {
                 document.getElementById("butYes").value = "Да";
                 document.getElementById("butNo").value = "Нет";
+
+                // удалить лишние кнопки
+
+                var buts = document.getElementById("buttons");
+
+                while (buts.childElementCount > 2) {
+                    buts.children[2].remove();
+                }
             }
             if (window.questions[next + "_otv1"] !== undefined) {
                 document.getElementById("butYes").value = window.questions[next + "_otv1"];
                 document.getElementById("butNo").value = window.questions[next + "_otv2"];
+
+                if (window.questions[next + "_otv"] !== undefined) {
+                    for (var i = 2; i < window.questions[next + "_otv"]; i++) {
+                        // Создание кнопок
+                        var but = document.createElement('input');
+                        but.type = "submit";
+                        but.value = window.questions[next + "_otv" + (i + 1)];
+                        but.id = "but" + (i + 1);
+                        but.onclick = function() {
+                            resQuest('/');
+                        };
+                        but.className = "buttonsQuestion";
+
+                        document.getElementById("buttons").appendChild(but);
+                    }
+                }
             }
         }
 
