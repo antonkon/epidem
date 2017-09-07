@@ -11,6 +11,7 @@
     border-color: #717171;
     color: #717171;
     text-align: center;
+	overflow: auto;
 }
 
 button {
