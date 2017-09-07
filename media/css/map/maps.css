@@ -1,18 +1,8 @@
-/*!
- * jQVMap Version 1.0 
- *
- * http://jqvmap.com
- *
- * Copyright 2012, Peter Schmalfeldt <manifestinteractive@gmail.com>
- * Licensed under the MIT license.
- *
- * Fork Me @ https://github.com/manifestinteractive/jqvmap
- */
-
 .map_container{
 	position: absolute;
-	width: 100%;
+	width: 95%;
 	height: 65%;
+	float:left;
 }
 
 .map_wait{
@@ -29,3 +19,78 @@
 	z-index: 100;
 	background-color: rgba(0,0,0,0.5);
 }
+
+.param {
+    display: inline-block;
+    float: right;
+    width: 450px;
+    height: 550px;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-style: solid;
+    border-radius: 10px;
+    background: white;
+    border-color: #717171;
+    color: #717171;
+    text-align: center;
+}
+
+.settings{
+	float:left;
+	height:100%;
+	width:8%;
+	background-color: #717171;
+}
+
+.settings img{
+	margin-top: 270px;
+	height:25px;
+	width:25px;	
+}
+
+img.rot {
+  animation: 1s linear 0s normal none infinite running rot;
+  -webkit-animation: 1s linear 0s normal none infinite running rot;
+  width: 25px;
+}
+@keyframes rot {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rot {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#slideout {
+  position: fixed;
+  top: 40px;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+#slideout_inner {
+  position: fixed;
+  top: 80px;
+  right: -420px;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+#slideout:hover {
+  //left: 250px;
+}
+#slideout:hover #slideout_inner {
+  right: 0px;
+}
+#slideout:mouseout 
