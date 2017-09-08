@@ -114,7 +114,13 @@ footer p {
     margin-left: 25%;
     margin-right: 25%;
     border-radius: 5px;
+	margin-top: 50px;
 }
+
+.regfield h4 {
+	line-height:0.01;
+}
+
 
 .error_block {
     color: white;

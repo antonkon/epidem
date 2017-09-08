@@ -29,9 +29,9 @@
 					<br><br><br>
 					<p><b>Пол:</b></p>
 						<div class="radioblock">
-							<input type="radio" value="true"/><label value="muzh">Мужской</label>
-							<input type="radio" value="false"/><label value="zhen">Женский</label>
-							<input type="radio" value="both" checked/><label value="both">Оба варианта</label>
+							<input name="r1" type="radio" value="true"/><label value="muzh">Мужской</label>
+							<input name="r1" type="radio" value="false"/><label value="zhen">Женский</label>
+							<input name="r1" type="radio" value="both" checked/><label value="both">Оба варианта</label>
 						</div>
 				  </div>
 				<hr>
@@ -39,9 +39,9 @@
 					<div>
 					<p><b>Употребление табачных изделий:</b></p>
 						<div>
-							<input type="radio" value="true"/><label value="yes">Да</label>
-							<input type="radio" value="false"/><label value="no">Нет</label>
-							<input type="radio" value="both" checked/><label value="both">Оба варианта</label>
+							<input name="r2" type="radio" value="true"/><label value="yes">Да</label>
+							<input name="r2" type="radio" value="false"/><label value="no">Нет</label>
+							<input name="r2" type="radio" value="both" checked/><label value="both">Оба варианта</label>
 						</div>
 					</div>
 				<hr>
@@ -59,22 +59,62 @@
 						<hr>
 					<p><b>Возраст, года:</b></p>
 						<select>
-							<option value="all" selected>Все варианты</option>          
+							<option value="all" selected>Все варианты</option>
+							<option value="0">15-25</option>
+                            <option value="1">26-35</option>
+                            <option value="2">36-45</option>
+                            <option value="3">46-55</option>
+                            <option value="4">56-65</option>
+                            <option value="5">66-75</option>
+                            <option value="7">76-85</option>
+                            <option value="8">старше 85</option> 							
 						</select> 
 						<hr>
 					<p><b>Рост, сантиметры:</b></p>
 						<select value="rost">
-							<option value="all" selected>Все варианты</option>     
+							<option value="all" selected>Все варианты</option>   
+							<option value='0'>ниже 140 см</option>
+                            <option value='1'>140-145 см</option>
+                            <option value='2'>146-150 см</option>
+                            <option value='3'>151-155 см</option>
+                            <option value='4'>156-160 см</option>
+                            <option value='5'>161-165 см</option>
+                            <option value='6'>166-170 см</option>
+                            <option value='7'>171-175 см</option>
+                            <option value="8">176-180 см</option>
+                            <option value='9'>181-185 см</option>
+                            <option value='10'>186-190 см</option>
+                            <option value='11false'>выше 190 см</option>   							
 						</select>
 						<hr>
 					<p class="smenup"><b>Вес, килограммы:</b></p>
 						<select>
 							<option value="all" selected>Все варианты</option>  
+							<option value='0'>меньше 30 кг</option>
+                            <option value='1'>30-35 кг</option>
+                            <option value='2'>36-40 кг</option>
+                            <option value='3'>41-45 кг</option>
+                            <option value='4'>46-50 кг</option>
+                            <option value='5'>51-55 кг</option>
+                            <option value='6'>56-60 кг</option>
+                            <option value='7'>61-65 кг</option>
+                            <option value='8'>66-70 кг</option>
+                            <option value='9'>71-75 кг</option>
+                            <option value='10'>76-80 кг</option>
+                            <option value='11'>81-85 кг</option>
+                            <option value='12'>86-90 кг</option>
+                            <option value='13'>больше 90 кг</option>
 						</select>
 						<hr>
 					<p><b>Социальное положение:</b></p>
 						<select value="social">
-						<option value="all" selected>Все варианты</option>          
+							<option value="all" selected>Все варианты</option>   
+							<option value="0">Учащийся школы</option>
+                            <option value="1">Студент</option>
+                            <option value="2">Неработающий</option>
+                            <option value="3">Безработный</option>
+                            <option value="4">Работающий</option>
+                            <option value="5">Пенсионер</option> 						
 					  </select>
 					  <hr>
 					  <center>

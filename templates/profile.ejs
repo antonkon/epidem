@@ -1,72 +1,111 @@
 <% layout('baza') %>
 
-<div class="profile-change">
-			<h1 class="text-center" class="profile-change">Редактирование Профиля</h1>
-
+	<div class="profile-change">
+			<h1 class="text-center" class="profile-change">Пользователь "<%= user.login %>"</h1>
     		<div class="regfield">
-
-            <script>
-                $(document).ready(function(){
-                $("form").submit(function(){
-                alert("Ваши данные изменены");
-                    });
-                });
-                </script>
-
-				<div class="form-group" action="">
-            		<label for="phone">Телефон: </label>
-            		<form >
-					<input class="form-control" type="tel" placeholder="Введите Ваш новый телефон" pattern="[7-8]{1}[0-9]{10}" required>
-					<input type="submit" value="Изменить">
-					</form>
-        		</div>
-
-                
-        		<div class="form-group" action="">
-            		<label  for="email">E-mail: </label>
-            		<form >
-					<input class="form-control" type="email" placeholder="Введите Ваш новый e-mail" required>
-					<input type="submit" value="Изменить"  onClick="formSubmitter()">
-                    <div id='message'></div>
-					</form>
-        		</div>
-
-                <div class="password" for="password">Пароль</div>
-
-        		
-		<form class="pure-form" action="">
-			<div class="form-group" >
-            	<label  for="password">Изменение пароля: </label>
-            	<input " class="form-control" type="password" id="txtNewPassword" placeholder="Введите старый пароль" required>
+				<center>
+					<h4>Email: <%= user.email %></h4>
+					<input id="but1" type="submit" value="Изменить Email" href="#" onclick="openbox('box','but1'); return false;"><br>
+					<div id="box" style="display: none;" class="form-group" action="">
+						<form>
+							<input id="inp1" class="form-control" type="email" placeholder="Введите Ваш новый e-mail" required>
+							<input type="submit" value="Изменить" onClick="CloseBlock('butC11')">	
+						</form>
+						<input id="butC1"type="submit" value="Отмена"  onClick="CloseBlock('butC1')">
+					</div>
+					<h4>Номер телефона: <%= user.number %></h4>
+					<input id="but2" type="submit" value="Изменить номер" href="#" onclick="openbox('box1','but2'); return false"><br>
+					<div id="box1" style="display: none;" class="form-group" action="">
+						<form>
+						<input id="inp2" class="form-control" type="tel" placeholder="Введите Ваш новый телефон" pattern="[7-8]{1}[0-9]{10}" required>
+						<input type="submit" value="Изменить" onClick="CloseBlock('butC12')">
+						</form>
+						<input id="butC2"type="submit" value="Отмена"  onClick="CloseBlock('butC2')">
+					</div>
+					<h4>Организация: <%= user.org %></h4>
+					<input id="but3" type="submit" value="Изменить организацию" href="#" onclick="openbox('box2','but3'); return false"><br>
+					<div id="box2" style="display: none;" class="form-group" action="">
+						<form >
+						<input id="inp3" class="form-control" type="tel" placeholder="Введите Вашу новую организацию" pattern="[7-8]{1}[0-9]{10}" required>
+						<input type="submit" value="Изменить" onClick="CloseBlock('butC13')">
+						</form>
+						<input id="butC3"type="submit" value="Отмена"  onClick="CloseBlock('butC3')">
+					</div>
+					<input id="but4" type="submit" value="Изменить пароль" href="#" onclick="openbox('box3','but4'); return false"><br>
+					<div id="box3" style="display: none;" class="form-group" action="">
+						<form>
+							<label for="password">Старый пароль:</label>
+							<input id="inp41" class="form-control" type="password" id="txtNewPassword" placeholder="Введите старый пароль" required>
+							<label for="password">Новый пароль:</label>
+							<input id="inp42" class="form-control" type="password" placeholder="Введите новый пароль" id="password" required>
+							<label for="password">Подтверждение нового пароля:</label>
+							<input id="inp43" class="form-control" type="password" placeholder="Введите пароль" id="confirm_password" required>
+							<input type="submit" value="Изменить" onClick="CloseBlock('butC14')">
+						</form>
+						<input id="butC4"type="submit" value="Отмена"  onClick="CloseBlock('butC4')">
+					</div>
+				</center>
         	</div>
+    	</div>
+	</div>
+	
+	<script>
+	var password = document.getElementById("password");
+	confirm_password = document.getElementById("confirm_password");
 
-    		<div class="form-group">
-        		<label for="password">Новый Пароль: </label>
-        		<input type="password" placeholder="Введите новый пароль" id="password" required>
-       		 </div>
-
-			<div class="form-group">
-        		<label  for="password">Подтвердить: </label>
-        		<input type="password" placeholder="Подтвердите пароль" id="confirm_password" required>
-        	</div>
-
-        	<script>
-        	var password = document.getElementById("password")
-  			, confirm_password = document.getElementById("confirm_password");
-
-			function validatePassword(){
-	  		if(password.value != confirm_password.value) {
-	    		confirm_password.setCustomValidity("Пароли не совпадают");
-	  		} else {
-	   		 confirm_password.setCustomValidity('');
-	  		}
+	function validatePassword(){
+		if(password.value != confirm_password.value) {
+			confirm_password.setCustomValidity("Пароли не совпадают");
+		} else {
+			confirm_password.setCustomValidity('');
+			}
 		}
-		password.onchange = validatePassword;
-		confirm_password.onkeyup = validatePassword;
-        	</script>
-       		 <button type="submit" class="pure-button pure-button-primary">Изменить</button>
-    		
-		</form>
-
-    		</div>
-		</div>
+	password.onchange = validatePassword;
+	confirm_password.onkeyup = validatePassword;
+    </script>
+	
+	<script type="text/javascript">
+		function openbox(id,h){
+		display = document.getElementById(id).style.display;
+		if(display=='none'){
+			document.getElementById(id).style.display='block';
+			if(h=='but1')
+				document.getElementById('but1').style.display='none';
+			if(h=='but2')
+				document.getElementById('but2').style.display='none';
+			if(h=='but3')
+				document.getElementById('but3').style.display='none';
+			if(h=='but4')
+				document.getElementById('but4').style.display='none';
+		}else{
+       document.getElementById(id).style.display='none';
+		}
+	}
+	</script>
+	
+	<script>
+		function CloseBlock(g){
+			if(g=='butC1' || g=='butC11'){
+				document.getElementById('box').style.display='none'; 
+				document.getElementById('but1').style.display='block';
+				document.getElementById('inp1').value='';
+			}	
+			if(g=='butC2' || g=='butC12'){
+				document.getElementById('box1').style.display='none'; 
+				document.getElementById('but2').style.display='block';
+				document.getElementById('inp2').value='';
+			}
+			if(g=='butC3' || g=='butC13'){
+				document.getElementById('box2').style.display='none'; 
+				document.getElementById('but3').style.display='block';
+				document.getElementById('inp3').value='';
+			}
+			if(g=='butC4' || g=='butC14'){
+				document.getElementById('box3').style.display='none'; 
+				document.getElementById('but4').style.display='block';
+				document.getElementById('inp41').value='';
+				document.getElementById('inp42').value='';
+				document.getElementById('inp43').value='';
+			}
+		}
+	</script>
