@@ -2,6 +2,7 @@
 
 	<div class="profile-change">
 			<h1 class="text-center" class="profile-change">Пользователь "<%= user.login %>"</h1>
+			<h4 class="text-center">Дата регистрации: <%= user.date %></h4>
     		<div class="regfield">
 				<center>
 					<h4>Email: <%= user.email %></h4>
@@ -9,7 +10,7 @@
 					<div id="box" style="display: none;" class="form-group" action="">
 						<form>
 							<input id="inp1" class="form-control" type="email" placeholder="Введите Ваш новый e-mail" required>
-							<input type="submit" value="Изменить" onClick="CloseBlock('butC11')">	
+							<input type="submit" value="Изменить" onClick="UpdateUser(); CloseBlock('butC11');">	
 						</form>
 						<input id="butC1"type="submit" value="Отмена"  onClick="CloseBlock('butC1')">
 					</div>
@@ -17,8 +18,8 @@
 					<input id="but2" type="submit" value="Изменить номер" href="#" onclick="openbox('box1','but2'); return false"><br>
 					<div id="box1" style="display: none;" class="form-group" action="">
 						<form>
-						<input id="inp2" class="form-control" type="tel" placeholder="Введите Ваш новый телефон" pattern="[7-8]{1}[0-9]{10}" required>
-						<input type="submit" value="Изменить" onClick="CloseBlock('butC12')">
+						<input id="inp2" class="form-control" type="tel" name="number" placeholder="Введите Ваш новый телефон" pattern="[7-8]{1}[0-9]{10}" required>
+						<input type="submit" value="Изменить" onClick="UpdateUser(); CloseBlock('butC12')">
 						</form>
 						<input id="butC2"type="submit" value="Отмена"  onClick="CloseBlock('butC2')">
 					</div>
@@ -26,8 +27,8 @@
 					<input id="but3" type="submit" value="Изменить организацию" href="#" onclick="openbox('box2','but3'); return false"><br>
 					<div id="box2" style="display: none;" class="form-group" action="">
 						<form >
-						<input id="inp3" class="form-control" type="tel" placeholder="Введите Вашу новую организацию" pattern="[7-8]{1}[0-9]{10}" required>
-						<input type="submit" value="Изменить" onClick="CloseBlock('butC13')">
+						<input id="inp3" class="form-control" type="teg"  placeholder="Введите Вашу новую организацию" pattern="[7-8]{1}[0-9]{10}" required>
+						<input type="submit" value="Изменить" onClick="UpdateUser(); CloseBlock('butC13')">
 						</form>
 						<input id="butC3"type="submit" value="Отмена"  onClick="CloseBlock('butC3')">
 					</div>
@@ -40,7 +41,7 @@
 							<input id="inp42" class="form-control" type="password" placeholder="Введите новый пароль" id="password" required>
 							<label for="password">Подтверждение нового пароля:</label>
 							<input id="inp43" class="form-control" type="password" placeholder="Введите пароль" id="confirm_password" required>
-							<input type="submit" value="Изменить" onClick="CloseBlock('butC14')">
+							<input type="submit" value="Изменить" onClick="UpdateUser(); CloseBlock('butC14')">
 						</form>
 						<input id="butC4"type="submit" value="Отмена"  onClick="CloseBlock('butC4')">
 					</div>
@@ -81,9 +82,7 @@
        document.getElementById(id).style.display='none';
 		}
 	}
-	</script>
-	
-	<script>
+
 		function CloseBlock(g){
 			if(g=='butC1' || g=='butC11'){
 				document.getElementById('box').style.display='none'; 
@@ -107,5 +106,27 @@
 				document.getElementById('inp42').value='';
 				document.getElementById('inp43').value='';
 			}
+		}
+		
+		function UpdateUser(){
+			email = document.getElementById('inp1').value;
+			number = document.getElementById('inp2').value;
+			org = document.getElementById('inp3').value;
+			pwd = document.getElementById('inp42').value;
+			$.ajax({
+				type: "POST",
+				url: "/userUpdate",
+				data: JSON.stringify({
+					email: email,
+					number: number,
+					org: org,
+					pwd: pwd
+				}),
+				dataType: "json",
+				contentType: "application/json",
+				success: function(data) {
+					// console.log(data);
+				},
+			});
 		}
 	</script>

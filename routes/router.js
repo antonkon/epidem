@@ -30,6 +30,7 @@ router.post('/charts', handlers.apiCharts)
 router.get('/export', handlers.export);
 
 router.get('/profile', handlers.profile);
+router.post('/userUpdate', handlers.profile_post);
 
 router.get('/admin', admin_handlers.admin);
 router.post('/admin', admin_handlers.admin_post);

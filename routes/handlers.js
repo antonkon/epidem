@@ -159,6 +159,37 @@ exports.profile = function(req, res) {
     res.render('profile', { title: 'Профиль пользователя', err: false });
 }
 
+exports.profile_post = function(req, res) {
+	var emailnew = req.body.email;
+	var numbernew = req.body.number;
+	var orgnew = req.body.org;
+	var passnew = req.body.pwd;
+console.log(passnew);
+	model.findById(req.session.user, function(err, user) {
+		if (err) return next(err);
+	 
+		if(emailnew !== ''){
+			model.update({ email: user.email }, { $set: { email: emailnew } }, function(err) {
+				if (err) throw err;
+				res.json("ok"); 
+			});
+		};
+		if(numbernew !== ''){
+			model.update({ email: user.email }, { $set: { number: numbernew } }, function(err) {
+				if (err) throw err;
+				res.json("ok"); 
+			});
+		};
+		if(orgnew !== ''){
+			model.update({ email: user.email }, { $set: { org: orgnew } }, function(err) {
+				if (err) throw err;
+				res.json("ok"); 
+			});
+		}
+	});
+ 	
+} 
+
 exports.apiCharts = function(req, res, next) {
     //console.log(req.body);
     var param = { name: "dataInterview" };
