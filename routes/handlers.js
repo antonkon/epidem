@@ -156,13 +156,17 @@ exports.export = function(req, res) {
 }
 
 exports.profile = function(req, res) {
-    model.findById(req.session.user, function(err, user) {
-        if (err) return next(err);
+    if (!req.session.user) {
+        res.redirect('/signin');
+    } else {
+        model.findById(req.session.user, function(err, user) {
+            if (err) return next(err);
 
-        date = user.date.toString();
-        date = date.substring(0, date.indexOf('GMT'));
-        res.render('profile', { title: 'Профиль пользователя', err: false, date: date });
-    });
+            date = user.date.toString();
+            date = date.substring(0, date.indexOf('GMT'));
+            res.render('profile', { title: 'Профиль пользователя', err: false, date: date });
+        });
+    }
 }
 
 exports.postProfile = function(req, res, next) {
