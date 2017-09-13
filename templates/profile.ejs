@@ -1,132 +1,99 @@
 <% layout('baza') %>
 
-	<div class="profile-change">
-			<h1 class="text-center" class="profile-change">Пользователь "<%= user.login %>"</h1>
-			<h4 class="text-center">Дата регистрации: <%= user.date %></h4>
-    		<div class="regfield">
-				<center>
-					<h4>Email: <%= user.email %></h4>
-					<input id="but1" type="submit" value="Изменить Email" href="#" onclick="openbox('box','but1'); return false;"><br>
-					<div id="box" style="display: none;" class="form-group" action="">
-						<form>
-							<input id="inp1" class="form-control" type="email" placeholder="Введите Ваш новый e-mail" required>
-							<input type="submit" value="Изменить" onClick="UpdateUser(); CloseBlock('butC11');">	
-						</form>
-						<input id="butC1"type="submit" value="Отмена"  onClick="CloseBlock('butC1')">
-					</div>
-					<h4>Номер телефона: <%= user.number %></h4>
-					<input id="but2" type="submit" value="Изменить номер" href="#" onclick="openbox('box1','but2'); return false"><br>
-					<div id="box1" style="display: none;" class="form-group" action="">
-						<form>
-						<input id="inp2" class="form-control" type="tel" name="number" placeholder="Введите Ваш новый телефон" pattern="[7-8]{1}[0-9]{10}" required>
-						<input type="submit" value="Изменить" onClick="UpdateUser(); CloseBlock('butC12')">
-						</form>
-						<input id="butC2"type="submit" value="Отмена"  onClick="CloseBlock('butC2')">
-					</div>
-					<h4>Организация: <%= user.org %></h4>
-					<input id="but3" type="submit" value="Изменить организацию" href="#" onclick="openbox('box2','but3'); return false"><br>
-					<div id="box2" style="display: none;" class="form-group" action="">
-						<form >
-						<input id="inp3" class="form-control" type="teg"  placeholder="Введите Вашу новую организацию" pattern="[7-8]{1}[0-9]{10}" required>
-						<input type="submit" value="Изменить" onClick="UpdateUser(); CloseBlock('butC13')">
-						</form>
-						<input id="butC3"type="submit" value="Отмена"  onClick="CloseBlock('butC3')">
-					</div>
-					<input id="but4" type="submit" value="Изменить пароль" href="#" onclick="openbox('box3','but4'); return false"><br>
-					<div id="box3" style="display: none;" class="form-group" action="">
-						<form>
-							<label for="password">Старый пароль:</label>
-							<input id="inp41" class="form-control" type="password" id="txtNewPassword" placeholder="Введите старый пароль" required>
-							<label for="password">Новый пароль:</label>
-							<input id="inp42" class="form-control" type="password" placeholder="Введите новый пароль" id="password" required>
-							<label for="password">Подтверждение нового пароля:</label>
-							<input id="inp43" class="form-control" type="password" placeholder="Введите пароль" id="confirm_password" required>
-							<input type="submit" value="Изменить" onClick="UpdateUser(); CloseBlock('butC14')">
-						</form>
-						<input id="butC4"type="submit" value="Отмена"  onClick="CloseBlock('butC4')">
-					</div>
-				</center>
-        	</div>
-    	</div>
-	</div>
-	
-	<script>
-	var password = document.getElementById("password");
-	confirm_password = document.getElementById("confirm_password");
+    <div class="profile-change">
+        <h1 class="text-center" class="profile-change">Пользователь "
+            <%= user.login %>"</h1>
+        <h4 class="text-center">Дата регистрации:
+            <%= date %>
+        </h4>
+        <div class="regfield">
+            <center>
 
-	function validatePassword(){
-		if(password.value != confirm_password.value) {
-			confirm_password.setCustomValidity("Пароли не совпадают");
-		} else {
-			confirm_password.setCustomValidity('');
-			}
-		}
-	password.onchange = validatePassword;
-	confirm_password.onkeyup = validatePassword;
+                <h4>Email:
+                    <%= user.email %>
+                </h4>
+                <input id="but1" type="submit" value="Изменить Email" href="#" onclick="openbox(1); return false;"><br>
+                <div id="box1" style="display: none;" class="form-group" action="">
+                    <form>
+                        <input id="email" class="form-control" placeholder="Введите Ваш новый e-mail" required>
+                        <input type="submit" value="Изменить" onClick="UpdateUser('email'); CloseBlock(1, 'email');">
+                    </form>
+                    <input id="butC1" type="submit" value="Отмена" onClick="CloseBlock(1, 'email')">
+                </div>
+
+                <h4>Номер телефона:
+                    <%= user.number %>
+                </h4>
+                <input id="but2" type="submit" value="Изменить номер" href="#" onclick="openbox(2); return false"><br>
+                <div id="box2" style="display: none;" class="form-group" action="">
+                    <form>
+                        <input id="number" class="form-control" name="number" placeholder="Введите Ваш новый телефон" pattern="[7-8]{1}[0-9]{10}" required>
+                        <input type="submit" value="Изменить" onClick="UpdateUser('number'); CloseBlock(2, 'number')">
+                    </form>
+                    <input id="butC2" type="submit" value="Отмена" onClick="CloseBlock(2, 'number')">
+                </div>
+
+                <h4>Организация:
+                    <%= user.org %>
+                </h4>
+                <input id="but3" type="submit" value="Изменить организацию" href="#" onclick="openbox(3); return false"><br>
+                <div id="box3" style="display: none;" class="form-group" action="">
+                    <form>
+                        <input id="org" class="form-control" placeholder="Введите Вашу новую организацию" pattern="[7-8]{1}[0-9]{10}" required>
+                        <input type="submit" value="Изменить" onClick="UpdateUser('org'); CloseBlock(3, 'org')">
+                    </form>
+                    <input id="butC3" type="submit" value="Отмена" onClick="CloseBlock(3, 'org')">
+                </div>
+
+                <input id="but4" type="submit" value="Изменить пароль" href="#" onclick="openbox(4); return false"><br>
+                <div id="box4" style="display: none;" class="form-group" action="">
+                    <form>
+                        <label for="pwd_old">Старый пароль:</label>
+                        <input id="pwd_old" class="form-control" onblur="validatePassword('pwd_old')" onfocus="focusField('pwd_old')" type="password" placeholder="Введите старый пароль" required>
+                        <label for="password">Новый пароль:</label>
+                        <input id="pwd" class="form-control" type="password" onblur="validatePassword('pwd')" onfocus="focusField('pwd')" placeholder="Введите новый пароль" required>
+                        <label for="password">Подтверждение нового пароля:</label>
+                        <input id="pwd_new" class="form-control" type="password" onblur="validatePasswordC('pwd_new','pwd')" onfocus="focusField('pwd_new')" placeholder="Повторите новый пароль" required>
+                        <input type="submit" value="Изменить" onClick="UpdateUser('pwd'); CloseBlock(4, 'pwd')">
+                    </form>
+                    <input id="butC4" type="submit" value="Отмена" onClick="CloseBlock(4, 'pwd')">
+                </div>
+            </center>
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+        function openbox(box_num) {
+            box_disp = document.getElementById("box" + box_num).style.display;
+
+            document.getElementById("box" + box_num).style.display = 'block';
+            document.getElementById('but' + box_num).style.display = 'none';
+        }
+
+        function CloseBlock(box_num, inp) {
+            box_disp = document.getElementById("box" + box_num).style.display;
+
+            document.getElementById("box" + box_num).style.display = 'none';
+            document.getElementById('but' + box_num).style.display = 'block';
+            document.getElementById(inp).value = '';
+        }
+
+        function UpdateUser(prop) {
+            prop_value = document.getElementById(prop).value;
+
+            $.ajax({
+                type: "POST",
+                url: "/profile",
+                data: JSON.stringify({
+                    prop: prop,
+                    prop_value: prop_value
+                }),
+                dataType: "json",
+                contentType: "application/json",
+                success: function(data) {
+                    // console.log(data);
+                },
+            });
+        }
     </script>
-	
-	<script type="text/javascript">
-		function openbox(id,h){
-		display = document.getElementById(id).style.display;
-		if(display=='none'){
-			document.getElementById(id).style.display='block';
-			if(h=='but1')
-				document.getElementById('but1').style.display='none';
-			if(h=='but2')
-				document.getElementById('but2').style.display='none';
-			if(h=='but3')
-				document.getElementById('but3').style.display='none';
-			if(h=='but4')
-				document.getElementById('but4').style.display='none';
-		}else{
-       document.getElementById(id).style.display='none';
-		}
-	}
-
-		function CloseBlock(g){
-			if(g=='butC1' || g=='butC11'){
-				document.getElementById('box').style.display='none'; 
-				document.getElementById('but1').style.display='block';
-				document.getElementById('inp1').value='';
-			}	
-			if(g=='butC2' || g=='butC12'){
-				document.getElementById('box1').style.display='none'; 
-				document.getElementById('but2').style.display='block';
-				document.getElementById('inp2').value='';
-			}
-			if(g=='butC3' || g=='butC13'){
-				document.getElementById('box2').style.display='none'; 
-				document.getElementById('but3').style.display='block';
-				document.getElementById('inp3').value='';
-			}
-			if(g=='butC4' || g=='butC14'){
-				document.getElementById('box3').style.display='none'; 
-				document.getElementById('but4').style.display='block';
-				document.getElementById('inp41').value='';
-				document.getElementById('inp42').value='';
-				document.getElementById('inp43').value='';
-			}
-		}
-		
-		function UpdateUser(){
-			email = document.getElementById('inp1').value;
-			number = document.getElementById('inp2').value;
-			org = document.getElementById('inp3').value;
-			pwd = document.getElementById('inp42').value;
-			$.ajax({
-				type: "POST",
-				url: "/userUpdate",
-				data: JSON.stringify({
-					email: email,
-					number: number,
-					org: org,
-					pwd: pwd
-				}),
-				dataType: "json",
-				contentType: "application/json",
-				success: function(data) {
-					// console.log(data);
-				},
-			});
-		}
-	</script>

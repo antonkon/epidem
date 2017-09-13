@@ -156,39 +156,40 @@ exports.export = function(req, res) {
 }
 
 exports.profile = function(req, res) {
-    res.render('profile', { title: 'Профиль пользователя', err: false });
+    model.findById(req.session.user, function(err, user) {
+        if (err) return next(err);
+
+        date = user.date.toString();
+        date = date.substring(0, date.indexOf('GMT'));
+        res.render('profile', { title: 'Профиль пользователя', err: false, date: date });
+    });
 }
 
-exports.profile_post = function(req, res) {
-	var emailnew = req.body.email;
-	var numbernew = req.body.number;
-	var orgnew = req.body.org;
-	var passnew = req.body.pwd;
-console.log(passnew);
-	model.findById(req.session.user, function(err, user) {
-		if (err) return next(err);
-	 
-		if(emailnew !== ''){
-			model.update({ email: user.email }, { $set: { email: emailnew } }, function(err) {
-				if (err) throw err;
-				res.json("ok"); 
-			});
-		};
-		if(numbernew !== ''){
-			model.update({ email: user.email }, { $set: { number: numbernew } }, function(err) {
-				if (err) throw err;
-				res.json("ok"); 
-			});
-		};
-		if(orgnew !== ''){
-			model.update({ email: user.email }, { $set: { org: orgnew } }, function(err) {
-				if (err) throw err;
-				res.json("ok"); 
-			});
-		}
-	});
- 	
-} 
+exports.postProfile = function(req, res, next) {
+    var prop = req.body.prop;
+    var prop_value = req.body.prop_value;
+
+    model.findById(req.session.user, function(err, user) {
+        if (err) return next(err);
+
+        user[prop] = prop_value;
+        user.save(function(err, user) {
+            if (err) {
+                if (err.code === 11000 && err.name === 'MongoError') {
+                    // ошибка изменения: user с такими данными уже есть
+
+                    res.json("err:11000");
+                } else {
+                    // другая ошибка
+                    return next(err);
+                }
+            } else {
+
+                res.json("ok");
+            }
+        });
+    });
+}
 
 exports.apiCharts = function(req, res, next) {
     //console.log(req.body);

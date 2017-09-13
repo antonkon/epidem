@@ -30,7 +30,7 @@ router.post('/charts', handlers.apiCharts)
 router.get('/export', handlers.export);
 
 router.get('/profile', handlers.profile);
-router.post('/userUpdate', handlers.profile_post);
+router.post('/profile', handlers.postProfile);
 
 router.get('/admin', admin_handlers.admin);
 router.post('/admin', admin_handlers.admin_post);
@@ -40,12 +40,12 @@ router.get('/admin_logout', admin_handlers.logout);
 router.get('/admin_one', admin_handlers.admin_one);
 
 router.get('/admin_reg', admin_handlers.admin_reg);
-router.post('/admin_reg',admin_handlers.admin_reg_post);
-router.post('/adminDel',admin_handlers.admin_del);
+router.post('/admin_reg', admin_handlers.admin_reg_post);
+router.post('/adminDel', admin_handlers.admin_del);
 
 router.get('/admin_users', admin_handlers.admin_users);
-router.post('/userDel',admin_handlers.user_del);
-router.post('/userValid',admin_handlers.user_valid);
+router.post('/userDel', admin_handlers.user_del);
+router.post('/userValid', admin_handlers.user_valid);
 
 router.get('/admin_data', admin_handlers.admin_data);
 
