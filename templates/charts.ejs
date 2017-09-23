@@ -5,52 +5,252 @@
     <hr>
     <div id="charts" style="width: 800px; height: 600px; display: inline-block;"></div>
     <div id="param">
-        <h4><b>Параметры выборки:</b></h4>
-        <hr>
-        <h5><b>Тип диаграммы:</b></h5>
-        <input name="r1" type="radio" value="Круговая" checked> Круговая
-        <input name="r1" type="radio" value="Линейная"> Линейная
-        <input name="r1" type="radio" value="Столбцовая"> Столбцовая
-        <hr>
-        <h5><b>Пол:</b></h5>
-        <input name="r2" type="radio" value="M" checked> М
-        <input name="r2" type="radio" value="G"> Ж
-        <input name="r2" type="radio" value="O"> Оба
-        <hr>
-        <h5><b>Употребление табачных изделий:</b></h5>
-        <input name="r3" type="radio" value="N" checked> Нет
-        <input name="r3" type="radio" value="Y"> Да
-        <input name="r3" type="radio" value="O"> Оба
-        <hr>
-        <h5><b>Только симптомы:</b></h5>
-        <input name="r4" type="checkbox" value="D">
-        <hr>
-        <h5><b>Диагнозы:</b></h5>
-        <select name="r5" style="width: 210px;">
-            <option value="0" selected>Все варианты</option>  
-            <option value="1">Ревматоидный артрит
-            <option value="2">Болезни глаз
-            <option value="3">Аритмия
-            <option value="4">Артериальная гипертензия
-            <option value="5">Болезни органов дыхания
-            <option value="6">Болезни почек
-            <option value="7">Сколиоз     
-        </select>
-        <hr>
-        <h5><b>Рост:</b></h5>
-        <select name="r6" style="width: 210px;">
-            <option value="0" selected>Все варианты</option>  
-            <option value="1">1-10
-            <option value="2">10-20
-            <option value="3">20-30
-            <option value="4">30-50    
-        </select>
-        <hr>
-        <center>
+			<h4><b>Параметры выборки:</b></h4>
+		<div class="verh">
+			<h5><b>Тип диаграммы:</b></h5>
+			<input name="r1" type="radio" id="blocks1" onchange ="show(1)" value="Круговая"> Круговая
+			<input name="r1" type="radio" id="blocks3" onchange ="show(2)" value="Столбцовая"> Столбцовая
+			<hr>
+			<h5><b>Нозология:</b></h5>
+			<select name="r5" style="width: 210px;">
+				<option value="0" selected>Все варианты</option>  
+				<option value="1">Ревматоидный артрит
+				<option value="2">Болезни глаз
+				<option value="3">Аритмия
+				<option value="4">Артериальная гипертензия
+				<option value="5">Болезни органов дыхания
+				<option value="6">Болезни почек
+				<option value="7">Сколиоз   
+			</select>
+		</div>
+		<div class="Circle" id="cat1" style ="display: none;">
+		<h5><b>Место проживания:</b></h5>
+		<select required name="okato">
+			<option  value="">Выберите...</option>
+			<option value="1">Алтайский край</option>
+			<option value="10">Амурская область</option>
+			<option value="11">Архангельская область</option>
+			<option value="12">Астраханская область</option>
+			<option value="14">Белгородская область</option>
+			<option value="15">Брянская область</option>
+			<option value="17">Владимирская область</option>
+			<option value="18">Волгоградская область</option>
+			<option value="19">Вологодская область</option>
+			<option value="20">Воронежская область</option>
+			<option value="99">Еврейская автономная область</option>
+			<option value="76">Забайкальский край</option>
+			<option value="24">Ивановская область</option>
+			<option value="25">Иркутская область</option>
+			<option value="83">Кабардино-Балкарская Республика</option>
+			<option value="27">Калининградская область</option>
+			<option value="29">Калужская область</option>
+			<option value="30">Камчатский край</option>
+			<option value="91">Карачаево-Черкесская Республика</option>
+			<option value="32">Кемеровская область</option>
+			<option value="33">Кировская область</option>
+			<option value="34">Костромская область</option>
+			<option value="3">Краснодарский край</option>
+			<option value="4">Красноярский край</option>
+			<option value="37">Курганская область</option>
+			<option value="38">	Курская область</option>
+			<option value="41">Ленинградская область</option>
+			<option value="42">Липецкая область</option>
+			<option value="44">Магаданская область</option>
+			<option value="46">Московская область</option>
+			<option value="47">Мурманская область</option>
+			<option value="111">Ненецкий автономный округ</option>
+			<option value="22">Нижегородская область</option>
+			<option value="49">Новгородская область</option>
+			<option value="50">Новосибирская область</option>
+			<option value="52">Омская область</option>
+			<option value="53">Оренбургская область</option>
+			<option value="54">Орловская область</option>
+			<option value="56">Пензенская область</option>
+			<option value="57">Пермский край</option>
+			<option value="5">Приморский край</option>
+			<option value="58">Псковская область</option>
+			<option value="79">Республика Адыгея (Адыгея)</option>
+			<option value="84">Республика Алтай</option>
+			<option value="80">Республика Башкортостан</option>
+			<option value="81">Республика Бурятия</option>
+			<option value="82">Республика Дагестан</option>
+			<option value="26">Республика Ингушетия</option>
+			<option value="85">Республика Калмыкия</option>
+			<option value="86">Республика Карелия</option>
+			<option value="87">Республика Коми</option>
+			<option value="35">Республика Крым</option>
+			<option value="88">Республика Марий Эл</option>
+			<option value="89">Республика Мордовия</option>
+			<option value="98">Республика Саха (Якутия)</option>
+			<option value="90">Республика Северная Осетия-Алания</option>
+			<option value="92">Республика Татарстан (Татарстан)</option>
+			<option value="93">Республика Тыва</option>
+			<option value="95">Республика Хакасия</option>
+			<option value="60">Ростовская область</option>
+			<option value="61">Рязанская область</option>
+			<option value="36">Самарская область</option>
+			<option value="63">Саратовская область</option>
+			<option value="64">Сахалинская область</option>
+			<option value="65">Свердловская область</option>
+			<option value="66">Смоленская область</option>
+			<option value="7">Ставропольский край</option>
+			<option value="68">	Тамбовская область</option>
+			<option value="28">Тверская область</option>
+			<option value="69">Томская область</option>
+			<option value="70">Тульская область</option>
+			<option value="71">Тюменская область</option>
+			<option value="94">Удмуртская Республика</option>
+			<option value="73">Ульяновская область</option>
+			<option value="8">Хабаровский край</option>
+			<option value="71131">Ханты-мансийский автономный округ</option>
+			<option value="75">Челябинская область</option>
+			<option value="96">Чеченская Республика</option>
+			<option value="97">Чувашская Республика - Чувашия</option>
+			<option value="77">Чукотский автономный округ</option>
+			<option value="71140">Ямало-ненецкий автономный округ</option>
+			<option value="78">Ярославская область</option>    						
+		</select>
+		<hr>
+		<p><b>Пол:</b></p>
+		<div class="radioblock">
+			<input name="r2" type="radio" value="true"/><label value="muzh">Мужской</label>
+			<input name="r2" type="radio" value="false"/><label value="zhen">Женский</label>
+			<input name="r2" type="radio" value="both" checked/><label value="both">Оба варианта</label>
+		</div>
+		<hr>	
+			<p><b>Рост, сантиметры:</b></p>
+			<select value="rost">
+				<option value="all" selected>Все варианты</option>   
+				<option value='0'>ниже 140 см</option>
+                <option value='1'>140-145 см</option>
+                <option value='2'>146-150 см</option>
+                <option value='3'>151-155 см</option>
+                <option value='4'>156-160 см</option>
+                <option value='5'>161-165 см</option>
+                <option value='6'>166-170 см</option>
+                <option value='7'>171-175 см</option>
+                <option value="8">176-180 см</option>
+                <option value='9'>181-185 см</option>
+                <option value='10'>186-190 см</option>
+                <option value='11false'>выше 190 см</option>   							
+			</select>
+			<hr>
+			<p class="smenup"><b>Вес, килограммы:</b></p>
+			<select>
+				<option value="all" selected>Все варианты</option>  
+				<option value='0'>меньше 30 кг</option>
+                <option value='1'>30-35 кг</option>
+                <option value='2'>36-40 кг</option>
+                <option value='3'>41-45 кг</option>
+                <option value='4'>46-50 кг</option>
+                <option value='5'>51-55 кг</option>
+                <option value='6'>56-60 кг</option>
+                <option value='7'>61-65 кг</option>
+                <option value='8'>66-70 кг</option>
+                <option value='9'>71-75 кг</option>
+                <option value='10'>76-80 кг</option>
+                <option value='11'>81-85 кг</option>
+                <option value='12'>86-90 кг</option>
+                <option value='13'>больше 90 кг</option>
+			</select>
+			<hr>
+			<p><b>Возраст, года:</b></p>
+			<select>
+				<option value="all" selected>Все варианты</option>
+				<option value="0">15-25</option>
+                <option value="1">26-35</option>
+                <option value="2">36-45</option>
+                <option value="3">46-55</option>
+                <option value="4">56-65</option>
+                <option value="5">66-75</option>
+                <option value="7">76-85</option>
+                <option value="8">старше 85</option> 							
+			</select> 
+			<hr>
+			<p><b>Употребление табачных изделий:</b></p>
+			<div>
+				<input name="r2" type="radio" value="true"/><label value="yes">Да</label>
+				<input name="r2" type="radio" value="false"/><label value="no">Нет</label>
+				<input name="r2" type="radio" value="both" checked/><label value="both">Оба варианта</label>
+			</div>
+			<hr>
+			<br>
+			<center>
             <button id="butUpdate" onclick="update();">Показать</button>
-        </center>
-        <br>
-
+			</center>
+			<br> 
+		</div>
+		<div class="stolb" id="cat2" style ="display: none;">
+			<div class="kategorii">
+			<br>
+			<p><b>Категории:</b></p>
+			<select onchange="showblock(this.value)">
+				<option value="0" selected>Выберите...</option>
+				<option value="1">Рост</option>
+				<option value="2">Вес</option>
+				<option value="3">Соц.статус</option>
+				<option value="4">Возраст</option>
+				<option value="5">Регион</option>
+			</select>
+			</div>
+			<div id="dop1" style="display:none;">
+				<select>  
+					<option value='0'>ниже 140 см</option>
+					<option value='1'>140-145 см</option>
+					<option value='2'>146-150 см</option>
+					<option value='3'>151-155 см</option>
+					<option value='4'>156-160 см</option>
+					<option value='5'>161-165 см</option>
+					<option value='6'>166-170 см</option>
+					<option value='7'>171-175 см</option>
+					<option value="8">176-180 см</option>
+					<option value='9'>181-185 см</option>
+					<option value='10'>186-190 см</option>
+					<option value='11'>выше 190 см</option>   
+				</select>
+				<hr>
+				<select>  
+					<option value='0'>ниже 140 см</option>
+					<option value='1'>140-145 см</option>
+					<option value='2'>146-150 см</option>
+					<option value='3'>151-155 см</option>
+					<option value='4'>156-160 см</option>
+					<option value='5'>161-165 см</option>
+					<option value='6'>166-170 см</option>
+					<option value='7'>171-175 см</option>
+					<option value="8">176-180 см</option>
+					<option value='9'>181-185 см</option>
+					<option value='10'>186-190 см</option>
+					<option value='11'>выше 190 см</option>   
+				</select>
+				<hr>
+				<button id="butUpdate" onclick="">Добавить</button>
+			</div>
+			<div id="dop2" style="display:none;">
+				<select>
+					<option value='0'>меньше 30 кг</option>
+					<option value='1'>30-35 кг</option>
+					<option value='2'>36-40 кг</option>
+					<option value='3'>41-45 кг</option>
+					<option value='4'>46-50 кг</option>
+					<option value='5'>51-55 кг</option>
+					<option value='6'>56-60 кг</option>
+					<option value='7'>61-65 кг</option>
+					<option value='8'>66-70 кг</option>
+					<option value='9'>71-75 кг</option>
+					<option value='10'>76-80 кг</option>
+					<option value='11'>81-85 кг</option>
+					<option value='12'>86-90 кг</option>
+					<option value='13'>больше 90 кг</option>
+				</select>
+			</div>
+			<div id="dop3" style="display:none;">
+			</div>
+			<div id="dop4" style="display:none;">
+			</div>
+			<div id="dop5" style="display:none;">
+			</div>
+		</div>
     </div>
 
 
@@ -106,3 +306,25 @@
             });
         }
     </script>
+<script>
+    function show(num) {
+		for(var i=1; i<3; i++){
+			cat = document.getElementById('cat'+i);
+			cat.style.display = "none";
+		}
+		cat = document.getElementById('cat'+num);
+		cat.style.display = "block";
+	}
+</script>	
+
+<script>
+	function showblock(val){
+		for(i=1; i<6; i++){
+			dop = document.getElementById('dop'+i);
+			dop.style.display = "none";
+		}
+		console.log(val);
+		dop = document.getElementById('dop'+val);
+		dop.style.display = "block";
+	}
+</script>

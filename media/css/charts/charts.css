@@ -11,7 +11,7 @@
     border-color: #717171;
     color: #717171;
     text-align: center;
-	overflow: auto;
+	overflow-y: scroll;
 }
 
 button {
@@ -24,4 +24,16 @@ button {
 #param button:hover {
     background-color: #717171;
     color: white;
+}
+
+.verh{
+	border-top: 2px solid #717171;
+	border-bottom: 2px solid #717171;
+	height: 166px;
+}
+
+.kategorii{
+	border-bottom: 2px solid #717171;
+	height: 88px;
+	margin-bottom: 25px;
 }

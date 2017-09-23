@@ -9,6 +9,18 @@
         <div class="regfield">
             <center>
 
+				<h4>Логин:
+                    <%= user.login %>
+                </h4>
+                <input id="but0" type="submit" value="Изменить логин" href="#" onclick="openbox(0); return false;"><br>
+                <div id="box0" style="display: none;" class="form-group" action="">
+                    <form action="login" method="post" id="login" accept-charset="utf-8">
+                        <input id="login" class="form-control"  onblur="validateName('login')" onfocus="focusField('login')" type="text" name="login" placeholder="Введите Ваш новый логин" required>
+                        <input type="submit" id="submit" value="Изменить" onClick="UpdateUser('login'); CloseBlock(0, 'login');">
+                    </form>
+                    <input id="butC1" type="submit" value="Отмена" onClick="CloseBlock(1, 'login')">
+                </div>
+			
                 <h4>Email:
                     <%= user.email %>
                 </h4>
@@ -63,6 +75,19 @@
     </div>
     </div>
 
+	    <script>
+      $("#login").submit(function(e) {
+        var Form = document.forms["login"];
+        var login = Form.elements["login"].id;		
+                    
+		if (validateName(login)) {
+            return true;
+            }
+        return false;
+        });
+		</script>
+			
+	
     <script type="text/javascript">
         function openbox(box_num) {
             box_disp = document.getElementById("box" + box_num).style.display;
