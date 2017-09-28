@@ -88,3 +88,41 @@ interview.methods.interview_save = function() {
 };
 
 exports.Interview = mongoose.model('interview', interview);
+
+// модель удаленного пользователя
+var user_del = new mongoose.Schema({
+    login: {
+        type: String,
+        required: true
+    },
+    hashedPwd: {
+        type: String,
+        required: true
+    },
+    salt: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    number: {
+        type: Number,
+        required: true
+    },
+    org: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    isValid: {
+        type: Boolean,
+        default: false
+    }
+});
+
+exports.Register_del = mongoose.model('user_del', user_del);

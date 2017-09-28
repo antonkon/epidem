@@ -1,5 +1,6 @@
 var modelAdmin = require('./models/admin_model').AdminRegister;
 var modelRegister = require('./models/model').Register;
+var modelRegister_del = require('./models/model').Register_del;
 var async = require('async');
 
 
@@ -161,21 +162,39 @@ exports.admin_del = function(req, res) {
 }
 
 exports.user_del = function(req, res) {
-	var email = req.body.email;
-	
-    modelRegister.remove({email: email}, function(err) {
+    var email = req.body.email;
+
+    modelRegister.findOne({ email: email }, function(err, user_del) {
         if (err) throw err;
 
-        res.json("ok");
+        var user_delete = new modelRegister_del({
+            login: user_del.login,
+            hashedPwd: user_del.hashedPwd,
+            salt: user_del.salt,
+            email: user_del.email,
+            number: user_del.number,
+            org: user_del.org,
+            isValid: user_del.isValid
+        });
+
+        user_delete.save(function(err, user) {
+            if (err) throw err;
+        });
+
+        modelRegister.remove({ email: email }, function(err) {
+            if (err) throw err;
+
+            res.json("ok");
+        });
     });
 }
 
 exports.user_valid = function(req, res) {
-	var  email = req.body.email;
-	
-	modelRegister.update({ email: email }, { $set: { isValid: true } }, function(err) {
-		if (err) throw err;
-		
-		res.json("ok");
-	});	
+    var email = req.body.email;
+
+    modelRegister.update({ email: email }, { $set: { isValid: true } }, function(err) {
+        if (err) throw err;
+
+        res.json("ok");
+    });
 }
