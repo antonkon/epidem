@@ -174,6 +174,17 @@
 				<input name="r2" type="radio" value="both" checked/><label value="both">Оба варианта</label>
 			</div>
 			<hr>
+			<p><b>Социальное положение:</b></p>
+			<select value="social">
+				<option value="all" selected>Все варианты</option>   
+				<option value="0">Учащийся школы</option>
+				<option value="1">Студент</option>
+				<option value="2">Неработающий</option>
+				<option value="3">Безработный</option>
+				<option value="4">Работающий</option>
+				<option value="5">Пенсионер</option> 						
+			</select>
+			<hr>		  
 			<br>
 			<center>
             <button id="butUpdate" onclick="update();">Показать</button>
@@ -218,13 +229,18 @@
 					<option value='5'>161-165 см</option>
 					<option value='6'>166-170 см</option>
 					<option value='7'>171-175 см</option>
-					<option value="8">176-180 см</option>
+					<option value='8'>176-180 см</option>
 					<option value='9'>181-185 см</option>
 					<option value='10'>186-190 см</option>
 					<option value='11'>выше 190 см</option>   
 				</select>
 				<hr>
-				<button id="butUpdate" onclick="">Добавить</button>
+				<div class="knopka" id="knopkaR"><button id="butUpdate" onclick="addQuestionR()">Добавить</button></div>
+				<hr>
+				<br>
+				<center>
+					<button id="butUpdate" onclick="update();">Показать</button>
+				</center>
 			</div>
 			<div id="dop2" style="display:none;">
 				<select>
@@ -243,10 +259,90 @@
 					<option value='12'>86-90 кг</option>
 					<option value='13'>больше 90 кг</option>
 				</select>
+				<hr>
+				<select>
+					<option value='0'>меньше 30 кг</option>
+					<option value='1'>30-35 кг</option>
+					<option value='2'>36-40 кг</option>
+					<option value='3'>41-45 кг</option>
+					<option value='4'>46-50 кг</option>
+					<option value='5'>51-55 кг</option>
+					<option value='6'>56-60 кг</option>
+					<option value='7'>61-65 кг</option>
+					<option value='8'>66-70 кг</option>
+					<option value='9'>71-75 кг</option>
+					<option value='10'>76-80 кг</option>
+					<option value='11'>81-85 кг</option>
+					<option value='12'>86-90 кг</option>
+					<option value='13'>больше 90 кг</option>
+				</select>
+				<hr>
+				<div class="knopka" id="knopkaW"><button id="butUpdate" onclick="addQuestionW()">Добавить</button></div>
+				<hr>
+				<br>
+				<center>
+					<button id="butUpdate" onclick="update();">Показать</button>
+				</center>	
 			</div>
 			<div id="dop3" style="display:none;">
+				<select value='social'>
+					<option value='all' selected>Все варианты</option>   
+					<option value='0'>Учащийся школы</option>
+					<option value='1'>Студент</option>
+					<option value='2'>Неработающий</option>
+					<option value='3'>Безработный</option>
+					<option value='4'>Работающий</option>
+					<option value='5'>Пенсионер</option> 						
+				</select>
+				<hr>
+				<select value='social'>
+					<option value='all' selected>Все варианты</option>   
+					<option value='0'>Учащийся школы</option>
+					<option value='1'>Студент</option>
+					<option value='2'>Неработающий</option>
+					<option value='3'>Безработный</option>
+					<option value='4'>Работающий</option>
+					<option value='5'>Пенсионер</option> 						
+				</select>
+				<hr>
+				<div class="knopka" id="knopkaS"><button id="butUpdate" onclick="addQuestionS()">Добавить</button></div>
+				<hr>
+				<br>
+				<center>
+					<button id="butUpdate" onclick="update();">Показать</button>
+				</center>
 			</div>
 			<div id="dop4" style="display:none;">
+				<select>
+					<option value='all' selected>Все варианты</option>
+					<option value='0'>15-25</option>
+					<option value='1'>26-35</option>
+					<option value='2'>36-45</option>
+					<option value='3'>46-55</option>
+					<option value='4'>56-65</option>
+					<option value='5'>66-75</option>
+					<option value='7'>76-85</option>
+					<option value='8'>старше 85</option>
+				</select>
+				<hr>
+				<select>
+					<option value='all' selected>Все варианты</option>
+					<option value='0'>15-25</option>
+					<option value='1'>26-35</option>
+					<option value='2'>36-45</option>
+					<option value='3'>46-55</option>
+					<option value='4'>56-65</option>
+					<option value='5'>66-75</option>
+					<option value='7'>76-85</option>
+					<option value='8'>старше 85</option>
+				</select>
+				<hr>
+				<div class="knopka" id="knopkaV"><button id="butUpdate" onclick="addQuestionV()">Добавить</button></div>
+				<hr>
+				<br>
+				<center>
+					<button id="butUpdate" onclick="update();">Показать</button>
+				</center>
 			</div>
 			<div id="dop5" style="display:none;">
 			</div>
@@ -323,8 +419,45 @@
 			dop = document.getElementById('dop'+i);
 			dop.style.display = "none";
 		}
-		console.log(val);
 		dop = document.getElementById('dop'+val);
 		dop.style.display = "block";
+	}
+</script>
+
+<script>
+	function addQuestionR(){
+        var elem = document.getElementById("knopkaR");       
+		var div1 = document.createElement("div");
+		
+		div1.innerHTML = "<div id='box1'><select><option value='0'>ниже 140 см</option><option value='1'>140-145 см</option><option value='2'>146-150 см</option><option value='3'>151-155 см</option><option value='4'>156-160 см</option><option value='5'>161-165 см</option><option value='6'>166-170 см</option><option value='7'>171-175 см</option><option value='8'>176-180 см</option><option value='9'>181-185 см</option><option value='10'>186-190 см</option><option value='11'>выше 190 см</option></select><button onclick='DelPole(1);'>Удалить</button><hr></div>";
+		elem.parentNode.insertBefore(div1, elem);		
+	}
+	
+	function addQuestionW(){
+		var elem = document.getElementById("knopkaW");
+		var div2 = document.createElement("div");
+		
+		div2.innerHTML = "<div id='box2'><select><option value='0'>меньше 30 кг</option><option value='1'>30-35 кг</option><option value='2'>36-40 кг</option><option value='3'>41-45 кг</option><option value='4'>46-50 кг</option><option value='5'>51-55 кг</option><option value='6'>56-60 кг</option><option value='7'>61-65 кг</option><option value='8'>66-70 кг</option><option value='9'>71-75 кг</option><option value='10'>76-80 кг</option><option value='11'>81-85 кг</option><option value='12'>86-90 кг</option><option value='13'>больше 90 кг</option></select><button onclick='DelPole(2);'>Удалить</button><hr></div>";
+		elem.parentNode.insertBefore(div2, elem);		
+	}
+	
+	function addQuestionS(){
+        var elem = document.getElementById("knopkaS");       
+		var div3 = document.createElement("div");
+		
+		div3.innerHTML = "<div id='box3'><select><option value='all' selected>Все варианты</option>   <option value='0'>Учащийся школы</option><option value='1'>Студент</option><option value='2'>Неработающий</option><option value='3'>Безработный</option><option value='4'>Работающий</option><option value='5'>Пенсионер</option></select><button onclick='DelPole(3);'>Удалить</button><hr></div>";
+		elem.parentNode.insertBefore(div3, elem);		
+	}
+	
+	function addQuestionV(){
+        var elem = document.getElementById("knopkaV");       
+		var div4 = document.createElement("div");
+		
+		div4.innerHTML = "<div id='box4'><select><option value='all' selected>Все варианты</option><option value='0'>15-25</option><option value='1'>26-35</option><option value='2'>36-45</option><option value='3'>46-55</option><option value='4'>56-65</option><option value='5'>66-75</option><option value='7'>76-85</option><option value='8'>старше 85</option></select><button onclick='DelPole(4);'>Удалить</button><hr></div>";
+		elem.parentNode.insertBefore(div4, elem);		
+	}
+	
+	function DelPole(chislo){
+		document.getElementById ('box' + chislo).parentNode.removeChild (document.getElementById ('box' + chislo));
 	}
 </script>
